@@ -1,4 +1,4 @@
-# Last 3 Leaderboard Runs (Exact Change Log)
+# Leaderboard Runs (Exact Change Log)
 
 ## Score Trend
 - Run 1: `31.46%` (`F1 22.86`, `Recall 20.29`, `ROUGE 18.85`, `LLM 3.554`)
@@ -9,6 +9,7 @@
 - Run 6: `46.85%` (`F1 31.74`, `Recall 46.51`, `ROUGE 28.89`, `LLM 4.210`)
 - Run 7: `49.05%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.299`)
 - Run 8: `49.29%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.338`)
+- Run 9: `49.25%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.331`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -134,6 +135,15 @@
 - F1/Recall/ROUGE unchanged
 - small LLM-judge increase (`4.299 -> 4.338`)
 - practical conclusion: MQ=3 is slightly better but effect size is small
+
+## Run 9 (RRF + MQ3 + Doc Diversification)
+- Score: `49.25%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.331`)
+- Key change vs Run 8:
+- enabled post-rerank doc diversification (`--diversify-docs --doc-cap 2`)
+- Result pattern:
+- slight regression vs Run 8 (`49.29 -> 49.25`)
+- core overlap metrics unchanged; small LLM-judge drop (`4.338 -> 4.331`)
+- practical conclusion: doc-cap diversification did not help at current `top_k=3`
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)

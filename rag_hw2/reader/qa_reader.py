@@ -53,6 +53,8 @@ def build_rag_prompt(question, contexts, max_context_chars= 5000) :
         "When possible, copy the exact answer span from the context.\n"
         "Prefer one short canonical answer phrase (or one short sentence) when possible.\n"
         "If a short answer is sufficient (for example, a name, title, date, or place), answer it once only.\n"
+        "For factual questions, answer directly and do not add extra explanation.\n"
+        "Use explanation only for questions asking why/how/what happened/describe/explain/significance.\n"
         "Do not repeat aliases or alternate names unless the question explicitly asks for them.\n"
         "For date/year questions, return the exact date or year from the context when available.\n"
         "If the context is weak or missing, give your best answer based on your knowledge.\n"
@@ -155,6 +157,26 @@ def _looks_when_question(question) :
     if not question:
         return False
     return question.lower().strip().startswith("when ")
+
+
+def _looks_explanatory_question(question) :
+    if not question:
+        return False
+    q = question.lower().strip()
+    if q.startswith("why ") or q.startswith("how "):
+        return True
+    expl_markers = [
+        "what happened",
+        "describe",
+        "explain",
+        "significance",
+        "importance",
+        "impact",
+        "role",
+        "reason",
+        "history of",
+    ]
+    return any(m in q for m in expl_markers)
 
 
 def _collapse_semicolon_for_singular_question(text, question) :
@@ -262,7 +284,8 @@ def postprocess_answer(text, question= None) :
     text = _remove_trailing_explanation(text)
     text = _normalize_date_or_year_for_question(text, question)
     text = _keep_first_sentence_if_compact(text, question)
-    text = _truncate_to_max_sentences(text, max_sentences=3)
+    max_sents = 3 if _looks_explanatory_question(question) else 1
+    text = _truncate_to_max_sentences(text, max_sentences=max_sents)
     # Normalize some common non-answer fillers.
     low = text.lower()
     if low in {"unknown.", "unknown", "not found", "not provided", "insufficient information"}:
