@@ -21,7 +21,11 @@ def parse_args() :
     p.add_argument("--reader-model", default="Qwen/Qwen2.5-14B-Instruct")
     p.add_argument("--reader-task", choices=["text-generation", "text2text-generation"], default="text-generation")
     p.add_argument("--modes", nargs="+", default=["sparse", "dense", "hybrid"])
-    p.add_argument("--fusion-methods", nargs="+", default=["rrf", "weighted"])
+    p.add_argument("--fusion-methods", nargs="+", default=["rrf", "weighted", "weighted_rrf", "combmnz"])
+    p.add_argument("--fusion-alpha", type=float, default=0.5)
+    p.add_argument("--rrf-k", type=int, default=60)
+    p.add_argument("--dense-weight", type=float, default=0.5)
+    p.add_argument("--sparse-weight", type=float, default=0.5)
     p.add_argument("--top-k", type=int, default=3)
     p.add_argument("--fetch-k-each", type=int, default=80)
     p.add_argument("--reranker-model", default="BAAI/bge-reranker-large")
@@ -54,6 +58,8 @@ def main() :
         cmd = [
             sys.executable,
             str(ROOT / "scripts" / "answer_queries.py"),
+            "--run-name",
+            str((out_dir / name).as_posix().replace("/", "_")),
             "--queries",
             args.queries,
             "--output",
@@ -79,6 +85,10 @@ def main() :
         ]
         if fusion:
             cmd.extend(["--fusion-method", fusion])
+            cmd.extend(["--fusion-alpha", str(args.fusion_alpha)])
+            cmd.extend(["--rrf-k", str(args.rrf_k)])
+            cmd.extend(["--dense-weight", str(args.dense_weight)])
+            cmd.extend(["--sparse-weight", str(args.sparse_weight)])
         if args.reader_model:
             cmd.extend(["--reader-model", args.reader_model])
         if args.reranker_model:

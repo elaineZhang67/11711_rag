@@ -5,7 +5,12 @@ from pathlib import Path
 from rag_hw2.types import RetrievedChunk
 from rag_hw2.retrieval.chunk_store import ChunkStore, load_chunk_store_from_jsonl
 from rag_hw2.retrieval.dense_faiss import DenseFAISSIndex, load_dense_faiss_index
-from rag_hw2.retrieval.fusion import reciprocal_rank_fusion, weighted_score_fusion
+from rag_hw2.retrieval.fusion import (
+    combmnz_fusion,
+    reciprocal_rank_fusion,
+    weighted_rrf_fusion,
+    weighted_score_fusion,
+)
 from rag_hw2.retrieval.sparse_bm25 import SparseBM25Index, load_sparse_bm25_index
 
 
@@ -37,6 +42,9 @@ class HybridRetriever:
         fetch_k_each= 50,
         method= "rrf",
         alpha= 0.5,
+        rrf_k= 60,
+        dense_weight= 0.5,
+        sparse_weight= 0.5,
     ) :
         if not self.sparse or not self.dense:
             raise ValueError("Both sparse and dense indices are required for hybrid retrieval.")
@@ -46,8 +54,19 @@ class HybridRetriever:
         dense_pairs = [(r.chunk_id, r.score) for r in dense]
         if method == "weighted":
             fused = weighted_score_fusion(dense=dense_pairs, sparse=sparse_pairs, alpha=alpha, top_n=top_k)
+        elif method == "weighted_rrf":
+            fused = weighted_rrf_fusion(
+                dense=dense_pairs,
+                sparse=sparse_pairs,
+                dense_weight=dense_weight,
+                sparse_weight=sparse_weight,
+                k=rrf_k,
+                top_n=top_k,
+            )
+        elif method == "combmnz":
+            fused = combmnz_fusion(dense=dense_pairs, sparse=sparse_pairs, alpha=alpha, top_n=top_k)
         else:
-            fused = reciprocal_rank_fusion({"dense": dense_pairs, "sparse": sparse_pairs}, top_n=top_k)
+            fused = reciprocal_rank_fusion({"dense": dense_pairs, "sparse": sparse_pairs}, k=rrf_k, top_n=top_k)
         out = []
         for rank, (cid, score, parts) in enumerate(fused, start=1):
             out.append(

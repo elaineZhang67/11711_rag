@@ -105,13 +105,19 @@ class RetrievalConfig:
         fetch_k_each= 30,
         fusion_method= "rrf",
         fusion_alpha= 0.5,
+        rrf_k= 60,
+        dense_weight= 0.5,
+        sparse_weight= 0.5,
         rerank_fetch_k= None,
     ) :
         self.mode = mode  # sparse | dense | hybrid | closedbook
         self.top_k = top_k
         self.fetch_k_each = fetch_k_each
-        self.fusion_method = fusion_method  # rrf | weighted
+        self.fusion_method = fusion_method  # rrf | weighted | weighted_rrf | combmnz
         self.fusion_alpha = fusion_alpha
+        self.rrf_k = rrf_k
+        self.dense_weight = dense_weight
+        self.sparse_weight = sparse_weight
         self.rerank_fetch_k = rerank_fetch_k
 
     def to_dict(self) :
@@ -121,6 +127,9 @@ class RetrievalConfig:
             "fetch_k_each": self.fetch_k_each,
             "fusion_method": self.fusion_method,
             "fusion_alpha": self.fusion_alpha,
+            "rrf_k": self.rrf_k,
+            "dense_weight": self.dense_weight,
+            "sparse_weight": self.sparse_weight,
             "rerank_fetch_k": self.rerank_fetch_k,
         }
 
@@ -352,6 +361,9 @@ class RAGPipeline:
                 fetch_k_each=self.cfg.fetch_k_each,
                 method=self.cfg.fusion_method,
                 alpha=self.cfg.fusion_alpha,
+                rrf_k=self.cfg.rrf_k,
+                dense_weight=self.cfg.dense_weight,
+                sparse_weight=self.cfg.sparse_weight,
             )
         raise ValueError(f"Unknown retrieval mode: {mode}")
 

@@ -71,8 +71,11 @@ def parse_args() :
     p.add_argument("--mode", choices=["sparse", "dense", "hybrid", "closedbook"], default="hybrid")
     p.add_argument("--top-k", type=int, default=3)
     p.add_argument("--fetch-k-each", type=int, default=80)
-    p.add_argument("--fusion-method", choices=["rrf", "weighted"], default="rrf")
+    p.add_argument("--fusion-method", choices=["rrf", "weighted", "weighted_rrf", "combmnz"], default="rrf")
     p.add_argument("--fusion-alpha", type=float, default=0.5)
+    p.add_argument("--rrf-k", type=int, default=60)
+    p.add_argument("--dense-weight", type=float, default=0.5)
+    p.add_argument("--sparse-weight", type=float, default=0.5)
     p.add_argument("--reranker-model", type=str, default="BAAI/bge-reranker-large", help="Optional cross-encoder reranker model.")
     p.add_argument("--rerank-fetch-k", type=int, default=30, help="Retrieve this many candidates before reranking.")
     p.add_argument("--reranker-batch-size", type=int, default=16)
@@ -147,6 +150,9 @@ def main() :
             fetch_k_each=args.fetch_k_each,
             fusion_method=args.fusion_method,
             fusion_alpha=args.fusion_alpha,
+            rrf_k=args.rrf_k,
+            dense_weight=args.dense_weight,
+            sparse_weight=args.sparse_weight,
             rerank_fetch_k=args.rerank_fetch_k,
         ),
         reranker=reranker,
