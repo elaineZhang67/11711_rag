@@ -8,6 +8,7 @@
 - Run 5: `42.10%` (`F1 32.86`, `Recall 40.09`, `ROUGE 30.32`, `LLM 3.605`)
 - Run 6: `46.85%` (`F1 31.74`, `Recall 46.51`, `ROUGE 28.89`, `LLM 4.210`)
 - Run 7: `49.05%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.299`)
+- Run 8: `49.29%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.338`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -123,6 +124,16 @@
 - best overall score so far
 - improved across all reported metrics (F1/Recall/ROUGE/LLM judge)
 - consistent with removal of brittle person/date snippet extraction errors
+
+## Run 8 (RRF + MQ3 + No Extractive-First)
+- Score: `49.29%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.338`)
+- Key change vs Run 7:
+- `--multi-query-max: 1 -> 3`
+- Result pattern:
+- marginal total-score gain (`49.05 -> 49.29`)
+- F1/Recall/ROUGE unchanged
+- small LLM-judge increase (`4.299 -> 4.338`)
+- practical conclusion: MQ=3 is slightly better but effect size is small
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
