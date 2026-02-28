@@ -56,7 +56,7 @@ def build_rag_prompt(question, contexts, max_context_chars= 5000) :
         "For date/year questions, return the exact date or year from the context when available.\n"
         "If the context is weak or missing, give your best answer based on your knowledge.\n"
         "Do your best to be concise, but include enough detail to answer correctly.\n\n"
-        "Please use at most 3 complete sentences.\n\n"
+        "Limit your final answer to at most 3 sentences.\n\n"
         f"Question: {question}\n\n"
         f"Context:\n{context_block}\n\n"
         "Answer:"
@@ -311,7 +311,7 @@ def postprocess_answer(text, question= None) :
     text = _normalize_date_or_year_for_question(text, question)
     text = _keep_first_sentence_if_compact(text, question)
     text = _compress_for_singular_fact(text, question)
-    text = _truncate_to_max_sentences(text, max_sentences=1)
+    text = _truncate_to_max_sentences(text, max_sentences=3)
     # Normalize some common non-answer fillers.
     low = text.lower()
     if low in {"unknown.", "unknown", "not found", "not provided", "insufficient information"}:
