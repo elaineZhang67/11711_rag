@@ -57,7 +57,7 @@ def build_rag_prompt(question, contexts, max_context_chars= 5000) :
         "For date/year questions, return the exact date or year from the context when available.\n"
         "If the context is weak or missing, give your best answer based on your knowledge.\n"
         "Do your best to be concise, but include enough detail to answer correctly.\n\n"
-        "Keep your final answer brief. Use one short sentence at most unless absolutely necessary.\n\n"
+        "Please use at most 3 complete sentences.\n\n"
         f"Question: {question}\n\n"
         f"Context:\n{context_block}\n\n"
         "Answer:"
