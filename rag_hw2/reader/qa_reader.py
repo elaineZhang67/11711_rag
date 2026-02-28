@@ -374,10 +374,11 @@ class TransformersReader:
         prompt = build_rag_prompt(question, contexts, max_context_chars=self.max_context_chars)
         gen_kwargs = {
             "max_new_tokens": self.max_new_tokens,
+            "max_length": None,
             "do_sample": self.temperature > 0,
-            "temperature": self.temperature if self.temperature > 0 else None,
         }
-        gen_kwargs = {k: v for k, v in gen_kwargs.items() if v is not None}
+        if self.temperature > 0:
+            gen_kwargs["temperature"] = self.temperature
         out = self.pipe(prompt, **gen_kwargs)
         if not out:
             return ""
