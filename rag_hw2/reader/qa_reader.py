@@ -52,7 +52,6 @@ def build_rag_prompt(question, contexts, max_context_chars= 5000) :
         "When possible, copy the exact answer span from the context.\n"
         "Prefer one short canonical answer phrase whenever possible.\n"
         "If a short answer is sufficient (for example, a name, title, date, or place), answer it once only.\n"
-        "Do not return explanatory lead-ins like 'The name is' or 'The answer is'.\n"
         "Do not repeat aliases or alternate names unless the question explicitly asks for them.\n"
         "For date/year questions, return the exact date or year from the context when available.\n"
         "If the context is weak or missing, give your best answer based on your knowledge.\n"
