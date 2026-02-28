@@ -3,7 +3,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
+import shlex
 import sys
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,10 +33,37 @@ def _write_jsonl(rows, path) :
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
+def _write_text(text, path) :
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(text, encoding="utf-8")
+
+
+def _safe_name(text) :
+    return re.sub(r"[^A-Za-z0-9._-]+", "_", text).strip("_")
+
+
+def _make_run_dir(track_root, run_name) :
+    root = Path(track_root)
+    root.mkdir(parents=True, exist_ok=True)
+    base = _safe_name(run_name) or "run"
+    run_dir = root / base
+    if run_dir.exists():
+        stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        run_dir = root / f"{base}_{stamp}"
+    run_dir.mkdir(parents=True, exist_ok=True)
+    return run_dir
+
+
+def _format_invocation_command() :
+    return "python " + " ".join(shlex.quote(x) for x in sys.argv)
+
+
 def parse_args() :
     p = argparse.ArgumentParser(description="Answer a JSON query file with sparse/dense/hybrid RAG.")
     p.add_argument("--queries", type=str, required=True, help="Input JSON list/dict of queries.")
-    p.add_argument("--output", type=str, required=True, help="Output predictions JSON.")
+    p.add_argument("--run-name", type=str, required=True, help="Run name. Creates data/outputs/<run-name>/")
+    p.add_argument("--output", type=str, default=None, help="Optional explicit output JSON path (default: data/outputs/<run-name>/answers.json).")
     p.add_argument("--debug-output", type=str, default=None, help="Optional JSONL with retrieval traces.")
     p.add_argument("--chunks", type=str, default="data/processed/chunks.jsonl")
     p.add_argument("--sparse-dir", type=str, default="data/indices/sparse_bm25")
@@ -62,6 +92,9 @@ def parse_args() :
 
 def main() :
     args = parse_args()
+    run_dir = _make_run_dir("data/outputs", args.run_name)
+    output_path = Path(args.output) if args.output else (run_dir / "answers.json")
+
     queries = load_queries(args.queries)
 
     retriever = None
@@ -129,10 +162,27 @@ def main() :
             print(f"[{i}/{len(queries)}] {q.qid}: {q.question}\n  -> {row['answer']}")
 
     submission = build_submission_json(preds, andrewid=args.andrewid)
-    _write_json(submission, args.output, indent=2)
+    _write_json(submission, output_path, indent=2)
     if args.debug_output:
         _write_jsonl(debug_rows, args.debug_output)
-    print(f"Wrote predictions to {args.output}")
+
+    _write_text(_format_invocation_command() + "\n", run_dir / "command.txt")
+    result_template = (
+        "Leaderboard Result\n"
+        "------------------\n"
+        "Attempt:\n"
+        "Total score:\n"
+        "F1:\n"
+        "Recall:\n"
+        "ROUGE(avg):\n"
+        "LLM judge:\n"
+        "\n"
+        "Notes:\n"
+    )
+    _write_text(result_template, run_dir / "leaderboard.result.txt")
+
+    print(f"Wrote predictions to {output_path}")
+    print(f"Run directory: {run_dir}")
     if args.debug_output:
         print(f"Wrote debug traces to {args.debug_output}")
 

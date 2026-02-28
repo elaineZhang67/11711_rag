@@ -1,0 +1,77 @@
+# Last 3 Leaderboard Runs (Exact Change Log)
+
+## Score Trend
+- Run 1: `31.46%` (`F1 22.86`, `Recall 20.29`, `ROUGE 18.85`, `LLM 3.554`)
+- Run 2: `39.83%` (`F1 21.18`, `Recall 35.53`, `ROUGE 18.04`, `LLM 4.382`)
+- Run 3: `46.34%` (`F1 31.26`, `Recall 45.68`, `ROUGE 28.50`, `LLM 4.197`)
+
+## Run 1 (Baseline)
+- Retrieval mode: `hybrid`
+- Chunking: `sentence`, `chunk_size_words=250`, `overlap_words=50`, `min_chunk_words=20`
+- Sparse retriever: BM25
+- Dense retriever: FAISS + `sentence-transformers/all-MiniLM-L6-v2`
+- Reranker: `cross-encoder/ms-marco-MiniLM-L-12-v2`
+- Retrieval config: `top_k=5`, `fetch_k_each=50`, `rerank_fetch_k=20`
+- Reader model: `Qwen/Qwen2.5-14B-Instruct`
+- Generation config: `max_new_tokens=32`, `temperature=0.0`
+- Prompt style: short direct answer, but still general QA wording
+- Normalization strategy (baseline):
+- prefix strip (`Answer:`, etc.)
+- first-line keep
+- trim quotes / punctuation
+- Result pattern: low recall and many canonical-form mismatches
+
+## Run 2 (Recall-Oriented)
+- Kept: same chunking and same reader model (`Qwen/Qwen2.5-14B-Instruct`)
+- Retrieval config changes vs Run 1:
+- `top_k: 5 -> 3`
+- `fetch_k_each: 50 -> 80`
+- `rerank_fetch_k: 20 -> 30`
+- Prompt changes vs Run 1:
+- relaxed to allow best-effort output when context is weak
+- more permissive detail/wording instructions
+- Generation changes vs Run 1:
+- `max_new_tokens: 32 -> 150`
+- Normalization additions vs Run 1:
+- alias list collapse (`A; Full A -> A` for singular-style answers)
+- parenthetical alias collapse (`A (Full A) -> A` when one contains the other)
+- trailing explanation trim (`A - explanation -> A`)
+- simple date/year cleanup (`in 1967 -> 1967`, and question-aware year/date handling)
+- Result pattern:
+- Recall and LLM judge increased a lot
+- F1/ROUGE stayed low due to verbose answers / non-canonical phrasing
+
+## Run 3 (Precision + Canonicalization)
+- Kept: same chunking (`sentence`, `250/50`)
+- Model changes vs Run 2:
+- dense embedding: `all-MiniLM-L6-v2 -> BAAI/bge-large-en-v1.5`
+- reranker: `cross-encoder/ms-marco-MiniLM-L-12-v2 -> BAAI/bge-reranker-large`
+- Retrieval/pipeline changes vs Run 2:
+- `fetch_k_each: 80 -> 120`
+- `rerank_fetch_k: 30 -> 50`
+- added score shaping before rerank:
+- boost title/url/text query-term matches
+- penalty for list/directory/faculty-style noisy pages
+- added extractive-first path for date/year/person-like questions, with LLM fallback
+- Prompt/output changes vs Run 2:
+- switched back to canonical short-answer style
+- removed verbose lead-ins by instruction (`The answer is ...`)
+- set concise answer behavior (keyword/span-like answers)
+- Generation changes vs Run 2:
+- `max_new_tokens: 150 -> 120`
+- Normalization additions vs Run 2:
+- citation tail removal (`[1]`)
+- stronger verbose-intro stripping (`The name is ... -> ...`)
+- singular-fact compression to short spans
+- one-sentence final cap in postprocessing
+- Result pattern:
+- best overall score so far
+- major F1/ROUGE gain from cleaner exact spans
+- recall remained strong from broader retrieval + stronger reranking
+
+## Model Size Summary (What Scaled Up)
+- Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
+- Embedding model: moved from small MiniLM class to larger BGE-large class
+- Reranker: moved from smaller MiniLM cross-encoder class to larger BGE-reranker-large class
+- Practical effect: better candidate ranking/recall, then normalization/prompt tightening improved precision
+
