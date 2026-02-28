@@ -21,7 +21,6 @@ _DATE_RE = re.compile(
 def _normalize_whitespace(text) :
     return _WS_RE.sub(" ", text).strip()
 
-
 def _simple_sentence_split(text) :
     text = text.strip()
     if not text:
