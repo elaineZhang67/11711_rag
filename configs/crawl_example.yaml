@@ -1,0 +1,15 @@
+seed_urls:
+  - "https://www.cmu.edu/"
+  - "https://www.cmu.edu/about/"
+  - "https://www.cmu.edu/about/history.html"
+  - "https://www.cs.cmu.edu/"
+  - "https://athletics.cmu.edu/"
+allowed_domains:
+  - "cmu.edu"
+out_dir: "data/raw/cmu"
+max_pages: 3000
+max_depth: 4
+sleep_sec: 0.8
+timeout_sec: 20
+allow_query: false
+download_pdfs: true

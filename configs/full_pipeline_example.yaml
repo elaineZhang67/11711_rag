@@ -1,0 +1,53 @@
+crawl_jobs:
+  - seed_urls:
+      - "https://www.cmu.edu/"
+      - "https://www.cmu.edu/about/"
+      - "https://www.cmu.edu/about/history.html"
+      - "https://www.cs.cmu.edu/"
+      - "https://athletics.cmu.edu/"
+    allowed_domains:
+      - "cmu.edu"
+    out_dir: "data/raw/cmu"
+    max_pages: 3000
+    max_depth: 4
+    sleep_sec: 0.8
+    timeout_sec: 20
+    allow_query: false
+
+corpus:
+  inputs:
+    - "baseline_data"
+    - "data/raw/cmu"
+    - "data/raw/general"
+    - "data/raw/events"
+    - "data/raw/culture"
+    - "data/raw/food"
+    - "data/raw/sports"
+  documents_output: "data/processed/documents.jsonl"
+  min_chars: 100
+  dedupe_exact: true
+
+chunking:
+  output: "data/processed/chunks_sentence.jsonl"
+  strategy: "sentence"
+  chunk_size_words: 250
+  overlap_words: 50
+  min_chunk_words: 20
+
+retrieval:
+  sparse_out: "data/indices/sparse_bm25_sentence"
+  dense_out: "data/indices/dense_faiss_sentence"
+  embedding_model: "BAAI/bge-large-en-v1.5"
+  batch_size: 32
+  normalize_embeddings: true
+
+qa:
+  reader_backend: "transformers"
+  reader_model: "Qwen/Qwen2.5-14B-Instruct"
+  reader_task: "text-generation"
+  retrieval_mode: "hybrid"
+  top_k: 5
+  fetch_k_each: 50
+  fusion_method: "rrf"
+  reranker_model: "cross-encoder/ms-marco-MiniLM-L-12-v2"
+  rerank_fetch_k: 20

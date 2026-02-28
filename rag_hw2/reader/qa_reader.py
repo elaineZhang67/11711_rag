@@ -1,0 +1,414 @@
+from __future__ import annotations
+
+import re
+
+from transformers import pipeline as hf_pipeline
+
+from rag_hw2.types import Chunk
+
+
+_WS_RE = re.compile(r"\s+")
+_QUOTE_RE = re.compile(r'^[\"\'“”‘’`]+|[\"\'“”‘’`]+$')
+_CITATION_TAIL_RE = re.compile(r"(?:\s*\[\d+\])+$")
+_YEAR_RE = re.compile(r"\b(1[0-9]{3}|20[0-9]{2})\b")
+_DATE_RE = re.compile(
+    r"\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|"
+    r"sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+\d{1,2},?\s+\d{4}\b",
+    re.IGNORECASE,
+)
+
+
+def _normalize_whitespace(text) :
+    return _WS_RE.sub(" ", text).strip()
+
+
+def _simple_sentence_split(text) :
+    text = text.strip()
+    if not text:
+        return []
+    parts = re.split(r"(?<=[.!?])\s+(?=[A-Z0-9\"'])", text)
+    return [p.strip() for p in parts if p.strip()]
+
+
+def build_rag_prompt(question, contexts, max_context_chars= 5000) :
+    sections = []
+    used = 0
+    for i, c in enumerate(contexts, start=1):
+        header_parts = [f"[{i}]"]
+        if c.title:
+            header_parts.append(c.title)
+        if c.source_url:
+            header_parts.append(c.source_url)
+        snippet = c.text.strip()
+        room = max_context_chars - used
+        if room <= 0:
+            break
+        snippet = snippet[:room]
+        used += len(snippet)
+        sections.append(f"{' | '.join(header_parts)}\n{snippet}")
+    context_block = "\n\n".join(sections) if sections else "(no retrieved context provided)"
+    return (
+        "You are answering factual questions about Pittsburgh and Carnegie Mellon University.\n"
+        "Use the provided context first.\n"
+        "When possible, copy the exact answer span from the context.\n"
+        "Prefer one short canonical answer phrase whenever possible.\n"
+        "If a short answer is sufficient (for example, a name, title, date, or place), answer it once only.\n"
+        "Do not return explanatory lead-ins like 'The name is' or 'The answer is'.\n"
+        "Do not repeat aliases or alternate names unless the question explicitly asks for them.\n"
+        "For date/year questions, return the exact date or year from the context when available.\n"
+        "If the context is weak or missing, give your best answer based on your knowledge.\n"
+        "Do your best to be concise, but include enough detail to answer correctly.\n\n"
+        "Keep your final answer brief. Use one short sentence at most unless absolutely necessary.\n\n"
+        f"Question: {question}\n\n"
+        f"Context:\n{context_block}\n\n"
+        "Answer:"
+    )
+
+
+def _strip_outer_quotes(text) :
+    text = text.strip()
+    if not text:
+        return text
+    return _QUOTE_RE.sub("", text).strip()
+
+
+def _dedupe_parts_keep_order(parts) :
+    out = []
+    seen = set()
+    for p in parts:
+        key = p.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(p)
+    return out
+
+
+def _collapse_alias_list(text) :
+    if ";" not in text:
+        return text
+    parts = [ _strip_outer_quotes(x.strip()) for x in text.split(";") if x.strip() ]
+    parts = _dedupe_parts_keep_order(parts)
+    if not parts:
+        return text
+    if len(parts) == 1:
+        return parts[0]
+    # If one answer is just a shorter alias/canonical form of another, keep the shorter one.
+    lower_parts = [p.lower() for p in parts]
+    for i, p in enumerate(parts):
+        for j, q in enumerate(parts):
+            if i == j:
+                continue
+            if lower_parts[i] and lower_parts[i] in lower_parts[j]:
+                return p
+    # Otherwise preserve the list (some questions may genuinely need multiple answers).
+    return "; ".join(parts)
+
+
+def _looks_plural_question(question) :
+    if not question:
+        return False
+    q = question.lower().strip()
+    plural_markers = [
+        "what are",
+        "who are",
+        "which are",
+        "list ",
+        "name the",
+        "what were",
+        "who were",
+        "which teams",
+        "which events",
+    ]
+    return any(q.startswith(m) for m in plural_markers)
+
+
+def _looks_singular_fact_question(question) :
+    if not question:
+        return False
+    q = question.lower().strip()
+    if _looks_plural_question(q):
+        return False
+    singular_markers = [
+        "what is",
+        "what was",
+        "who is",
+        "who was",
+        "where is",
+        "where was",
+        "when was",
+        "when did",
+        "what year",
+        "what date",
+        "what month",
+    ]
+    return any(q.startswith(m) for m in singular_markers)
+
+
+def _looks_year_question(question) :
+    if not question:
+        return False
+    q = question.lower()
+    return "what year" in q or (q.strip().startswith("when ") and "year" in q)
+
+
+def _looks_when_question(question) :
+    if not question:
+        return False
+    return question.lower().strip().startswith("when ")
+
+
+def _collapse_semicolon_for_singular_question(text, question) :
+    if ";" not in text:
+        return text
+    if not _looks_singular_fact_question(question):
+        return text
+    parts = [p.strip() for p in text.split(";") if p.strip()]
+    if not parts:
+        return text
+    return parts[0]
+
+
+def _collapse_parenthetical_alias(text) :
+    text = text.strip()
+    if "(" not in text or ")" not in text:
+        return text
+    m = re.match(r"^(.*?)\s*\((.*?)\)\s*$", text)
+    if not m:
+        return text
+    left = _strip_outer_quotes(m.group(1).strip())
+    inside = _strip_outer_quotes(m.group(2).strip())
+    if not left or not inside:
+        return text
+    l = left.lower()
+    r = inside.lower()
+    if l in r:
+        return left
+    if r in l:
+        return inside
+    return text
+
+
+def _normalize_short_year_phrase(text) :
+    # Safe cleanup for outputs like "in 1967" or "since 1900" when there is a single year.
+    years = _YEAR_RE.findall(text)
+    if len(years) != 1:
+        return text
+    low = text.lower().strip()
+    if low.startswith(("in ", "since ", "around ", "circa ", "c. ")):
+        return years[0]
+    return text
+
+
+def _normalize_date_or_year_for_question(text, question) :
+    if not question:
+        return text
+    years = _YEAR_RE.findall(text)
+    if _looks_year_question(question):
+        if len(years) == 1:
+            return years[0]
+        return text
+    if _looks_when_question(question):
+        dates = _DATE_RE.findall(text)
+        if len(dates) == 1:
+            return _normalize_whitespace(dates[0])
+        if len(years) == 1:
+            return years[0]
+    return text
+
+
+def _remove_trailing_explanation(text) :
+    # If model gives "short answer - explanation", keep the left side when it's clearly shorter.
+    for sep in [" - ", " — ", " – ", " : "]:
+        if sep in text:
+            left, right = text.split(sep, 1)
+            if 0 < len(left.split()) <= 10 and len(right.split()) > len(left.split()):
+                return left.strip()
+    for sep in [", because ", ", which ", ", who ", ", where ", ", and "]:
+        if sep in text:
+            left, right = text.split(sep, 1)
+            if 0 < len(left.split()) <= 10 and len(right.split()) > len(left.split()):
+                return left.strip()
+    return text
+
+
+def _keep_first_sentence_if_compact(text, question) :
+    if not text or not _looks_singular_fact_question(question):
+        return text
+    sents = _simple_sentence_split(text)
+    if len(sents) <= 1:
+        return text
+    first = sents[0].strip()
+    if 0 < len(first.split()) <= 16:
+        return first
+    return text
+
+
+def _truncate_to_max_sentences(text, max_sentences= 1) :
+    sents = _simple_sentence_split(text)
+    if len(sents) <= max_sentences:
+        return text
+    return " ".join(sents[:max_sentences]).strip()
+
+
+def _strip_verbose_intro(text) :
+    t = text.strip()
+    patterns = [
+        r"^(?:the\s+answer\s+is)\s+",
+        r"^(?:the\s+name(?:\s+of\s+[^,]+?)?\s+(?:is|was))\s+",
+        r"^(?:it\s+(?:is|was))\s+",
+        r"^(?:this\s+(?:is|was))\s+",
+    ]
+    for p in patterns:
+        nt = re.sub(p, "", t, flags=re.IGNORECASE).strip()
+        if nt and nt != t:
+            t = nt
+            break
+    return t
+
+
+def _compress_for_singular_fact(text, question) :
+    if not _looks_singular_fact_question(question):
+        return text
+    t = text.strip()
+    # Remove common verbose wrappers first.
+    t = _strip_verbose_intro(t)
+
+    # If still long, try taking right side of a simple copula.
+    if len(t.split()) > 14 and " is " in t.lower():
+        m = re.split(r"\bis\b", t, maxsplit=1, flags=re.IGNORECASE)
+        if len(m) == 2:
+            cand = m[1].strip(" :,-")
+            if 0 < len(cand.split()) <= 14:
+                t = cand
+
+    # Final guardrail: trim overly long singular answers.
+    if len(t.split()) > 14:
+        t = " ".join(t.split()[:14]).strip()
+    return t
+
+
+def postprocess_answer(text, question= None) :
+    text = text.strip()
+    for prefix in [
+        "Answer:",
+        "The answer is",
+        "Based on the context,",
+        "Based on the provided context,",
+    ]:
+        if text.lower().startswith(prefix.lower()):
+            text = text[len(prefix) :].strip(" :,-")
+    # Keep first line for concise leaderboard-friendly outputs.
+    text = text.splitlines()[0].strip() if text else text
+    # Trim wrapping quotes and boilerplate punctuation.
+    text = _strip_outer_quotes(text)
+    text = text.strip(" \t:,-")
+    text = _CITATION_TAIL_RE.sub("", text).strip()
+    # If the model outputs "answer + long alias", prefer the canonical shorter form.
+    text = _collapse_alias_list(text)
+    text = _collapse_semicolon_for_singular_question(text, question)
+    text = _collapse_parenthetical_alias(text)
+    text = _remove_trailing_explanation(text)
+    text = _normalize_short_year_phrase(text)
+    text = _normalize_date_or_year_for_question(text, question)
+    text = _keep_first_sentence_if_compact(text, question)
+    text = _compress_for_singular_fact(text, question)
+    text = _truncate_to_max_sentences(text, max_sentences=1)
+    # Normalize some common non-answer fillers.
+    low = text.lower()
+    if low in {"unknown.", "unknown", "not found", "not provided", "insufficient information"}:
+        text = "UNKNOWN"
+    # Remove trailing sentence punctuation if answer looks like a short span.
+    if len(text.split()) <= 12:
+        text = text.rstrip(" .")
+    return _normalize_whitespace(text)
+
+
+class Reader:
+    def answer(self, question, contexts) :
+        raise NotImplementedError
+
+
+class HeuristicReader:
+    """Fallback reader for quick debugging without an LLM."""
+
+    def __init__(self) :
+        pass
+
+    def answer(self, question, contexts) :
+        if not contexts:
+            return ""
+        top = contexts[0].text.strip()
+        sents = _simple_sentence_split(top)
+        cand = sents[0] if sents else top.split("\n")[0]
+        return postprocess_answer(cand[:240], question=question)
+
+
+class TransformersReader:
+    def __init__(
+        self,
+        model_name,
+        task= "text2text-generation",
+        max_new_tokens= 120,
+        temperature= 0.0,
+        device= None,
+        max_context_chars= 5000,
+    ) :
+        self.model_name = model_name
+        self.task = task  # text2text-generation or text-generation
+        self.max_new_tokens = max_new_tokens
+        self.temperature = temperature
+        self.device = device
+        self.max_context_chars = max_context_chars
+        self.__post_init__()
+
+    def __post_init__(self) :
+        kwargs = {
+            "task": self.task,
+            "model": self.model_name,
+            "tokenizer": self.model_name,
+        }
+        if self.device is not None:
+            kwargs["device"] = self.device
+        self.pipe = hf_pipeline(**kwargs)
+
+    def answer(self, question, contexts) :
+        prompt = build_rag_prompt(question, contexts, max_context_chars=self.max_context_chars)
+        gen_kwargs = {
+            "max_new_tokens": self.max_new_tokens,
+            "do_sample": self.temperature > 0,
+            "temperature": self.temperature if self.temperature > 0 else None,
+        }
+        gen_kwargs = {k: v for k, v in gen_kwargs.items() if v is not None}
+        out = self.pipe(prompt, **gen_kwargs)
+        if not out:
+            return ""
+        raw = out[0].get("generated_text") or out[0].get("summary_text") or ""
+        if self.task == "text-generation" and raw.startswith(prompt):
+            raw = raw[len(prompt) :]
+        return postprocess_answer(raw, question=question)
+
+
+def make_reader(
+    backend,
+    model_name= None,
+    task= "text2text-generation",
+    max_new_tokens= 120,
+    temperature= 0.0,
+    device= None,
+    max_context_chars= 5000,
+) :
+    if backend == "heuristic":
+        return HeuristicReader()
+    if backend == "transformers":
+        if not model_name:
+            raise ValueError("model_name is required for transformers reader")
+        return TransformersReader(
+            model_name=model_name,
+            task=task,
+            max_new_tokens=max_new_tokens,
+            temperature=temperature,
+            device=device,
+            max_context_chars=max_context_chars,
+        )
+    raise ValueError(f"Unknown reader backend: {backend}")

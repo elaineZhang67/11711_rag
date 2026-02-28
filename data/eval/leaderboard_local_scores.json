@@ -1,0 +1,1590 @@
+{
+  "summary": {
+    "n": 158,
+    "em": 0.0,
+    "f1": 0.0,
+    "rouge_l": 0.0
+  },
+  "rows": [
+    {
+      "id": "andrewid",
+      "prediction": "",
+      "references": [
+        "Venonat1"
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "1",
+      "prediction": "1900",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "2",
+      "prediction": "To provide practical skills, trades, and crafts training for the working-class people of Pittsburgh to enhance their careers, lives, and communities. The Carnegie Technical Schools offered two- and three-year certificates in the arts and engineering disciplines. They also included a college for women, Margaret Morrison Carnegie College. The initial purpose was to offer vocational and technical education. To be more specific, the schools aimed to equip working-class individuals with practical skills and knowledge that would improve their professional prospects and overall quality of life. This aligns with Andrew Carnegie's vision of providing educational opportunities for the general public, particularly those from less privileged backgrounds. The context indicates that the Carnegie Technical Schools were established in 1900 with a donation from Andrew Carnegie, who envisioned a school",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "3",
+      "prediction": "1912",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "4",
+      "prediction": "In 1967, Carnegie Institute of Technology merged with the Mellon Institute of Industrial Research to form Carnegie Mellon University, supported by Paul Mellon. This marked the creation of the institution as it is known today. To provide a short canonical answer: In 1967, Carnegie Tech merged with the Mellon Institute to become Carnegie Mellon University. To adhere strictly to the instruction for a short answer without repetition: In 1967, Carnegie Tech and the Mellon Institute merged. To ensure no repetition and conciseness: In 1967, Carnegie Tech and the Mellon Institute combined. Given the instruction to prefer one short canonical answer phrase, here it is: In 1967, Carnegie Tech and the Mellon Institute",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "5",
+      "prediction": "Andrew Mellon and Richard B. Mellon",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "6",
+      "prediction": "My heart is in the work",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "7",
+      "prediction": "Pittsburgh, Pennsylvania, United States",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "8",
+      "prediction": "Seven colleges and schools",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "9",
+      "prediction": "The seven colleges and schools at Carnegie Mellon University are",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "10",
+      "prediction": "The School of Computer Science at Carnegie Mellon University is renowned for its computer science program. To specify the college, it's part of the university's structure rather than being a separate college; however, it is the institution's flagship program for computer science studies. If you need to refer to a specific college, the closest equivalent would be the Mellon College of Science, which houses the School of Computer Science, though typically the School itself is referenced directly for its prestige in computer science. Given the instruction for conciseness, the primary answer is",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "11",
+      "prediction": "Tepper School of Business",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "12",
+      "prediction": "Burton Morris",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "13",
+      "prediction": "The Tartan",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "14",
+      "prediction": "Scottie Dog",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "15",
+      "prediction": "Cardinal and Gray",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "16",
+      "prediction": "Sweepstakes",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "17",
+      "prediction": "The Fence' at Carnegie Mellon University is a concrete and steel-reinforced structure located in the middle of \"The Cut,\" serving as a prominent canvas for student messages and art, holding the Guinness World Record for being the most painted object. It originated as a wooden fence in 1923 and was repainted without stripping previous layers, accumulating over six inches of paint before collapsing in the 1990s. A new, durable version was installed in 1993. Students maintain a vigil to protect it and follow strict rules for painting it. Its history dates back to a prank by a fraternity in 1916, turning it into a cherished campus tradition. The original purpose was to serve as a meeting",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "18",
+      "prediction": "Margaret Morrison Carnegie Hall",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "19",
+      "prediction": "Hunt Library",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "20",
+      "prediction": "Randy Pausch",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "21",
+      "prediction": "Known for its inspirational message on achieving childhood dreams and facing mortality, Randy Pausch's \"Last Lecture\" became a pop culture phenomenon. Given on September 18, 2007, it was delivered shortly after he learned his cancer had spread. The lecture was later adapted into a bestselling book.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "22",
+      "prediction": "Andy Bechtolsheim",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "23",
+      "prediction": "The annual spring carnival at Carnegie Mellon University is called Spring Carnival. The context does not provide an alternative name for this event. Booth and Buggy competitions are highlighted as key parts of the event. Therefore, the name of Carnegie Mellon's annual spring carnival is simply \"Spring Carnival.\" This answer directly addresses the question without repeating aliases or additional information unless explicitly asked for. The exact name is provided as requested. There is no need to restate the event's components or other details since the question specifically asks for the name of the event. The answer is concise and directly answers the question based on the given context. The name \"Spring Carnival\" is the official and commonly used name for the event according to the provided context. The answer is clear and avoids",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "24",
+      "prediction": "Newell-Simon Hall",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "25",
+      "prediction": "The Kiltie Band is a campus organization at Carnegie Mellon University that includes a marching band and concert band, performing at football games and other events. It was founded in 1908 and is open to all members of the campus and community without an audition. The band performs various types of music and also supports basketball teams as a pep band. It is recognized by the Student Senate and administered by the Department of Athletics, Physical Education, and Recreation. Rehearsals and performances vary depending on the season. The Kiltie Band has a long-standing tradition dating back over a century. To summarize concisely: The Kiltie Band is Carnegie Mellon's musical ensemble that performs at sports events and concerts, founded in 19",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "26",
+      "prediction": "The Robotics Institute",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "27",
+      "prediction": "Integrative Design, Arts, and Technology (IDeATe) The name of the interdisciplinary program combining technology and the arts at Carnegie Mellon University is Integrative Design, Arts, and Technology (IDeATe). To adhere strictly to the instruction for a single short canonical answer phrase, the response is",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "28",
+      "prediction": "Scott E. Fahlman",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "29",
+      "prediction": "A daylong celebration featuring CMU-themed activities, student talent shows, free snacks, and giveaways. To provide a concise answer based on the given context",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "30",
+      "prediction": "Mellon Institute",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "31",
+      "prediction": "The 'Mobot' competition at Carnegie Mellon is an annual event where robots autonomously navigate a slalom course to pass through gates and reach the finish line, starting from 1994. To win, robots must follow a white line and discern correct paths when lines split and merge. Prizes are awarded to top performers. Entry is free for enrolled undergraduates. The competition is organized by the School of Computer Science.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "32",
+      "prediction": "Zachary Quinto",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "33",
+      "prediction": "The university is named after its founder, Andrew Carnegie, and the Mellon family, whose institute merged with Carnegie's institution in 1967. To be more specific, it combines Carnegie Institute of Technology and the Mellon Institute of Industrial Research. The name reflects both the legacy of Andrew Carnegie and the contributions of the Mellon family to the university. However, if we need to stick strictly to the context and provide a concise answer, it is named after Andrew Carnegie and the Mellon family. The full name \"Carnegie Mellon University\" was adopted in 1967 following the merger. To adhere strictly to your instructions for conciseness: The university is named after Andrew Carnegie and the Mellon family. To be even more precise: Carnegie Mellon",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "34",
+      "prediction": "The tradition involves students painting The Fence, a specific campus landmark. To be precise, it is located in the middle of the campus and can only be painted by CMU students between midnight and sunrise using only paint brushes. Students must guard their messages for as long as they want them displayed. However, the core answer to the question is: The Fence. The Fence is the specific campus landmark that students paint as part of a tradition. To adhere strictly to the instruction for a short canonical answer: The Fence. To provide a concise yet complete answer: Students paint The Fence, a campus landmark, as part of a tradition. Given the instruction to prefer a short canonical answer phrase or sentence, and considering the need to avoid repetition: The Fence. Based",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "35",
+      "prediction": "The Cut' is a significant landmark on CMU's campus that divides parts of the main campus and serves as a meeting point and cultural symbol. It is often referenced in campus traditions and events. The term also appears in the title of an animation project series called \"Across the Cut.\" This project showcases student work and provides key skills and faculty engagement opportunities. Therefore, 'The Cut' holds both physical and symbolic importance for the university community. However, the context does not provide specific details about its origin or exact location.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "36",
+      "prediction": "Allen Newell",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "37",
+      "prediction": "Scotch'n'Soda Theatre is a student-run theatre organization at Carnegie Mellon University that performs in various spaces within the university's University Center, including the Connan Room, McKenna/Peter/Wright Room, Rangos Ballroom, and McConomy Auditorium. It does not have a fixed dedicated theatre space due to limited access to performance venues. The organization produces both original and professionally published works and is open to all CMU students. They have been active since 1907, making it one of the oldest student theater groups in the nation. Performances are public and ticketed. The group faces challenges due to the limited availability of performance spaces, which often restrict usage to a maximum of seven consecutive days. In some cases",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "38",
+      "prediction": "The context does not provide information about a building named after CMU's founder. However, based on general knowledge, Carnegie Mellon University's Founder's Hall is named after Andrew Carnegie.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "39",
+      "prediction": "Carnegie Mellon University's Plaid Parliament of Pwning (PPP) is the winningest hacking team that competes in Capture the Flag (CTF) cybersecurity competitions. The team consists of students from across CMU and is coached by alumni and faculty. PPP has captured four consecutive wins at the MITRE Embedded Capture-the-flag (eCTF) competition and regularly participates in other competitions. They have won the DEF CON Capture the Flag title seven times in the past eleven years. To summarize concisely: PPP is CMU's top-ranked cybersecurity hacking team. To be more specific: It's a student-led team that competes in CTF cybersecurity challenges. To be even more succinct: CMU's elite cybersecurity competition team. To be extremely",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "40",
+      "prediction": "The CMU School of Architecture",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "41",
+      "prediction": "An annual competition at Carnegie Mellon where robots autonomously navigate a course with gates, aiming to reach the finish line. The event debuted in 1994. To ensure accuracy, I'll synthesize the information provided in the context",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "42",
+      "prediction": "Vinod Khosla",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "43",
+      "prediction": "Sweepstakes",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "44",
+      "prediction": "The Mall is a significant area on CMU's campus, serving as the central green space and a gathering place for students, though specific details about its features or activities are not provided in the given context. Based on typical university layouts, it likely includes walkways, benches, and possibly event spaces. The Fence, a notable landmark, is located in the middle of campus, suggesting The Mall encompasses this area. However, the context does not explicitly describe The Mall's significance beyond its role as a central location. Therefore, the answer focuses on what can be inferred from the context provided. The Mall's importance lies in its function as a central hub for campus life and gatherings. The Fence, a well-known campus feature, is situated within this area",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "45",
+      "prediction": "Vint Cerf, though not directly mentioned in the given context, is widely recognized for his work in computer networking and the development of the ARPANET. The context does not provide specific information about him, but he is a notable CMU alumnus fitting this description. However, based on common knowledge, the correct answer should be Vint Cerf or Bob Kahn, but since the context doesn't mention either, I'll stick to the instruction to use the context first. Given the context's lack of relevant information, the most accurate response based on the provided guidelines would be that the context does not contain the necessary information to identify the specific alumnus in question.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "46",
+      "prediction": "Spring Carnival at CMU is a four-day event featuring traditional activities such as Booth, Buggy race, Kiltie Band concert, and Scotch'n'Soda performance, attracting students, alumni, and the Pittsburgh community. The event includes a Midway with carnival attractions and concludes with the Buggy race, where student-built vehicles compete. It marks the biggest celebration of the academic year. To provide a concise answer, I'll rephrase it",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "47",
+      "prediction": "Gates & Hillman Centers",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "48",
+      "prediction": "A distributed file system developed at CMU for scalable and secure file sharing across multiple locations. Based on the context provided, there is no direct mention of the Andrew File System (AFS). However, given my knowledge outside the context, AFS is a distributed file system developed at Carnegie Mellon University for scalable and secure file sharing across multiple locations. This answer concisely describes what AFS is without repeating any aliases or alternate names. It does not repeat any information from the context since none is relevant to AFS. The answer is short and avoids unnecessary details while still providing the key facts about AFS. Let me know if you need any clarification or have additional questions!",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "49",
+      "prediction": "None of the alumni mentioned in the given context are specifically noted for pioneering work in virtual reality. However, the context does mention an app created by current CMU students exploring VR for art therapy, indicating ongoing VR research at the university.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "50",
+      "prediction": "Deep Thought was a chess-playing computer developed at Carnegie Mellon University in the 1980s. CMU was involved in its development and improvement over the years. However, the provided context does not mention Deep Thought. The context focuses on various initiatives and programs related to entrepreneurship, civil discourse, and technology at CMU. Therefore, the information about Deep Thought comes from general knowledge rather than the given context. CMU's involvement in Deep Thought included its creation and subsequent enhancements by students and researchers. For a precise answer based solely on the context, no direct involvement of CMU in Deep Thought is mentioned. To adhere strictly to the instruction, I'll provide a concise answer based on general knowledge",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "51",
+      "prediction": "The NavLab project at CMU is significant for its \"No Hands Across America\" tour in July 1995, where a vehicle autonomously drove from Pittsburgh to San Diego using the RALPH computer program, marking one of the longest continuous tests of an autonomous vehicle in a real-world setting. This event highlighted advancements in autonomous driving technology. To be concise, the NavLab project is significant for pioneering long-distance autonomous driving with the \"No Hands Across America\" tour in 1995. This event showcased the capability of autonomous vehicles to navigate real-world conditions over extended distances, demonstrating a major milestone in the development of self-driving technology. The No Hands Across America tour by NavLab 5 in 1995 demonstrated",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "52",
+      "prediction": "CMU contributed to the development of speech recognition technology by creating SPHINX, the first real-time speech recognition system using AI techniques, developed by Kai-Fu Lee, Raj Reddy, and Roberto Bisiani. Additionally, CMU continues to advance speech technology, such as the recent creation of a speech reconstruction tool for children's disordered speech. Based on the context provided, the most relevant contribution to speech recognition technology is the creation of SPHINX by Kai-Fu Lee, Raj Reddy, and Roberto Bisiani. This system was the first to achieve real-time speech recognition using AI techniques. The other contributions mentioned, while important, are more specific to speech correction and do not directly relate to the foundational development of speech recognition technology",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "53",
+      "prediction": "SPHINX, the first real-time recognition of speech using AI techniques, played a role in early machine learning applications. To be more precise, Herbert Simon and Allen Newell created the Logic Theorist, but SPHINX is also a significant AI innovation from CMU related to early machine learning applications. However, sticking strictly to the context and the most direct answer: SPHINX. To adhere strictly to the instruction for a short canonical answer: SPHINX.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "54",
+      "prediction": "Carnegie Mellon University's Tartan Racing won the DARPA Urban Challenge with their autonomous vehicle Boss, demonstrating advanced robotics and inspiring confidence in autonomous technology. The win also secured a $2 million prize. The event highlighted the potential of autonomous vehicles in real-world scenarios. This victory significantly boosted CMU's reputation in robotics and autonomous systems research. It marked a milestone in the development of self-driving cars capable of navigating complex urban environments alongside human-driven vehicles. Winning the challenge showcased CMU's leadership in robotics innovation and its ability to develop practical applications for autonomous systems. The success of Boss demonstrated the feasibility of autonomous vehicles operating safely and efficiently in urban settings, setting a new standard for the field. The DARPA Urban Challenge victory underscored CMU's expertise in",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "55",
+      "prediction": "Carnegie Mellon University played a crucial role in developing self-driving technologies, including creating the winning autonomous vehicle \"BOSS\" in the 2007 DARPA Urban Challenge. This laid foundational work for future advancements in self-driving taxis. To provide a more direct answer: CMU developed key technologies and won competitions that paved the way for self-driving taxis. The context highlights CMU's significant contributions to autonomous vehicle technology, particularly through the success of their self-driving SUV \"BOSS\" in the 2007 DARPA Urban Challenge, which demonstrated the feasibility of self-driving vehicles in urban environments, a critical step towards self-driving taxis.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "56",
+      "prediction": "The Iris rover, designed for lunar exploration, was a robotic innovation developed at CMU that helped with planetary exploration. To provide more context, it was one of the rovers that eventually journeyed into space. This aligns closely with the information given in the context, specifically mentioning \"The Iris rover, which was designed for lunar exploration and eventually journeyed into space.\" However, sticking strictly to the instruction for a short canonical answer: The Iris rover. To ensure clarity and conciseness while adhering to the instructions, the answer should be",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "57",
+      "prediction": "Libratus is a supercomputer developed by researchers at Carnegie Mellon University that defeated top poker players in a heads-up no-limit Texas hold'em tournament. CMU is connected to it as it was created by CMU researchers Noam Brown and Tuomas Sandholm. To provide a concise answer based on the given context and additional knowledge",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "58",
+      "prediction": "Pittsburgh Restaurant Week is an annual event held in January and August to celebrate and promote dining options in Pittsburgh by offering special menus and discounts at participating restaurants. It aims to attract visitors from nearby areas to experience the city's diverse culinary scene. Winter editions focus on \"New Dishes for the New Year,\" while summer editions feature local produce and lighter fare. Restaurants create limited-time small menus for the duration of the event. Participation requires completing an online registration process and submitting a special menu. Dates for winter events are typically announced around autumn, and summer events around spring. Since its inception in 2012, it has become a significant tradition in the city.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "59",
+      "prediction": "Bloomfield",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "60",
+      "prediction": "An annual food festival celebrating tacos, held in Pittsburgh since 2016. The 2024 edition is scheduled for September 14th, 2024. The 2025 event will take place on September 6th, 2025. It attracts vendors and visitors from various states and supports local non-profits aiding Pittsburgh's Latin American community. Held in the Strip District. The 2025 location is The Stacks at 3 Crossings, 2875 Railroad Street. Admission fees range from $17.20 to $53.47. The festival includes live music, Salsa dancing, and various Mexican-inspired foods. Attendees can",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "61",
+      "prediction": "The Great American Banana Split Celebration in Latrobe celebrates the city's love for the banana split. To clarify, Latrobe, not Pittsburgh, hosts this festival. However, given the context's focus on Pittsburgh festivals and events, it's worth noting that the banana split was invented by a University of Pittsburgh alumnus in 1904. For a direct answer to the question as asked, the correct response would be that there isn't a specific Pittsburgh festival celebrating the banana split; the closest related event is in Latrobe. Given the instruction to provide a concise answer, I'll state",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "62",
+      "prediction": "The Strip District is known for its unique food vendors, including ethnic grocers, produce stands, meat and fish markets, and internationally acclaimed restaurants. It is considered a foodie heaven and is filled with local flavor. Additionally, it offers various attractions like Puttshack, City Winery Pittsburgh, and Sandbox VR. However, the primary focus remains on its diverse culinary offerings. To summarize concisely: Known for its diverse food vendors and markets. To be even more concise: Known for its food vendors and markets. To be as concise as possible while still being informative: Known for its food markets. Based on the context provided and aiming for the most concise yet informative answer",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "63",
+      "prediction": "Original Oyster House",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "64",
+      "prediction": "Argentinian-inspired sandwiches and wood-fired meat",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "65",
+      "prediction": "Primanti Bros. is known for its 'Pittsburgh Salad' topped with fries, though it's typically referred to as a sandwich. The restaurant tops their sandwiches with French fries and coleslaw. However, if we consider the spirit of the question, Primanti Bros. fits the description. For a salad specifically, no clear match is found in the given context. Based on the information provided, Primanti Bros. is the closest match, but it's important to note that they are known for their sandwiches rather than salads. If the question strictly requires a salad, the context does not provide a direct answer. Given the instruction to provide an answer based on the context, Primanti Bros. is the best fit despite the slight discrepancy.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "66",
+      "prediction": "Crepe Style Pancakes",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "67",
+      "prediction": "The restaurant that offers a unique dining experience in a former church is not mentioned in the given context. However, based on my knowledge, Church Brew Works in Pittsburgh is known for its unique setting in a former church.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "68",
+      "prediction": "Italian",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "69",
+      "prediction": "Prantl's Bakery",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "70",
+      "prediction": "Elegant Thai dishes in a romantic atmosphere. To provide a concise answer based on the given context",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "71",
+      "prediction": "None of the shops mentioned in the given context are specifically known for unique flavors like 'Salty Caramel'. However, Happy Day Dessert Factory, located in Pittsburgh's North Side, is noted for its creative ice cream flavors, though 'Salty Caramel' is not explicitly listed among their offerings. Based on the information provided, no specific shop matches the description perfectly. If you're looking for unique flavors like 'Salty Caramel', you might want to explore other local Pittsburgh ice cream shops not mentioned here. Given the instruction to provide a short answer if possible, and since none of the shops mentioned match exactly, I'll conclude with",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "72",
+      "prediction": "The provided context does not contain information about Morcilla in Pittsburgh. Based on external knowledge, Morcilla in Pittsburgh serves Spanish cuisine, focusing on tapas and small plates. However, since the instruction is to use the provided context only, I cannot confirm the type of cuisine served by Morcilla based on the given information. Therefore, no answer can be provided from the context alone.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "73",
+      "prediction": "Espresso A Mano",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "74",
+      "prediction": "DiAnoia's Eatery specializes in homemade pastas, authentic Italian dishes, pastries, coffee, and pasta. It offers a unique experience as a café by day and a full ristorante by night. They serve items like cacio e pepe and offer a dessert menu including lemon mascarpone cheesecake. The restaurant provides a home-away-from-home experience with friendly service and an inviting atmosphere. To summarize concisely: DiAnoia's Eatery specializes in Italian pastries, coffee, and pasta dishes. To be even more concise: DiAnoia's Eatery specializes in Italian pastries, coffee, and pasta. Given the instruction to prefer one short canonical answer phrase when possible, I'll refine it further",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "75",
+      "prediction": "The context does not provide a specific Pittsburgh restaurant known for a farm-to-table dining experience. However, given the emphasis on local food and farmers markets, it's likely that many Pittsburgh restaurants offer such an experience. One example could be the Lounge at the Greer Cabaret Theater & Lounge, which serves upscale bistro fare, though farm-to-table specifics are not mentioned. For a definitive answer, further research would be needed. Based on the information provided, no specific restaurant is highlighted for farm-to-table dining.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "76",
+      "prediction": "The context does not provide specific information about the type of food served at The Eagle in Pittsburgh. Based on the surrounding restaurants mentioned, it likely serves American-style comfort food or other typical restaurant fare. Without more details, a precise answer cannot be given.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "77",
+      "prediction": "Mrs. T's Pierogies",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "78",
+      "prediction": "The context does not provide information about Chengdu Gourmet in Pittsburgh. Based on the given context, there is no specific specialty mentioned for Chengdu Gourmet. It seems the context focuses mainly on Japanese restaurants and general information about Pittsburgh's culinary scene. Therefore, I cannot provide a definitive answer regarding Chengdu Gourmet's specialty. However, considering the name \"Chengdu Gourmet,\" it likely specializes in Sichuan cuisine from Chengdu, China, known for its bold flavors and spicy dishes. But this is an inference rather than a fact stated in the context. To accurately answer the question, more specific information about Chengdu Gourmet would be needed. Given the instruction to prefer a short canonical answer when possible and not to repeat aliases or",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "79",
+      "prediction": "East Liberty",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "80",
+      "prediction": "Central and Eastern European cuisine",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "81",
+      "prediction": "Wigle Whiskey",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "82",
+      "prediction": "Noodlehead is famous for their Thai street-style cuisine. To be specific, it is known for dishes like Pad Thai, Tom Yum Soup, and Green Curry among others. However, the context does not provide a detailed list of specialties, so we can conclude that the specialty of Noodlehead is Thai street-style cuisine. Given the instruction to prefer a short canonical answer phrase, the most succinct answer would be",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "83",
+      "prediction": "Sienna Mercato",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "84",
+      "prediction": "täkō serves a blend of Mexican and Japanese cuisine. To provide a more specific answer based on the context given, täkō offers dishes such as street corn elote, grilled octopus tacos, and salmon poke, indicating they serve a fusion of Mexican and Japanese flavors. Therefore, the type of cuisine served at täkō is a fusion of Mexican and Japanese cuisines. However, if we must choose one primary type from the options given, it would be most accurate to describe it as a fusion restaurant rather than strictly Japanese. Given the instruction to prefer a short canonical answer, I'll refine it further",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "85",
+      "prediction": "The Library On Carson Based on the provided context, The Library On Carson is known for its brunch offerings and includes a Bloody Mary option among its menu items. Therefore, it can be inferred as the Pittsburgh restaurant fitting the description. However, the context does not explicitly state that it has a dedicated Bloody Mary bar, so this part of the answer is an inference based on the information given. Given the instruction to provide a short canonical answer, \"The Library On Carson\" is the most appropriate response. The additional details about the Bloody Mary bar are not directly supported by the context provided. Therefore, sticking strictly to the context and instructions, the answer is \"The Library On Carson\". To adhere precisely to the instructions without making unsupported inferences, the answer should",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "86",
+      "prediction": "Sicilian- and Mediterranean-infused dishes",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "87",
+      "prediction": "The context does not provide specific information about Fet Fisk in Pittsburgh. Based on the given context, there is no clear specialty associated with Fet Fisk in Pittsburgh. However, considering the theme of pickling prevalent in Pittsburgh festivals, Fet Fisk could potentially specialize in pickled foods or beverages if it exists in Pittsburgh. Without additional context, a definitive answer cannot be provided.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "88",
+      "prediction": "The context does not specify which establishment was voted the best fish fry in Western Pennsylvania. It mentions that there are fish fry events at various locations during Lent, but it does not provide a ranking or vote result. Therefore, I cannot provide a specific answer based on the given information. Based on my knowledge, no single establishment is universally recognized as the best fish fry in Western Pennsylvania according to the provided context. However, well-known contenders often cited by locals and visitors include McGinnis Sisters and Primanti Bros., though neither is explicitly mentioned as the winner in the context. Given the instruction to prefer a short canonical answer, I will refrain from listing multiple options and instead state",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "89",
+      "prediction": "The context does not provide specific information about Iron Born Pizza in Pittsburgh's Strip District. However, based on the given options and typical characteristics of unique restaurants, it might offer distinctive pizza styles or a unique ambiance. For a precise answer, more details are needed.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "90",
+      "prediction": "Walnut Street in Shadyside offers a mix of shops and restaurants, enhanced by events such as live music, book discussions, and social gatherings like book 'n beer nights. Based on the context, it provides a vibrant and engaging shopping experience. To summarize concisely: It offers a lively, event-filled shopping experience with a mix of retail and dining options. Walnut Street in Shadyside provides a vibrant shopping experience with a blend of retail stores, restaurants, and frequent cultural and social events. To be even more concise: It offers a lively shopping experience with frequent events and dining options. Given the instruction to prefer one short canonical answer phrase, here it is",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "91",
+      "prediction": "The provided context does not contain specific information about the Waterworks Shopping Plaza. However, based on the details given about similar shopping areas in Pittsburgh, visitors to the Waterworks Shopping Plaza can likely expect a variety of local businesses, possibly including specialty shops, boutiques, and perhaps seasonal markets or events. For precise details, it would be best to check the official website or contact the plaza directly.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "92",
+      "prediction": "Penn Avenue has transformed into a center for arts, dining, and music, but based on the given context, the Cultural District itself, which spans multiple streets including parts of Penn Avenue, is described as the main area for these activities. Since the question specifically asks for a street, the most fitting answer would be Penn Avenue within the Cultural District boundaries. However, the context does not explicitly state Penn Avenue as the sole street transformed for arts, dining, and music; it describes the entire Cultural District. Given the instruction to provide a single street, Penn Avenue is inferred as the primary street due to its mention in the context. For precision, Grove Street and Liberty Avenue are also part of the Cultural District, but Penn Avenue is highlighted more prominently in the",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "93",
+      "prediction": "Wholey's is known for Andy's Sushi Bar, which serves some of the freshest sashimi, nigiri, and maki in Pittsburgh for over 25 years. To try it, join the line outside Wholey's door. The Wholey and Andy's Special rolls are particularly recommended. To summarize in one short phrase: Fresh sushi at Andy's Sushi Bar inside Wholey's. To ensure conciseness while providing enough detail, I'll stick to the short phrase: Fresh sushi at Andy's Sushi Bar inside Wholey's.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "94",
+      "prediction": "Station Square offers shops, offices, restaurants, entertainment, and a historic riverfront view of the Pittsburgh skyline to visitors. It attracts over 3.5 million visitors annually and includes a dock for the Gateway Clipper fleet and a hotel. It is located on the south shore of the Monongahela River, opposite the Golden Triangle. The site features restored historic railroad buildings and an elevated viewing area for scenic vistas. An endowment supports restoration efforts and educational programs related to Pittsburgh's architectural heritage. The area reflects a significant investment and serves as a model for community development. Visitors can enjoy various activities including dining, shopping, and sightseeing while taking in the beautiful views of the city. The site also hosts events and attractions that draw tourists and locals",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "95",
+      "prediction": "Market Square is significant as it is one of Pittsburgh's most iconic and historic public spaces, located in the heart of Downtown. It serves as a bustling hub for year-round activities, dining, shopping, and cultural events, attracting over 3.1 million visitors annually and playing a crucial role in the city's revitalization efforts. Its rich history dates back to 1764, making it a vital part of Pittsburgh's heritage. The recent modernization project aims to enhance its appeal and functionality, supporting small businesses and fostering community engagement. Market Square is also a focal point for various public art installations and holiday programming, further cementing its importance in the city's social and economic fabric. It is a cornerstone of the Downtown revitalization plan and",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "96",
+      "prediction": "Lawrenceville",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "97",
+      "prediction": "The context does not mention any bakery in Pittsburgh known for its macarons. Based on general knowledge, Baked & Wired is known for its macarons in Pittsburgh, but it is not mentioned in the given context. Therefore, I cannot provide a specific bakery from the context that is known for its macarons. If forced to choose from the context, Allegro Hearth Bakery is a notable vegan bakery in Pittsburgh, but it is not specifically known for macarons according to the provided information.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "98",
+      "prediction": "The Vandal is not mentioned in the given context. However, based on general knowledge, The Vandal is known for its burgers in Pittsburgh. If the question pertains to a different aspect or establishment named \"The Vandal,\" please provide additional context. Based on the information provided, there is no specific specialty mentioned for The Vandal in Pittsburgh. It is primarily known for its burgers. If you meant a different establishment or aspect, please clarify. Given the context, The Vandal is known for its burgers. No other specialty is mentioned. If referring to another establishment or aspect, please specify. The Vandal is known for its burgers. No other specialty is specified in the context. If referring to a different establishment or aspect, please clarify.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "99",
+      "prediction": "Market Square Farmers Market",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "100",
+      "prediction": "Wood-fired pizza",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "101",
+      "prediction": "Holy Trinity \"Taste of Greece\" Festival",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "102",
+      "prediction": "Primanti Brothers Restaurant",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "103",
+      "prediction": "Grand Concourse in Pittsburgh specializes in offering chef's features and romantic dining experiences during Valentine's Day weekend, including dishes like Lobster & Shrimp Carbonara, Filet & Shrimp Scampi, and Maple-Glazed Ora King Salmon. To avoid repetition, I've combined the relevant information into one sentence without repeating any aliases or alternate names. The context clearly states that Grand Concourse offers these special dishes during Valentine's Day weekend, which is the specialty mentioned. No other specialties were noted in the given context. Therefore, this answer concisely captures the specialty of Grand Concourse as described in the provided text. If there was more context about Grand Concourse, I would have included that information as well, but based on what",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "104",
+      "prediction": "Visitors can find an authentic Brazilian steakhouse experience at Fogo de Chão Brazilian Steakhouse in Pittsburgh. To provide a specific address, based on the context, it would be helpful to cross-reference with additional sources as the exact location isn't listed in the given context. However, Fogo de Chão is mentioned in the list of \"Show Your Badge Businesses\" associated with Visit Pittsburgh. Given the information available, the answer focuses on identifying the restaurant as the place where visitors can have an authentic Brazilian steakhouse experience. For the most accurate location details, visitors should check the official Fogo de Chão website or contact Visit Pittsburgh directly.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "105",
+      "prediction": "Spectrum Fudge",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "106",
+      "prediction": "Tessaro’s specialty is writing novels, particularly in the areas of elegance, perfume collecting, and rare objects. However, the context does not specify a restaurant or culinary specialty for Tessaro’s. Based on the information given, it appears to be related to Kathleen Tessaro, an author known for her novels. If you meant a restaurant named Tessaro’s, please clarify as it's not mentioned in the provided context.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "107",
+      "prediction": "Government Center",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "108",
+      "prediction": "Pittsburgh was named in 1758 by Scottish General John Forbes in honor of British statesman William Pitt, 1st Earl of Chatham. To avoid repetition, I did not mention the pronunciation detail here. If needed, I can provide that information separately. Let me know if you need any further clarification or additional details. For now, this answer succinctly addresses the origin of Pittsburgh's name. No repetition of aliases or alternate names was included as per instructions. The context provided a clear and direct answer to the question asked. The answer is concise yet complete, adhering to the guidelines given. If you require the pronunciation detail or any other specific information, please let me know. However, based on the instruction to prefer a short canonical",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "109",
+      "prediction": "Pittsburgh is located in western Pennsylvania, at the junction of three rivers: the Allegheny, Monongahela, and Ohio rivers. It is situated on the Allegheny Plateau within the Western Allegheny Plateau ecoregion. The city is part of both the Northeastern and Midwestern regions of the United States, bridging these cultural identities. It is also within the boundaries of Appalachia. To be more specific, it is near the 80th meridian west longitude, passing through its downtown area. The city covers an area of 58.3 square miles (151 km²).",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "110",
+      "prediction": "Steel City",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "111",
+      "prediction": "The original inhabitants of the Pittsburgh region included the Lenape, Shawnee, Haudenosaunee (Iroquois), and Delaware tribes. To provide a more comprehensive answer based on the context, the primary tribes mentioned are the Lenape, Shawnee, and Haudenosaunee (Iroquois). However, the Delaware tribe is also noted as having migrated to the area. Given the instruction to avoid repetition and provide a concise answer, the primary tribes are",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "112",
+      "prediction": "The Forbes Expedition took possession of Fort Duquesne on November 25, 1758, after the French destroyed and abandoned the site. This marked the end of French control over the strategic location at the confluence of the Allegheny and Monongahela rivers.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "113",
+      "prediction": "March 18, 1816",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "114",
+      "prediction": "The year 1758 marks when Pittsburgh was named by Scottish General John Forbes in honor of William Pitt, 1st Earl of Chatham. This is considered the founding year of Pittsburgh. Shannopin's Town, a nearby Lenape village, was also deserted around this time. To be precise, Shannopin's Town was abandoned after 1758.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "115",
+      "prediction": "The Allegheny River and the Monongahela River converge to form the Ohio River in Pittsburgh. The context clearly states this fact in multiple places, including the formation of the Ohio River at Point State Park in Pittsburgh where the Allegheny and Monongahela rivers meet. This information is consistent across different sections of the provided context. Therefore, the rivers that converge to form the Ohio River in Pittsburgh are the Allegheny River and the Monongahela River. The answer is concise and directly addresses the question without repeating aliases or alternate names. The context provides sufficient detail to support this answer. The answer does not require repetition of the rivers' names or additional details about the convergence point beyond confirming the rivers involved. The answer is based",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "116",
+      "prediction": "The Whiskey Rebellion was a protest in 1794 by farmers against a federal tax on whiskey; in Pittsburgh, Major Kirkpatrick's barns were burned but no other damage occurred. The rebellion highlighted Pittsburgh's role as a center for distilleries due to the tax. During this period, western Pennsylvania became a significant hub for distilleries. However, the rebellion did not cause widespread destruction in Pittsburgh beyond the burning of Kirkpatrick's barns. The event underscored the region's economic reliance on whiskey production and the tensions between federal authority and local interests. Following the rebellion, Pittsburgh continued to be associated with distillation until Prohibition. Afterward, the city saw a resurgence in the craft beverage industry, with numerous distilleries",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "117",
+      "prediction": "Pittsburgh's geography, including its location at the confluence of three rivers and abundant natural resources like coal and gas, facilitated industrial growth by providing easy transportation and access to raw materials. This attracted manufacturers and contributed to the city becoming a major industrial center. The rugged topography also led to the dispersion of industries across the region, fostering localized production systems and a sprawling metropolitan district. The rivers enabled efficient transport, while the proximity to coal and gas supported energy-intensive industries like steel and glass. This unique combination of factors made Pittsburgh an ideal location for industrial expansion. The rivers and natural resources provided essential transportation and raw materials, driving the city's industrial growth. The rugged terrain further encouraged the spread of industries across the region, creating a network of interconnected industrial communities",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "118",
+      "prediction": "During the American Civil War, Pittsburgh served as a strong abolitionist hub and was considered the birthplace of the national Republican Party, supporting the Union cause. It also became an industrial center crucial for supplying the Union army with weapons and supplies. However, the context does not provide specific details about Pittsburgh's direct role in the war beyond these points. To summarize concisely: Pittsburgh was a significant industrial and political support base for the Union during the Civil War. To adhere strictly to the instruction for a short canonical answer: Pittsburgh was a key industrial and political supporter of the Union during the Civil War. This answer encapsulates the city's importance without unnecessary elaboration. To further refine it to a single short sentence: Pittsburgh supported the Union as an industrial",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "119",
+      "prediction": "The Great Fire of Pittsburgh occurred on April 10, 1845, and it destroyed over a thousand buildings, causing $9M in damages. The city rebuilt with the help of Irish immigrants escaping the Great Famine.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "120",
+      "prediction": "The Fort Pitt Blockhouse is Pittsburgh's oldest architectural landmark, built in 1764 as part of Fort Pitt and a key defense in the French and Indian War. It is now owned and maintained by the Pittsburgh Chapter of the National Society Daughters of the American Revolution.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "121",
+      "prediction": "H.J. Heinz Company",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "122",
+      "prediction": "1901",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "123",
+      "prediction": "After World War II, Pittsburgh's economy shifted from heavy industry, particularly steel, towards cleaner industries, including high-tech sectors like robotics and biomedical technologies, leading to significant job losses in traditional industries but overall economic diversification and revitalization. The city also underwent extensive redevelopment focusing on pollution control and urban renewal. Despite initial challenges, Pittsburgh managed to maintain economic viability through these transitions.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "124",
+      "prediction": "The 'Renaissance' period in Pittsburgh's history refers to a clean air and civic revitalization project launched following World War II, aimed at improving the city's environment and image. This initiative addressed issues like air pollution and river cleanup. A follow-up project called 'Renaissance II' focused on cultural and neighborhood development in 1977. These efforts marked a significant shift towards urban renewal after decades of heavy industrialization.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "125",
+      "prediction": "University of Pittsburgh",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "126",
+      "prediction": "In 1964, the Pittsburgh Steelers joined the American Football League (AFL), which would later merge with the National Football League (NFL), marking the beginning of the team's presence in professional football in Pittsburgh. However, the context does not specifically mention 1964 as a significant year for Pittsburgh's sports history. The Steelers were actually founded in 1933. Given the context, a more accurate response focusing on the provided information would be that 1964 is not highlighted as particularly significant in the given context for Pittsburgh's sports history. If we consider broader sports history, 1964 might be noted for the Pittsburgh Pirates winning the World Series, but this is not mentioned in the provided context",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "127",
+      "prediction": "446",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "128",
+      "prediction": "Point State Park is a park located at the confluence of the Allegheny and Monongahela rivers, forming the Ohio River, featuring historical sites including Fort Pitt Blockhouse and the Fort Pitt Museum, along with recreational areas like riverfront trails and the famous fountain. It serves as a gateway and hub of activity for Pittsburgh. To provide a more concise answer: Point State Park is a historic park at the confluence of Pittsburgh's three rivers, featuring the Fort Pitt Blockhouse and offering scenic views. To be even more succinct: Point State Park is a historic park at the confluence of Pittsburgh's rivers, featuring the Fort Pitt Blockhouse. To be as short as possible while still being informative: Point State Park is a historic park at",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "129",
+      "prediction": "Bloomfield",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "130",
+      "prediction": "A 42-story skyscraper serving as the centerpiece of the University of Pittsburgh's main campus in Oakland, Pittsburgh. It is the tallest educational building in the Western Hemisphere. To avoid repetition, I will not mention its nickname \"Cathy\" or other details unless specifically asked about them. The context provides this succinct description that captures the essence of the Cathedral of Learning. Let me know if you need any clarification or have additional questions! The answer is concise yet informative, adhering to the guidelines provided. If you need more specific information or another aspect highlighted, please let me know. The answer is",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "131",
+      "prediction": "Alcoa",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "132",
+      "prediction": "The Homestead Strike was a significant labor confrontation in 1892, marking a pivotal moment in American labor history due to its violent nature and impact on labor practices and laws protecting workers. It involved a conflict between the Amalgamated Association of Iron and Steel Workers and the Carnegie Steel Company, leading to modern labor reforms.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "133",
+      "prediction": "Oakland",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "134",
+      "prediction": "The Pittsburgh Renaissance Historic District refers to the Cultural District along Penn and Liberty avenues on the Allegheny River, which includes numerous theaters, galleries, and concert halls, contributing to Pittsburgh's urban revitalization through the arts. However, it's important to note that the term \"Pittsburgh Renaissance Historic District\" is not explicitly used in the given context; the closest match is the Cultural District and the Penn-Liberty Historic District. The Cultural District is more commonly referred to in the context provided. If you're looking for a specific historic district, the Penn-Liberty Historic District encompasses the Penn & Liberty avenue corridor in the Cultural District. For clarity, the Cultural District is the primary area discussed in relation to Pittsburgh's urban renewal efforts. To",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "135",
+      "prediction": "Mattress Factory and the Andy Warhol Museum",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "136",
+      "prediction": "In 1979, the Pittsburgh Steelers won their third Super Bowl championship, defeating the Dallas Cowboys in Super Bowl XIII. This victory contributed to the team's legacy as part of the \"Steel Curtain\" era and helped establish Pittsburgh as a prominent sports city. 1979 marked the third Super Bowl win for the Pittsburgh Steelers, solidifying their status as a dominant NFL team. Specifically, they defeated the Dallas Cowboys in Super Bowl XIII. This victory was significant as it was part of the \"Steel Curtain\" era and helped cement Pittsburgh's reputation as a major sports city. However, sticking strictly to the format requested",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "137",
+      "prediction": "The Penn-Liberty Historic District in Downtown Pittsburgh is known for its historic architecture. However, another notable neighborhood is the South Side, which has been redeveloped into the SouthSide Works mixed-use development while preserving some historic elements. Given the context, the most direct answer aligns with Downtown Pittsburgh's Penn-Liberty Historic District.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "138",
+      "prediction": "A botanical garden in Schenley Park, Pittsburgh, featuring exotic plants and Victorian greenhouse architecture, known for its sustainability initiatives. To provide a more concise answer",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "139",
+      "prediction": "Acrisure Stadium",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "140",
+      "prediction": "The Carnegie Science Center is a part of Carnegie Museums of Pittsburgh, located in Pittsburgh, featuring Buhl Planetarium, the Miniature Railroad & Village, and numerous interactive science exhibits. It joined Carnegie Museums in 1991 through a partnership with the Buhl Foundation. In 2025, it underwent a rebranding as the Kamin Science Center. The center aims to educate and engage visitors with various scientific topics and hands-on activities. To provide a short canonical answer: The Carnegie Science Center is a science museum in Pittsburgh, featuring interactive exhibits and Buhl Planetarium. Based on the context provided, the short canonical answer should be",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "141",
+      "prediction": "Andrew Carnegie was a Scottish-American industrialist and philanthropist who played a significant role in developing the U.S. steel industry and had a profound impact on Pittsburgh by founding institutions such as Carnegie Mellon University and the Carnegie Museums of Pittsburgh. His philanthropic efforts included establishing libraries and supporting various educational and cultural initiatives in the city. He also funded the construction of the Allegheny County Courthouse and Jail and contributed to the development of Pittsburgh's infrastructure, including the introduction of trolley systems. Carnegie's influence helped shape Pittsburgh into a major industrial and cultural hub. His legacy continues to benefit the city through the enduring presence of these institutions and the broader cultural and economic impacts they have fostered. However, his business practices were often controversial, including labor",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "142",
+      "prediction": "Lawrenceville",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "143",
+      "prediction": "Unique about Pittsburgh's Inclines is their 5 ft track gauge, uncommon elsewhere, and their status as historic landmarks still serving both commuters and tourists.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "144",
+      "prediction": "The Nationality Rooms program at the University of Pittsburgh is a project initiated in 1926 where each cultural group influential in Pittsburgh's history designs and funds a classroom in the style of their nation or ethnicity within the Cathedral of Learning. These rooms celebrate diverse cultures and contain authentic artifacts from the represented countries. The university provides the space and maintains it indefinitely. Each committee raises funds, designs, and acquires materials independently. Construction times vary from three to ten years, with costs ranging from $300,000 to over $750,000 in modern equivalents. There are currently 31 such rooms on the first and third floors of the Cathedral of Learning. They serve both as functional classrooms and as cultural heritage",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "145",
+      "prediction": "The longest bridge in Pittsburgh mentioned in the context is the Salisbury Viaduct, which is 1,908 feet long. However, this bridge is not located in Pittsburgh proper but rather in Meyersdale, PA, along the Great Allegheny Passage. Among the bridges within Pittsburgh, no specific length is given to determine the longest, but the Roberto Clemente Bridge is noted as spanning the Allegheny River in downtown Pittsburgh. Without more precise data, we cannot definitively state which is the longest bridge within Pittsburgh city limits based solely on the provided information. Given the context, the Roberto Clemente Bridge is highlighted as a significant span within the city, though not necessarily the longest. For a definitive answer, additional research would be needed",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "146",
+      "prediction": "The Smithfield Street Bridge is significant as it is the oldest river crossing in Pittsburgh, opened in 1883, and it is the world's first lenticular truss bridge, designated as both a Historic Civil Engineering Landmark and a National Historic Landmark.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "147",
+      "prediction": "Primanti Brothers Restaurant sandwiches, pierogies, and city chicken. To be more specific, the famous sandwiches are Primanti Bros. sandwiches which feature grilled meat, cheese, French fries, coleslaw, and tomato slices on Italian bread. Based on the context provided, these are the notable sandwiches associated with Pittsburgh. However, the primary focus is on the Primanti Bros. sandwiches. Therefore, the most concise answer would be",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "148",
+      "prediction": "The Allegheny County Courthouse serves as the location for the county's judicial proceedings, housing the Court of Common Pleas and Magisterial District Courts. It is where trials and hearings take place, overseen by elected judges. The courthouse is part of the county's judicial branch, alongside other legal institutions. The Allegheny County Sheriff is responsible for courthouse security. The courthouse plays a crucial role in upholding justice and the legal system within Allegheny County. (Note: While the answer is concise, it covers the essential roles of the courthouse as described in the context.)",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "149",
+      "prediction": "302,971",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "150",
+      "prediction": "Pittsburgh's economy is now driven by high technology, robotics, healthcare, nuclear engineering, tourism, biomedical technology, finance, education, and services, with notable annual payroll contributions from tech industries exceeding $10.8 billion in 2007. It's also recognized for strong intergenerational economic mobility. The city's cultural district generates an estimated $303 million economic impact annually. Former industrial sites have been repurposed into modern office spaces, exemplifying successful urban revitalization. Google operates out of a converted Nabisco factory, symbolizing the shift towards tech and innovation. The University of Pittsburgh Medical Center is the largest local employer. Pittsburgh serves as a model for other cities transitioning from traditional industries.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "151",
+      "prediction": "Carnegie Mellon University",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "152",
+      "prediction": "The Golden Triangle refers to Downtown Pittsburgh, located at the confluence of the Allegheny and Monongahela rivers, forming the Ohio River. It is bounded by these two rivers and includes major corporate offices and historical landmarks. To be more specific, it is the triangular area formed by the meeting point of the three rivers. The term \"Golden Triangle\" is a colloquial reference to this central business district. The context also mentions Point State Park, which is situated at the tip of this triangle. Therefore, the Golden Triangle is essentially synonymous with Downtown Pittsburgh, highlighting its economic and cultural significance. However, for conciseness, the primary answer should be: Downtown Pittsburgh, located at the confluence of the Allegheny and Monong",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "153",
+      "prediction": "The oldest theater mentioned in the context is the one built in 1812, though no specific name is given. However, the Duquesne University Red Masquers are noted as the oldest continuously producing theater company in Pennsylvania, founded in 1912. Given the question asks for the oldest operating theater, and without a specific name for the 1812 theater, the context does not provide a clear answer for the oldest operating theater in Pittsburgh. Based on the information provided, the Red Masquers could be considered the oldest continuously operating theater company, but not necessarily the oldest theater building.",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "154",
+      "prediction": "Oakland",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "155",
+      "prediction": "The Pittsburgh Zoo & Aquarium is known for its exciting animal exhibits and educational experiences, offering families year-round fun for 125 years. To avoid repetition, I will not mention the exact number of years again unless specifically asked. This answer highlights the key points about the zoo's offerings and longevity without repeating information already provided. Let me know if you need any clarification or have additional questions! No further elaboration needed as per your instruction. The answer is concise and directly addresses what the Pittsburgh Zoo & Aquarium is known for based on the given context. If you need more details or a different format, please let me know! Your response is clear and adheres to the guidelines provided. No further action is required. Thank you for confirming. Is there",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "156",
+      "prediction": "The Roberto Clemente Bridge, originally the Sixth Street Bridge, has a history of three major constructions dating back to 1819. Its current incarnation honors Pittsburgh Pirates player Roberto Clemente, renamed in 1998 after his death in 1972. It's one of the 'Three Sisters' self-anchored suspension bridges, unique in U.S. infrastructure. The bridge connects downtown Pittsburgh to PNC Park, facilitating pedestrian access during Pirates games. The piers were designed with potential subway tunnel openings, though these were not utilized for the North Shore Connector tunnels completed in 2012. The bridge's renaming was part of a compromise after the Pirates sold naming rights to PNC Park to PNC Financial Services",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    {
+      "id": "157",
+      "prediction": "The Strip District is famous for its unique food vendors, ethnic grocers, produce merchants, and internationally acclaimed restaurants. It is considered a foodie heaven in Pittsburgh. To sum it up in one phrase: Known for its diverse and authentic food scene. To be more specific, it is renowned for its ethnic grocers, produce stands, meat and fish markets, and sidewalk vendors. Given the context, the most concise answer would be: Known for its diverse food vendors. However, since the question asks for what it is famous for, the most fitting answer is: Known for its diverse and authentic food scene. Considering the need for conciseness, the final answer is: Known for its diverse food scene. But to align with the instruction for a",
+      "references": [
+        ""
+      ],
+      "em": 0.0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    }
+  ]
+}
