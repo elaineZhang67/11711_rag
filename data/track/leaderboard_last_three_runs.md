@@ -6,6 +6,7 @@
 - Run 3: `46.34%` (`F1 31.26`, `Recall 45.68`, `ROUGE 28.50`, `LLM 4.197`)
 - Run 4: `30.22%` (`F1 24.28`, `Recall 17.72`, `ROUGE 20.14`, `LLM 3.350`)
 - Run 5: `42.10%` (`F1 32.86`, `Recall 40.09`, `ROUGE 30.32`, `LLM 3.605`)
+- Run 6: `46.85%` (`F1 31.74`, `Recall 46.51`, `ROUGE 28.89`, `LLM 4.210`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -94,6 +95,23 @@
 - large recovery vs Run 4 on total score and recall
 - best F1/ROUGE seen so far in this report
 - still below Run 3 total score, so retrieval/fusion settings remain the main lever
+
+## Run 6 (RRF + MQ1)
+- Score: `46.85%` (`F1 31.74`, `Recall 46.51`, `ROUGE 28.89`, `LLM 4.210`)
+- Command/config:
+- `--mode hybrid`
+- `--fusion-method rrf`
+- `--top-k 3`
+- `--fetch-k-each 120`
+- `--multi-query --multi-query-max 1`
+- `--reranker-model BAAI/bge-reranker-large`
+- `--rerank-fetch-k 50`
+- `--reader-model Qwen/Qwen2.5-14B-Instruct`
+- `--max-new-tokens 120`
+- Result pattern:
+- new best total score in this report
+- recall and LLM judge both improved vs prior best
+- confirms conservative MQ (`max=1`) can help when fusion stays on `rrf`
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)

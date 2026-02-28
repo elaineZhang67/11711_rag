@@ -520,11 +520,7 @@ class RAGPipeline:
         if self.reranker and retrieved:
             retrieved = self.reranker.rerank(question, retrieved, top_k=self.cfg.top_k)
         contexts = [r.chunk for r in retrieved if r.chunk is not None]
-        extractive = _extractive_first_answer(question, contexts)
-        if extractive:
-            answer = _sanitize_answer(postprocess_answer(extractive, question=question))
-        else:
-            answer = _sanitize_answer(self.reader.answer(question, contexts))
+        answer = _sanitize_answer(self.reader.answer(question, contexts))
         trace = []
         for r in retrieved:
             ch = r.chunk

@@ -188,17 +188,6 @@ def _collapse_parenthetical_alias(text) :
     return text
 
 
-def _normalize_short_year_phrase(text) :
-    # Safe cleanup for outputs like "in 1967" or "since 1900" when there is a single year.
-    years = _YEAR_RE.findall(text)
-    if len(years) != 1:
-        return text
-    low = text.lower().strip()
-    if low.startswith(("in ", "since ", "around ", "circa ", "c. ")):
-        return years[0]
-    return text
-
-
 def _normalize_date_or_year_for_question(text, question) :
     if not question:
         return text
@@ -271,7 +260,6 @@ def postprocess_answer(text, question= None) :
     text = _collapse_semicolon_for_singular_question(text, question)
     text = _collapse_parenthetical_alias(text)
     text = _remove_trailing_explanation(text)
-    text = _normalize_short_year_phrase(text)
     text = _normalize_date_or_year_for_question(text, question)
     text = _keep_first_sentence_if_compact(text, question)
     text = _truncate_to_max_sentences(text, max_sentences=3)
