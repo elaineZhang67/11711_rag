@@ -10,6 +10,7 @@ from rag_hw2.types import Chunk
 _WS_RE = re.compile(r"\s+")
 _QUOTE_RE = re.compile(r'^[\"\'“”‘’`]+|[\"\'“”‘’`]+$')
 _CITATION_TAIL_RE = re.compile(r"(?:\s*\[\d+\])+$")
+_BRACKET_SEGMENT_RE = re.compile(r"\[[^\]]{1,120}\]")
 _YEAR_RE = re.compile(r"\b(1[0-9]{3}|20[0-9]{2})\b")
 _DATE_RE = re.compile(
     r"\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|"
@@ -54,6 +55,7 @@ def build_rag_prompt(question, contexts, max_context_chars= 5000) :
         "Prefer one short canonical answer phrase (or one short sentence) when possible.\n"
         "If a short answer is sufficient (for example, a name, title, date, or place), answer it once only.\n"
         "For factual questions, answer directly and do not add extra explanation.\n"
+        "Do not mention context, sources, citations, or where the answer came from.\n"
         "Use explanation only for questions asking why/how/what happened/describe/explain/significance.\n"
         "Do not repeat aliases or alternate names unless the question explicitly asks for them.\n"
         "For date/year questions, return the exact date or year from the context when available.\n"
@@ -242,6 +244,27 @@ def _remove_trailing_explanation(text) :
     return text
 
 
+def _strip_context_attribution_sentences(text) :
+    sents = _simple_sentence_split(text)
+    if not sents:
+        return text
+    out = []
+    for s in sents:
+        low = s.lower()
+        if (
+            "context" in low
+            or "source" in low
+            or "citation" in low
+            or "from context" in low
+            or "based on the context" in low
+        ):
+            continue
+        out.append(s)
+    if out:
+        return " ".join(out).strip()
+    return text
+
+
 def _keep_first_sentence_if_compact(text, question) :
     if not text or not _looks_singular_fact_question(question):
         return text
@@ -276,15 +299,17 @@ def postprocess_answer(text, question= None) :
     # Trim wrapping quotes and boilerplate punctuation.
     text = _strip_outer_quotes(text)
     text = text.strip(" \t:,-")
+    text = _BRACKET_SEGMENT_RE.sub("", text).strip()
     text = _CITATION_TAIL_RE.sub("", text).strip()
     # If the model outputs "answer + long alias", prefer the canonical shorter form.
     text = _collapse_alias_list(text)
     text = _collapse_semicolon_for_singular_question(text, question)
     text = _collapse_parenthetical_alias(text)
+    text = _strip_context_attribution_sentences(text)
     text = _remove_trailing_explanation(text)
     text = _normalize_date_or_year_for_question(text, question)
     text = _keep_first_sentence_if_compact(text, question)
-    max_sents = 3 if _looks_explanatory_question(question) else 1
+    max_sents = 3 if _looks_explanatory_question(question) else 2
     text = _truncate_to_max_sentences(text, max_sentences=max_sents)
     # Normalize some common non-answer fillers.
     low = text.lower()
