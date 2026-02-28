@@ -11,6 +11,7 @@
 - Run 8: `49.29%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.338`)
 - Run 9: `49.25%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.331`)
 - Run 10: `49.71%` (`F1 42.09`, `Recall 41.96`, `ROUGE 39.00`, `LLM 4.032`)
+- Run 11: `49.32%` (`F1 38.58`, `Recall 43.67`, `ROUGE 35.08`, `LLM 4.197`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -156,6 +157,16 @@
 - highest total score so far in this report
 - large F1/ROUGE improvement
 - recall/LLM-judge decreased vs Run 8/9 (more concise answers, less elaboration)
+
+## Run 11 (Fact Truncate = 2 + Source-Attribution Cleanup)
+- Score: `49.32%` (`F1 38.58`, `Recall 43.67`, `ROUGE 35.08`, `LLM 4.197`)
+- Key changes vs Run 10:
+- factual-question postprocess truncation changed from `1 -> 2` sentences
+- added cleanup to remove context/source attribution text and bracket artifacts in answers
+- Result pattern:
+- total score dropped slightly vs Run 10 (`49.71 -> 49.32`)
+- F1/ROUGE dropped; Recall/LLM judge increased
+- practical conclusion: allowing 2 sentences helps judged quality but hurts exact-overlap metrics
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
