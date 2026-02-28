@@ -74,6 +74,8 @@ class RetrievalConfig:
         multi_query= False,
         multi_query_max= 2,
         rerank_fetch_k= None,
+        diversify_docs= False,
+        doc_cap= 2,
     ) :
         self.mode = mode  # sparse | dense | hybrid | closedbook
         self.top_k = top_k
@@ -86,6 +88,8 @@ class RetrievalConfig:
         self.multi_query = bool(multi_query)
         self.multi_query_max = int(multi_query_max)
         self.rerank_fetch_k = rerank_fetch_k
+        self.diversify_docs = bool(diversify_docs)
+        self.doc_cap = int(doc_cap)
 
     def to_dict(self) :
         return {
@@ -100,6 +104,8 @@ class RetrievalConfig:
             "multi_query": self.multi_query,
             "multi_query_max": self.multi_query_max,
             "rerank_fetch_k": self.rerank_fetch_k,
+            "diversify_docs": self.diversify_docs,
+            "doc_cap": self.doc_cap,
         }
 
 
@@ -306,6 +312,62 @@ def _apply_score_shaping(question, retrieved) :
     return shaped
 
 
+def _doc_group_key(r) :
+    ch = r.chunk
+    if ch is not None:
+        doc_id = getattr(ch, "doc_id", None)
+        if doc_id:
+            return f"doc:{doc_id}"
+        source_path = getattr(ch, "source_path", None)
+        if source_path:
+            return f"path:{source_path}"
+        source_url = getattr(ch, "source_url", None)
+        if source_url:
+            return f"url:{source_url}"
+    return f"chunk:{r.chunk_id}"
+
+
+def _apply_doc_diversification(ranked, top_k, doc_cap= 2) :
+    if not ranked:
+        return []
+    k = max(1, int(top_k))
+    cap = max(1, int(doc_cap))
+
+    out = []
+    used = set()
+    per_doc = {}
+
+    for r in ranked:
+        if len(out) >= k:
+            break
+        g = _doc_group_key(r)
+        cnt = per_doc.get(g, 0)
+        if cnt >= cap:
+            continue
+        out.append(r)
+        used.add(r.chunk_id)
+        per_doc[g] = cnt + 1
+
+    # Backfill if cap is too restrictive for the available candidates.
+    if len(out) < k:
+        for r in ranked:
+            if len(out) >= k:
+                break
+            if r.chunk_id in used:
+                continue
+            out.append(r)
+            used.add(r.chunk_id)
+
+    for i, r in enumerate(out, start=1):
+        r.rank = i
+        parts = dict(r.component_scores) if r.component_scores else {}
+        parts["doc_diversified"] = 1.0
+        parts["doc_group"] = _doc_group_key(r)
+        parts["doc_cap"] = float(cap)
+        r.component_scores = parts
+    return out
+
+
 class RAGPipeline:
     def __init__(self, retriever, reader, retrieval_cfg, reranker= None):
         self.retriever = retriever
@@ -361,6 +423,8 @@ class RAGPipeline:
             retrieved = _apply_score_shaping(question, retrieved)
         if self.reranker and retrieved:
             retrieved = self.reranker.rerank(question, retrieved, top_k=self.cfg.top_k)
+        if retrieved and self.cfg.diversify_docs:
+            retrieved = _apply_doc_diversification(retrieved, top_k=self.cfg.top_k, doc_cap=self.cfg.doc_cap)
         contexts = [r.chunk for r in retrieved if r.chunk is not None]
         answer = _sanitize_answer(self.reader.answer(question, contexts))
         trace = []

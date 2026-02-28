@@ -83,6 +83,8 @@ def parse_args() :
     p.add_argument("--reranker-batch-size", type=int, default=16)
     p.add_argument("--reranker-max-length", type=int, default=512)
     p.add_argument("--reranker-device", type=str, default=None, help="Reranker device, e.g., cpu or cuda:0.")
+    p.add_argument("--diversify-docs", action="store_true", help="Apply doc-level diversification after reranking.")
+    p.add_argument("--doc-cap", type=int, default=2, help="Max chunks per document when diversification is enabled.")
     p.add_argument("--reader-backend", choices=["transformers"], default="transformers")
     p.add_argument("--reader-model", type=str, default="Qwen/Qwen2.5-14B-Instruct")
     p.add_argument("--reader-task", choices=["text-generation", "text2text-generation"], default="text-generation")
@@ -158,6 +160,8 @@ def main() :
             multi_query=args.multi_query,
             multi_query_max=args.multi_query_max,
             rerank_fetch_k=args.rerank_fetch_k,
+            diversify_docs=args.diversify_docs,
+            doc_cap=args.doc_cap,
         ),
         reranker=reranker,
     )
