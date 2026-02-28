@@ -10,6 +10,7 @@
 - Run 7: `49.05%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.299`)
 - Run 8: `49.29%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.338`)
 - Run 9: `49.25%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.331`)
+- Run 10: `49.71%` (`F1 42.09`, `Recall 41.96`, `ROUGE 39.00`, `LLM 4.032`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -144,6 +145,17 @@
 - slight regression vs Run 8 (`49.29 -> 49.25`)
 - core overlap metrics unchanged; small LLM-judge drop (`4.338 -> 4.331`)
 - practical conclusion: doc-cap diversification did not help at current `top_k=3`
+
+## Run 10 (Concise Facts + t=100)
+- Score: `49.71%` (`F1 42.09`, `Recall 41.96`, `ROUGE 39.00`, `LLM 4.032`)
+- Key changes vs Run 9:
+- prompt/postprocess behavior tightened for factual questions (direct short answers)
+- explanatory questions allowed up to 3 sentences
+- generation length reduced (`--max-new-tokens 100`)
+- Result pattern:
+- highest total score so far in this report
+- large F1/ROUGE improvement
+- recall/LLM-judge decreased vs Run 8/9 (more concise answers, less elaboration)
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
