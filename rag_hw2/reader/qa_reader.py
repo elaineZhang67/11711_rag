@@ -21,6 +21,7 @@ _DATE_RE = re.compile(
 def _normalize_whitespace(text) :
     return _WS_RE.sub(" ", text).strip()
 
+
 def _simple_sentence_split(text) :
     text = text.strip()
     if not text:
@@ -50,7 +51,7 @@ def build_rag_prompt(question, contexts, max_context_chars= 5000) :
         "You are answering factual questions about Pittsburgh and Carnegie Mellon University.\n"
         "Use the provided context first.\n"
         "When possible, copy the exact answer span from the context.\n"
-        "Prefer one short canonical answer phrase whenever possible.\n"
+        "Prefer one short canonical answer phrase (or one short sentence) when possible.\n"
         "If a short answer is sufficient (for example, a name, title, date, or place), answer it once only.\n"
         "Do not repeat aliases or alternate names unless the question explicitly asks for them.\n"
         "For date/year questions, return the exact date or year from the context when available.\n"
@@ -242,48 +243,11 @@ def _keep_first_sentence_if_compact(text, question) :
     return text
 
 
-def _truncate_to_max_sentences(text, max_sentences= 1) :
+def _truncate_to_max_sentences(text, max_sentences= 3) :
     sents = _simple_sentence_split(text)
     if len(sents) <= max_sentences:
         return text
     return " ".join(sents[:max_sentences]).strip()
-
-
-def _strip_verbose_intro(text) :
-    t = text.strip()
-    patterns = [
-        r"^(?:the\s+answer\s+is)\s+",
-        r"^(?:the\s+name(?:\s+of\s+[^,]+?)?\s+(?:is|was))\s+",
-        r"^(?:it\s+(?:is|was))\s+",
-        r"^(?:this\s+(?:is|was))\s+",
-    ]
-    for p in patterns:
-        nt = re.sub(p, "", t, flags=re.IGNORECASE).strip()
-        if nt and nt != t:
-            t = nt
-            break
-    return t
-
-
-def _compress_for_singular_fact(text, question) :
-    if not _looks_singular_fact_question(question):
-        return text
-    t = text.strip()
-    # Remove common verbose wrappers first.
-    t = _strip_verbose_intro(t)
-
-    # If still long, try taking right side of a simple copula.
-    if len(t.split()) > 14 and " is " in t.lower():
-        m = re.split(r"\bis\b", t, maxsplit=1, flags=re.IGNORECASE)
-        if len(m) == 2:
-            cand = m[1].strip(" :,-")
-            if 0 < len(cand.split()) <= 14:
-                t = cand
-
-    # Final guardrail: trim overly long singular answers.
-    if len(t.split()) > 14:
-        t = " ".join(t.split()[:14]).strip()
-    return t
 
 
 def postprocess_answer(text, question= None) :
@@ -310,7 +274,6 @@ def postprocess_answer(text, question= None) :
     text = _normalize_short_year_phrase(text)
     text = _normalize_date_or_year_for_question(text, question)
     text = _keep_first_sentence_if_compact(text, question)
-    text = _compress_for_singular_fact(text, question)
     text = _truncate_to_max_sentences(text, max_sentences=3)
     # Normalize some common non-answer fillers.
     low = text.lower()
@@ -374,11 +337,10 @@ class TransformersReader:
         prompt = build_rag_prompt(question, contexts, max_context_chars=self.max_context_chars)
         gen_kwargs = {
             "max_new_tokens": self.max_new_tokens,
-            "max_length": None,
             "do_sample": self.temperature > 0,
+            "temperature": self.temperature if self.temperature > 0 else None,
         }
-        if self.temperature > 0:
-            gen_kwargs["temperature"] = self.temperature
+        gen_kwargs = {k: v for k, v in gen_kwargs.items() if v is not None}
         out = self.pipe(prompt, **gen_kwargs)
         if not out:
             return ""
