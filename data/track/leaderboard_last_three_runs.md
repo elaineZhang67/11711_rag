@@ -5,6 +5,7 @@
 - Run 2: `39.83%` (`F1 21.18`, `Recall 35.53`, `ROUGE 18.04`, `LLM 4.382`)
 - Run 3: `46.34%` (`F1 31.26`, `Recall 45.68`, `ROUGE 28.50`, `LLM 4.197`)
 - Run 4: `30.22%` (`F1 24.28`, `Recall 17.72`, `ROUGE 20.14`, `LLM 3.350`)
+- Run 5: `42.10%` (`F1 32.86`, `Recall 40.09`, `ROUGE 30.32`, `LLM 3.605`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -82,6 +83,17 @@
 - Action:
 - keep Run 3 as anchor baseline
 - continue ablation with alternative fusion settings, but revert immediately if Recall collapses
+
+## Run 5 (Postprocessing Sentence Cap = 3)
+- Score: `42.10%` (`F1 32.86`, `Recall 40.09`, `ROUGE 30.32`, `LLM 3.605`)
+- Change applied:
+- postprocessing sentence cap updated from `1 -> 3`
+- file: `rag_hw2/reader/qa_reader.py`
+- call site change: `_truncate_to_max_sentences(..., max_sentences=3)`
+- Result pattern:
+- large recovery vs Run 4 on total score and recall
+- best F1/ROUGE seen so far in this report
+- still below Run 3 total score, so retrieval/fusion settings remain the main lever
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)

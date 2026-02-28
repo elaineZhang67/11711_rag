@@ -183,17 +183,11 @@ def _build_multi_queries(question, max_n= 2) :
     r = _rewrite_prefix(q, "where is ", "what is the location of ")
     if r:
         cands.append(r)
-    r = _rewrite_prefix(q, "who is ", "which person is ")
-    if r:
-        cands.append(r)
-    r = _rewrite_prefix(q, "what is ", "which is ")
-    if r:
-        cands.append(r)
 
     # Add one keyword-focused query.
     terms = _tokenize_query_terms(q)
-    if terms:
-        cands.append(" ".join(terms[:10]))
+    if len(terms) >= 2:
+        cands.append(" ".join(terms[:8]))
 
     out = []
     seen = {q.lower()}
@@ -232,7 +226,8 @@ def _merge_multi_query_results(result_lists, keep_n) :
         base = rec["best"]
         votes = int(rec["votes"])
         best_score = float(rec["best_score"])
-        score = best_score + 0.02 * max(0, votes - 1)
+        # Keep MQ vote bonus small so repeated generic pages do not dominate.
+        score = best_score + 0.002 * min(3, max(0, votes - 1))
         parts = dict(base.component_scores) if base.component_scores else {}
         parts["mq_votes"] = votes
         parts["mq_best_score"] = best_score
@@ -248,6 +243,42 @@ def _merge_multi_query_results(result_lists, keep_n) :
         )
     out.sort(key=lambda x: x.score, reverse=True)
     out = out[: max(1, int(keep_n))]
+    for i, r in enumerate(out, start=1):
+        r.rank = i
+    return out
+
+
+def _preserve_primary_results(primary_results, merged_results, keep_n, preserve_n= 2) :
+    keep_n = max(1, int(keep_n))
+    preserve_n = max(0, min(int(preserve_n), keep_n))
+    out = []
+    seen = set()
+    merged_by_id = {r.chunk_id: r for r in merged_results}
+
+    # Always keep a few top docs from the original query to avoid rewrite drift.
+    for p in primary_results[:preserve_n]:
+        use = merged_by_id.get(p.chunk_id, p)
+        if use.chunk_id in seen:
+            continue
+        out.append(use)
+        seen.add(use.chunk_id)
+
+    for r in merged_results:
+        if len(out) >= keep_n:
+            break
+        if r.chunk_id in seen:
+            continue
+        out.append(r)
+        seen.add(r.chunk_id)
+
+    for p in primary_results:
+        if len(out) >= keep_n:
+            break
+        if p.chunk_id in seen:
+            continue
+        out.append(p)
+        seen.add(p.chunk_id)
+
     for i, r in enumerate(out, start=1):
         r.rank = i
     return out
@@ -471,14 +502,16 @@ class RAGPipeline:
         if not self.cfg.multi_query:
             return self._retrieve_single(question, mode, target_top_k)
 
+        base_results = self._retrieve_single(question, mode, target_top_k)
         alt_queries = _build_multi_queries(question, max_n=self.cfg.multi_query_max)
         if not alt_queries:
-            return self._retrieve_single(question, mode, target_top_k)
-        query_list = [question] + alt_queries
-        result_lists = []
-        for q in query_list:
+            return base_results
+        result_lists = [base_results]
+        for q in alt_queries:
             result_lists.append(self._retrieve_single(q, mode, target_top_k))
-        return _merge_multi_query_results(result_lists, keep_n=target_top_k)
+        merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)
+        preserve_n = min(3, max(1, int(self.cfg.top_k)))
+        return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)
 
     def answer_query(self, qid, question) :
         retrieved = self.retrieve(question)
