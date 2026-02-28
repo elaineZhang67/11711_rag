@@ -4,6 +4,7 @@
 - Run 1: `31.46%` (`F1 22.86`, `Recall 20.29`, `ROUGE 18.85`, `LLM 3.554`)
 - Run 2: `39.83%` (`F1 21.18`, `Recall 35.53`, `ROUGE 18.04`, `LLM 4.382`)
 - Run 3: `46.34%` (`F1 31.26`, `Recall 45.68`, `ROUGE 28.50`, `LLM 4.197`)
+- Run 4: `30.22%` (`F1 24.28`, `Recall 17.72`, `ROUGE 20.14`, `LLM 3.350`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -69,9 +70,21 @@
 - major F1/ROUGE gain from cleaner exact spans
 - recall remained strong from broader retrieval + stronger reranking
 
+## Run 4 (Fusion Ablation Regression)
+- Score: `30.22%` (`F1 24.28`, `Recall 17.72`, `ROUGE 20.14`, `LLM 3.350`)
+- Context:
+- first fusion-ablation attempt after Run 3 baseline
+- hybrid method/config changed from best-known baseline
+- Result pattern:
+- strong Recall drop (`45.68 -> 17.72`)
+- Total score dropped below Run 1/2/3
+- indicates this fusion setting should not be used as final default
+- Action:
+- keep Run 3 as anchor baseline
+- continue ablation with alternative fusion settings, but revert immediately if Recall collapses
+
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
 - Embedding model: moved from small MiniLM class to larger BGE-large class
 - Reranker: moved from smaller MiniLM cross-encoder class to larger BGE-reranker-large class
 - Practical effect: better candidate ranking/recall, then normalization/prompt tightening improved precision
-

@@ -76,6 +76,8 @@ def parse_args() :
     p.add_argument("--rrf-k", type=int, default=60)
     p.add_argument("--dense-weight", type=float, default=0.5)
     p.add_argument("--sparse-weight", type=float, default=0.5)
+    p.add_argument("--multi-query", action="store_true", help="Enable simple multi-query expansion before reranking.")
+    p.add_argument("--multi-query-max", type=int, default=2, help="Number of additional rewritten queries.")
     p.add_argument("--reranker-model", type=str, default="BAAI/bge-reranker-large", help="Optional cross-encoder reranker model.")
     p.add_argument("--rerank-fetch-k", type=int, default=30, help="Retrieve this many candidates before reranking.")
     p.add_argument("--reranker-batch-size", type=int, default=16)
@@ -153,6 +155,8 @@ def main() :
             rrf_k=args.rrf_k,
             dense_weight=args.dense_weight,
             sparse_weight=args.sparse_weight,
+            multi_query=args.multi_query,
+            multi_query_max=args.multi_query_max,
             rerank_fetch_k=args.rerank_fetch_k,
         ),
         reranker=reranker,

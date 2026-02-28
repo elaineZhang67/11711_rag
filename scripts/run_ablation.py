@@ -26,6 +26,8 @@ def parse_args() :
     p.add_argument("--rrf-k", type=int, default=60)
     p.add_argument("--dense-weight", type=float, default=0.5)
     p.add_argument("--sparse-weight", type=float, default=0.5)
+    p.add_argument("--multi-query", action="store_true")
+    p.add_argument("--multi-query-max", type=int, default=2)
     p.add_argument("--top-k", type=int, default=3)
     p.add_argument("--fetch-k-each", type=int, default=80)
     p.add_argument("--reranker-model", default="BAAI/bge-reranker-large")
@@ -89,6 +91,9 @@ def main() :
             cmd.extend(["--rrf-k", str(args.rrf_k)])
             cmd.extend(["--dense-weight", str(args.dense_weight)])
             cmd.extend(["--sparse-weight", str(args.sparse_weight)])
+        if args.multi_query:
+            cmd.append("--multi-query")
+            cmd.extend(["--multi-query-max", str(args.multi_query_max)])
         if args.reader_model:
             cmd.extend(["--reader-model", args.reader_model])
         if args.reranker_model:

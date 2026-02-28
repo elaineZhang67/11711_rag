@@ -108,6 +108,8 @@ class RetrievalConfig:
         rrf_k= 60,
         dense_weight= 0.5,
         sparse_weight= 0.5,
+        multi_query= False,
+        multi_query_max= 2,
         rerank_fetch_k= None,
     ) :
         self.mode = mode  # sparse | dense | hybrid | closedbook
@@ -118,6 +120,8 @@ class RetrievalConfig:
         self.rrf_k = rrf_k
         self.dense_weight = dense_weight
         self.sparse_weight = sparse_weight
+        self.multi_query = bool(multi_query)
+        self.multi_query_max = int(multi_query_max)
         self.rerank_fetch_k = rerank_fetch_k
 
     def to_dict(self) :
@@ -130,6 +134,8 @@ class RetrievalConfig:
             "rrf_k": self.rrf_k,
             "dense_weight": self.dense_weight,
             "sparse_weight": self.sparse_weight,
+            "multi_query": self.multi_query,
+            "multi_query_max": self.multi_query_max,
             "rerank_fetch_k": self.rerank_fetch_k,
         }
 
@@ -152,6 +158,99 @@ def _tokenize_query_terms(question) :
             continue
         terms.append(t)
     return terms
+
+
+def _rewrite_prefix(question, old_prefix, new_prefix) :
+    q = _normalize_ws(question)
+    if q.lower().startswith(old_prefix):
+        return _normalize_ws(new_prefix + q[len(old_prefix) :])
+    return ""
+
+
+def _build_multi_queries(question, max_n= 2) :
+    q = _normalize_ws(question)
+    if not q:
+        return []
+    cands = []
+
+    # Conservative rewrites only.
+    r = _rewrite_prefix(q, "when was ", "in what year was ")
+    if r:
+        cands.append(r)
+    r = _rewrite_prefix(q, "when did ", "in what year did ")
+    if r:
+        cands.append(r)
+    r = _rewrite_prefix(q, "where is ", "what is the location of ")
+    if r:
+        cands.append(r)
+    r = _rewrite_prefix(q, "who is ", "which person is ")
+    if r:
+        cands.append(r)
+    r = _rewrite_prefix(q, "what is ", "which is ")
+    if r:
+        cands.append(r)
+
+    # Add one keyword-focused query.
+    terms = _tokenize_query_terms(q)
+    if terms:
+        cands.append(" ".join(terms[:10]))
+
+    out = []
+    seen = {q.lower()}
+    for c in cands:
+        if not c:
+            continue
+        key = c.lower().strip()
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(c)
+        if len(out) >= max(0, int(max_n)):
+            break
+    return out
+
+
+def _merge_multi_query_results(result_lists, keep_n) :
+    merged = {}
+    for results in result_lists:
+        for r in results:
+            rec = merged.get(r.chunk_id)
+            if rec is None:
+                merged[r.chunk_id] = {
+                    "best": r,
+                    "best_score": float(r.score),
+                    "votes": 1,
+                }
+                continue
+            rec["votes"] += 1
+            if float(r.score) > rec["best_score"]:
+                rec["best"] = r
+                rec["best_score"] = float(r.score)
+
+    out = []
+    for cid, rec in merged.items():
+        base = rec["best"]
+        votes = int(rec["votes"])
+        best_score = float(rec["best_score"])
+        score = best_score + 0.02 * max(0, votes - 1)
+        parts = dict(base.component_scores) if base.component_scores else {}
+        parts["mq_votes"] = votes
+        parts["mq_best_score"] = best_score
+        out.append(
+            RetrievedChunk(
+                chunk_id=cid,
+                score=score,
+                rank=0,
+                source=base.source,
+                chunk=base.chunk,
+                component_scores=parts,
+            )
+        )
+    out.sort(key=lambda x: x.score, reverse=True)
+    out = out[: max(1, int(keep_n))]
+    for i, r in enumerate(out, start=1):
+        r.rank = i
+    return out
 
 
 def _score_shape_adjustment(question, chunk) :
@@ -341,15 +440,7 @@ class RAGPipeline:
         self.cfg = retrieval_cfg
         self.reranker = reranker
 
-    def retrieve(self, question) :
-        mode = self.cfg.mode
-        if mode == "closedbook":
-            return []
-        if not self.retriever:
-            raise ValueError("Retriever not available.")
-        target_top_k = self.cfg.top_k
-        if self.reranker and self.cfg.rerank_fetch_k:
-            target_top_k = max(int(self.cfg.top_k), int(self.cfg.rerank_fetch_k))
+    def _retrieve_single(self, question, mode, target_top_k) :
         if mode == "sparse":
             return self.retriever.retrieve_sparse(question, top_k=target_top_k)
         if mode == "dense":
@@ -366,6 +457,28 @@ class RAGPipeline:
                 sparse_weight=self.cfg.sparse_weight,
             )
         raise ValueError(f"Unknown retrieval mode: {mode}")
+
+    def retrieve(self, question) :
+        mode = self.cfg.mode
+        if mode == "closedbook":
+            return []
+        if not self.retriever:
+            raise ValueError("Retriever not available.")
+        target_top_k = self.cfg.top_k
+        if self.reranker and self.cfg.rerank_fetch_k:
+            target_top_k = max(int(self.cfg.top_k), int(self.cfg.rerank_fetch_k))
+
+        if not self.cfg.multi_query:
+            return self._retrieve_single(question, mode, target_top_k)
+
+        alt_queries = _build_multi_queries(question, max_n=self.cfg.multi_query_max)
+        if not alt_queries:
+            return self._retrieve_single(question, mode, target_top_k)
+        query_list = [question] + alt_queries
+        result_lists = []
+        for q in query_list:
+            result_lists.append(self._retrieve_single(q, mode, target_top_k))
+        return _merge_multi_query_results(result_lists, keep_n=target_top_k)
 
     def answer_query(self, qid, question) :
         retrieved = self.retrieve(question)
