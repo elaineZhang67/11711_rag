@@ -1,0 +1,628 @@
+{"aug_qid": "1", "source_qid": "1", "source_question": "When was Historical Sites to Visit founded?", "aug_question": "In what year was Historical Sites to Visit founded?", "answer": "1878"}
+{"aug_qid": "2", "source_qid": "1", "source_question": "When was Historical Sites to Visit founded?", "aug_question": "What year was Historical Sites to Visit founded?", "answer": "1878"}
+{"aug_qid": "3", "source_qid": "1", "source_question": "When was Historical Sites to Visit founded?", "aug_question": "When did Historical Sites to Visit get founded?", "answer": "1878"}
+{"aug_qid": "4", "source_qid": "2", "source_question": "When was A Global Arts Perspective opened?", "aug_question": "In what year was A Global Arts Perspective opened?", "answer": "2022"}
+{"aug_qid": "5", "source_qid": "2", "source_question": "When was A Global Arts Perspective opened?", "aug_question": "What year was A Global Arts Perspective opened?", "answer": "2022"}
+{"aug_qid": "6", "source_qid": "2", "source_question": "When was A Global Arts Perspective opened?", "aug_question": "When did A Global Arts Perspective get opened?", "answer": "2022"}
+{"aug_qid": "7", "source_qid": "3", "source_question": "When did The History of Pittsburgh, Pennsylvania begin?", "aug_question": "What year did The History of Pittsburgh, Pennsylvania begin?", "answer": "1875"}
+{"aug_qid": "8", "source_qid": "3", "source_question": "When did The History of Pittsburgh, Pennsylvania begin?", "aug_question": "When did The History of Pittsburgh, Pennsylvania start?", "answer": "1875"}
+{"aug_qid": "9", "source_qid": "3", "source_question": "When did The History of Pittsburgh, Pennsylvania begin?", "aug_question": "In what year did The History of Pittsburgh, Pennsylvania begin?", "answer": "1875"}
+{"aug_qid": "10", "source_qid": "4", "source_question": "When was Film Festivals in Pittsburgh founded?", "aug_question": "In what year was Film Festivals in Pittsburgh founded?", "answer": "1990"}
+{"aug_qid": "11", "source_qid": "4", "source_question": "When was Film Festivals in Pittsburgh founded?", "aug_question": "What year was Film Festivals in Pittsburgh founded?", "answer": "1990"}
+{"aug_qid": "12", "source_qid": "4", "source_question": "When was Film Festivals in Pittsburgh founded?", "aug_question": "When did Film Festivals in Pittsburgh get founded?", "answer": "1990"}
+{"aug_qid": "13", "source_qid": "5", "source_question": "Where is Pittsburgh Transportation located?", "aug_question": "What is the location of Pittsburgh Transportation?", "answer": "Southwestern Pennsylvania, where the the Ohio, Allegheny, and Monongahela Rivers meet"}
+{"aug_qid": "14", "source_qid": "5", "source_question": "Where is Pittsburgh Transportation located?", "aug_question": "Where can Pittsburgh Transportation be found?", "answer": "Southwestern Pennsylvania, where the the Ohio, Allegheny, and Monongahela Rivers meet"}
+{"aug_qid": "15", "source_qid": "5", "source_question": "Where is Pittsburgh Transportation located?", "aug_question": "Which location is Pittsburgh Transportation in?", "answer": "Southwestern Pennsylvania, where the the Ohio, Allegheny, and Monongahela Rivers meet"}
+{"aug_qid": "16", "source_qid": "6", "source_question": "When was Unblurred: First Friday on Penn Ave, Pittsburgh created?", "aug_question": "In what year was Unblurred: First Friday on Penn Ave, Pittsburgh created?", "answer": "1998"}
+{"aug_qid": "17", "source_qid": "6", "source_question": "When was Unblurred: First Friday on Penn Ave, Pittsburgh created?", "aug_question": "What year was Unblurred: First Friday on Penn Ave, Pittsburgh created?", "answer": "1998"}
+{"aug_qid": "18", "source_qid": "6", "source_question": "When was Unblurred: First Friday on Penn Ave, Pittsburgh created?", "aug_question": "When did Unblurred: First Friday on Penn Ave, Pittsburgh get created?", "answer": "1998"}
+{"aug_qid": "19", "source_qid": "7", "source_question": "When was Pittsburgh Parks opened?", "aug_question": "In what year was Pittsburgh Parks opened?", "answer": "2018"}
+{"aug_qid": "20", "source_qid": "7", "source_question": "When was Pittsburgh Parks opened?", "aug_question": "What year was Pittsburgh Parks opened?", "answer": "2018"}
+{"aug_qid": "21", "source_qid": "7", "source_question": "When was Pittsburgh Parks opened?", "aug_question": "When did Pittsburgh Parks get opened?", "answer": "2018"}
+{"aug_qid": "22", "source_qid": "8", "source_question": "When was Pittsburgh's Arts Scene founded?", "aug_question": "In what year was Pittsburgh's Arts Scene founded?", "answer": "2014"}
+{"aug_qid": "23", "source_qid": "8", "source_question": "When was Pittsburgh's Arts Scene founded?", "aug_question": "What year was Pittsburgh's Arts Scene founded?", "answer": "2014"}
+{"aug_qid": "24", "source_qid": "8", "source_question": "When was Pittsburgh's Arts Scene founded?", "aug_question": "When did Pittsburgh's Arts Scene get founded?", "answer": "2014"}
+{"aug_qid": "25", "source_qid": "9", "source_question": "When was Performing Arts in Pittsburgh founded?", "aug_question": "In what year was Performing Arts in Pittsburgh founded?", "answer": "1939"}
+{"aug_qid": "26", "source_qid": "9", "source_question": "When was Performing Arts in Pittsburgh founded?", "aug_question": "What year was Performing Arts in Pittsburgh founded?", "answer": "1939"}
+{"aug_qid": "27", "source_qid": "9", "source_question": "When was Performing Arts in Pittsburgh founded?", "aug_question": "When did Performing Arts in Pittsburgh get founded?", "answer": "1939"}
+{"aug_qid": "28", "source_qid": "10", "source_question": "When was Pittsburgh: A Family Travel Destination opened?", "aug_question": "In what year was Pittsburgh: A Family Travel Destination opened?", "answer": "1991"}
+{"aug_qid": "29", "source_qid": "10", "source_question": "When was Pittsburgh: A Family Travel Destination opened?", "aug_question": "What year was Pittsburgh: A Family Travel Destination opened?", "answer": "1991"}
+{"aug_qid": "30", "source_qid": "10", "source_question": "When was Pittsburgh: A Family Travel Destination opened?", "aug_question": "When did Pittsburgh: A Family Travel Destination get opened?", "answer": "1991"}
+{"aug_qid": "31", "source_qid": "11", "source_question": "When did List of mayors of Pittsburgh begin?", "aug_question": "What year did List of mayors of Pittsburgh begin?", "answer": "1938"}
+{"aug_qid": "32", "source_qid": "11", "source_question": "When did List of mayors of Pittsburgh begin?", "aug_question": "When did List of mayors of Pittsburgh start?", "answer": "1938"}
+{"aug_qid": "33", "source_qid": "11", "source_question": "When did List of mayors of Pittsburgh begin?", "aug_question": "In what year did List of mayors of Pittsburgh begin?", "answer": "1938"}
+{"aug_qid": "34", "source_qid": "12", "source_question": "When was Greater Pittsburgh founded?", "aug_question": "In what year was Greater Pittsburgh founded?", "answer": "1895"}
+{"aug_qid": "35", "source_qid": "12", "source_question": "When was Greater Pittsburgh founded?", "aug_question": "What year was Greater Pittsburgh founded?", "answer": "1895"}
+{"aug_qid": "36", "source_qid": "12", "source_question": "When was Greater Pittsburgh founded?", "aug_question": "When did Greater Pittsburgh get founded?", "answer": "1895"}
+{"aug_qid": "37", "source_qid": "13", "source_question": "Where is Carnegie Museums of Pittsburgh headquartered?", "aug_question": "What is the headquarters location of Carnegie Museums of Pittsburgh?", "answer": "the Carnegie Institute and Library complex in the Oakland neighborhood of Pittsburgh"}
+{"aug_qid": "38", "source_qid": "13", "source_question": "Where is Carnegie Museums of Pittsburgh headquartered?", "aug_question": "Where is the headquarters of Carnegie Museums of Pittsburgh?", "answer": "the Carnegie Institute and Library complex in the Oakland neighborhood of Pittsburgh"}
+{"aug_qid": "39", "source_qid": "14", "source_question": "When was Carnegie Museums of Pittsburgh opened?", "aug_question": "In what year was Carnegie Museums of Pittsburgh opened?", "answer": "May 15, 1994"}
+{"aug_qid": "40", "source_qid": "14", "source_question": "When was Carnegie Museums of Pittsburgh opened?", "aug_question": "What year was Carnegie Museums of Pittsburgh opened?", "answer": "May 15, 1994"}
+{"aug_qid": "41", "source_qid": "14", "source_question": "When was Carnegie Museums of Pittsburgh opened?", "aug_question": "When did Carnegie Museums of Pittsburgh get opened?", "answer": "May 15, 1994"}
+{"aug_qid": "42", "source_qid": "15", "source_question": "When was Carnegie Museums of Pittsburgh founded?", "aug_question": "In what year was Carnegie Museums of Pittsburgh founded?", "answer": "1895"}
+{"aug_qid": "43", "source_qid": "15", "source_question": "When was Carnegie Museums of Pittsburgh founded?", "aug_question": "What year was Carnegie Museums of Pittsburgh founded?", "answer": "1895"}
+{"aug_qid": "44", "source_qid": "15", "source_question": "When was Carnegie Museums of Pittsburgh founded?", "aug_question": "When did Carnegie Museums of Pittsburgh get founded?", "answer": "1895"}
+{"aug_qid": "45", "source_qid": "16", "source_question": "When was Carnegie Museums of Pittsburgh established?", "aug_question": "In what year was Carnegie Museums of Pittsburgh established?", "answer": "1956"}
+{"aug_qid": "46", "source_qid": "16", "source_question": "When was Carnegie Museums of Pittsburgh established?", "aug_question": "What year was Carnegie Museums of Pittsburgh established?", "answer": "1956"}
+{"aug_qid": "47", "source_qid": "16", "source_question": "When was Carnegie Museums of Pittsburgh established?", "aug_question": "When did Carnegie Museums of Pittsburgh get established?", "answer": "1956"}
+{"aug_qid": "48", "source_qid": "17", "source_question": "When was County seat established?", "aug_question": "In what year was County seat established?", "answer": "1661"}
+{"aug_qid": "49", "source_qid": "17", "source_question": "When was County seat established?", "aug_question": "What year was County seat established?", "answer": "1661"}
+{"aug_qid": "50", "source_qid": "17", "source_question": "When was County seat established?", "aug_question": "When did County seat get established?", "answer": "1661"}
+{"aug_qid": "51", "source_qid": "18", "source_question": "When was Allegheny County, Pennsylvania created?", "aug_question": "In what year was Allegheny County, Pennsylvania created?", "answer": "September 24, 1788"}
+{"aug_qid": "52", "source_qid": "18", "source_question": "When was Allegheny County, Pennsylvania created?", "aug_question": "What year was Allegheny County, Pennsylvania created?", "answer": "September 24, 1788"}
+{"aug_qid": "53", "source_qid": "18", "source_question": "When was Allegheny County, Pennsylvania created?", "aug_question": "When did Allegheny County, Pennsylvania get created?", "answer": "September 24, 1788"}
+{"aug_qid": "54", "source_qid": "19", "source_question": "When did John Forbes (British Army officer) begin?", "aug_question": "What year did John Forbes (British Army officer) begin?", "answer": "1756"}
+{"aug_qid": "55", "source_qid": "19", "source_question": "When did John Forbes (British Army officer) begin?", "aug_question": "When did John Forbes (British Army officer) start?", "answer": "1756"}
+{"aug_qid": "56", "source_qid": "19", "source_question": "When did John Forbes (British Army officer) begin?", "aug_question": "In what year did John Forbes (British Army officer) begin?", "answer": "1756"}
+{"aug_qid": "57", "source_qid": "20", "source_question": "When was Appalachia established?", "aug_question": "In what year was Appalachia established?", "answer": "1863"}
+{"aug_qid": "58", "source_qid": "20", "source_question": "When was Appalachia established?", "aug_question": "What year was Appalachia established?", "answer": "1863"}
+{"aug_qid": "59", "source_qid": "20", "source_question": "When was Appalachia established?", "aug_question": "When did Appalachia get established?", "answer": "1863"}
+{"aug_qid": "60", "source_qid": "21", "source_question": "When did Ohio begin?", "aug_question": "What year did Ohio begin?", "answer": "1811"}
+{"aug_qid": "61", "source_qid": "21", "source_question": "When did Ohio begin?", "aug_question": "When did Ohio start?", "answer": "1811"}
+{"aug_qid": "62", "source_qid": "21", "source_question": "When did Ohio begin?", "aug_question": "In what year did Ohio begin?", "answer": "1811"}
+{"aug_qid": "63", "source_qid": "22", "source_question": "When did Corey O'Connor begin?", "aug_question": "What year did Corey O'Connor begin?", "answer": "January 3, 2012"}
+{"aug_qid": "64", "source_qid": "22", "source_question": "When did Corey O'Connor begin?", "aug_question": "When did Corey O'Connor start?", "answer": "January 3, 2012"}
+{"aug_qid": "65", "source_qid": "22", "source_question": "When did Corey O'Connor begin?", "aug_question": "In what year did Corey O'Connor begin?", "answer": "January 3, 2012"}
+{"aug_qid": "66", "source_qid": "24", "source_question": "When was Phipps Conservatory and Botanical Gardens founded?", "aug_question": "In what year was Phipps Conservatory and Botanical Gardens founded?", "answer": "1893"}
+{"aug_qid": "67", "source_qid": "24", "source_question": "When was Phipps Conservatory and Botanical Gardens founded?", "aug_question": "What year was Phipps Conservatory and Botanical Gardens founded?", "answer": "1893"}
+{"aug_qid": "68", "source_qid": "24", "source_question": "When was Phipps Conservatory and Botanical Gardens founded?", "aug_question": "When did Phipps Conservatory and Botanical Gardens get founded?", "answer": "1893"}
+{"aug_qid": "69", "source_qid": "25", "source_question": "When did Phipps Conservatory and Botanical Gardens begin?", "aug_question": "What year did Phipps Conservatory and Botanical Gardens begin?", "answer": "1992"}
+{"aug_qid": "70", "source_qid": "25", "source_question": "When did Phipps Conservatory and Botanical Gardens begin?", "aug_question": "When did Phipps Conservatory and Botanical Gardens start?", "answer": "1992"}
+{"aug_qid": "71", "source_qid": "25", "source_question": "When did Phipps Conservatory and Botanical Gardens begin?", "aug_question": "In what year did Phipps Conservatory and Botanical Gardens begin?", "answer": "1992"}
+{"aug_qid": "72", "source_qid": "26", "source_question": "When was Phipps Conservatory and Botanical Gardens opened?", "aug_question": "In what year was Phipps Conservatory and Botanical Gardens opened?", "answer": "1902"}
+{"aug_qid": "73", "source_qid": "26", "source_question": "When was Phipps Conservatory and Botanical Gardens opened?", "aug_question": "What year was Phipps Conservatory and Botanical Gardens opened?", "answer": "1902"}
+{"aug_qid": "74", "source_qid": "26", "source_question": "When was Phipps Conservatory and Botanical Gardens opened?", "aug_question": "When did Phipps Conservatory and Botanical Gardens get opened?", "answer": "1902"}
+{"aug_qid": "75", "source_qid": "27", "source_question": "Where is Phipps Conservatory and Botanical Gardens located?", "aug_question": "What is the location of Phipps Conservatory and Botanical Gardens?", "answer": "the south part of the east wing"}
+{"aug_qid": "76", "source_qid": "27", "source_question": "Where is Phipps Conservatory and Botanical Gardens located?", "aug_question": "Where can Phipps Conservatory and Botanical Gardens be found?", "answer": "the south part of the east wing"}
+{"aug_qid": "77", "source_qid": "27", "source_question": "Where is Phipps Conservatory and Botanical Gardens located?", "aug_question": "Which location is Phipps Conservatory and Botanical Gardens in?", "answer": "the south part of the east wing"}
+{"aug_qid": "78", "source_qid": "28", "source_question": "When was Pennsylvania founded?", "aug_question": "In what year was Pennsylvania founded?", "answer": "1681"}
+{"aug_qid": "79", "source_qid": "28", "source_question": "When was Pennsylvania founded?", "aug_question": "What year was Pennsylvania founded?", "answer": "1681"}
+{"aug_qid": "80", "source_qid": "28", "source_question": "When was Pennsylvania founded?", "aug_question": "When did Pennsylvania get founded?", "answer": "1681"}
+{"aug_qid": "81", "source_qid": "30", "source_question": "When did Midwestern United States begin?", "aug_question": "What year did Midwestern United States begin?", "answer": "1534"}
+{"aug_qid": "82", "source_qid": "30", "source_question": "When did Midwestern United States begin?", "aug_question": "When did Midwestern United States start?", "answer": "1534"}
+{"aug_qid": "83", "source_qid": "30", "source_question": "When did Midwestern United States begin?", "aug_question": "In what year did Midwestern United States begin?", "answer": "1534"}
+{"aug_qid": "84", "source_qid": "31", "source_question": "When was Cathedral of Learning created?", "aug_question": "In what year was Cathedral of Learning created?", "answer": "1835"}
+{"aug_qid": "85", "source_qid": "31", "source_question": "When was Cathedral of Learning created?", "aug_question": "What year was Cathedral of Learning created?", "answer": "1835"}
+{"aug_qid": "86", "source_qid": "31", "source_question": "When was Cathedral of Learning created?", "aug_question": "When did Cathedral of Learning get created?", "answer": "1835"}
+{"aug_qid": "87", "source_qid": "32", "source_question": "Where is Allegheny River located?", "aug_question": "What is the location of Allegheny River?", "answer": "western Pennsylvania and western New York in the United States"}
+{"aug_qid": "88", "source_qid": "32", "source_question": "Where is Allegheny River located?", "aug_question": "Where can Allegheny River be found?", "answer": "western Pennsylvania and western New York in the United States"}
+{"aug_qid": "89", "source_qid": "32", "source_question": "Where is Allegheny River located?", "aug_question": "Which location is Allegheny River in?", "answer": "western Pennsylvania and western New York in the United States"}
+{"aug_qid": "90", "source_qid": "33", "source_question": "When was Allegheny River created?", "aug_question": "In what year was Allegheny River created?", "answer": "1965"}
+{"aug_qid": "91", "source_qid": "33", "source_question": "When was Allegheny River created?", "aug_question": "What year was Allegheny River created?", "answer": "1965"}
+{"aug_qid": "92", "source_qid": "33", "source_question": "When was Allegheny River created?", "aug_question": "When did Allegheny River get created?", "answer": "1965"}
+{"aug_qid": "93", "source_qid": "34", "source_question": "When was Metropolitan statistical area created?", "aug_question": "In what year was Metropolitan statistical area created?", "answer": "1983"}
+{"aug_qid": "94", "source_qid": "34", "source_question": "When was Metropolitan statistical area created?", "aug_question": "What year was Metropolitan statistical area created?", "answer": "1983"}
+{"aug_qid": "95", "source_qid": "34", "source_question": "When was Metropolitan statistical area created?", "aug_question": "When did Metropolitan statistical area get created?", "answer": "1983"}
+{"aug_qid": "96", "source_qid": "35", "source_question": "When did Whiskey Rebellion begin?", "aug_question": "What year did Whiskey Rebellion begin?", "answer": "1789"}
+{"aug_qid": "97", "source_qid": "35", "source_question": "When did Whiskey Rebellion begin?", "aug_question": "When did Whiskey Rebellion start?", "answer": "1789"}
+{"aug_qid": "98", "source_qid": "35", "source_question": "When did Whiskey Rebellion begin?", "aug_question": "In what year did Whiskey Rebellion begin?", "answer": "1789"}
+{"aug_qid": "99", "source_qid": "36", "source_question": "When was Area code 878 created?", "aug_question": "In what year was Area code 878 created?", "answer": "1998"}
+{"aug_qid": "100", "source_qid": "36", "source_question": "When was Area code 878 created?", "aug_question": "What year was Area code 878 created?", "answer": "1998"}
+{"aug_qid": "101", "source_qid": "36", "source_question": "When was Area code 878 created?", "aug_question": "When did Area code 878 get created?", "answer": "1998"}
+{"aug_qid": "102", "source_qid": "37", "source_question": "When was Ohio River founded?", "aug_question": "In what year was Ohio River founded?", "answer": "1778"}
+{"aug_qid": "103", "source_qid": "37", "source_question": "When was Ohio River founded?", "aug_question": "What year was Ohio River founded?", "answer": "1778"}
+{"aug_qid": "104", "source_qid": "37", "source_question": "When was Ohio River founded?", "aug_question": "When did Ohio River get founded?", "answer": "1778"}
+{"aug_qid": "105", "source_qid": "38", "source_question": "When was Ohio River chartered?", "aug_question": "In what year was Ohio River chartered?", "answer": "1780"}
+{"aug_qid": "106", "source_qid": "38", "source_question": "When was Ohio River chartered?", "aug_question": "What year was Ohio River chartered?", "answer": "1780"}
+{"aug_qid": "107", "source_qid": "38", "source_question": "When was Ohio River chartered?", "aug_question": "When did Ohio River get chartered?", "answer": "1780"}
+{"aug_qid": "108", "source_qid": "39", "source_question": "When did List of Pennsylvania state historical markers begin?", "aug_question": "What year did List of Pennsylvania state historical markers begin?", "answer": "1946"}
+{"aug_qid": "109", "source_qid": "39", "source_question": "When did List of Pennsylvania state historical markers begin?", "aug_question": "When did List of Pennsylvania state historical markers start?", "answer": "1946"}
+{"aug_qid": "110", "source_qid": "39", "source_question": "When did List of Pennsylvania state historical markers begin?", "aug_question": "In what year did List of Pennsylvania state historical markers begin?", "answer": "1946"}
+{"aug_qid": "111", "source_qid": "40", "source_question": "When was Time zone founded?", "aug_question": "In what year was Time zone founded?", "answer": "1675"}
+{"aug_qid": "112", "source_qid": "40", "source_question": "When was Time zone founded?", "aug_question": "What year was Time zone founded?", "answer": "1675"}
+{"aug_qid": "113", "source_qid": "40", "source_question": "When was Time zone founded?", "aug_question": "When did Time zone get founded?", "answer": "1675"}
+{"aug_qid": "114", "source_qid": "41", "source_question": "When did History of Pittsburgh begin?", "aug_question": "What year did History of Pittsburgh begin?", "answer": "1875"}
+{"aug_qid": "115", "source_qid": "41", "source_question": "When did History of Pittsburgh begin?", "aug_question": "When did History of Pittsburgh start?", "answer": "1875"}
+{"aug_qid": "116", "source_qid": "41", "source_question": "When did History of Pittsburgh begin?", "aug_question": "In what year did History of Pittsburgh begin?", "answer": "1875"}
+{"aug_qid": "117", "source_qid": "42", "source_question": "When was History of Pittsburgh established?", "aug_question": "In what year was History of Pittsburgh established?", "answer": "1734"}
+{"aug_qid": "118", "source_qid": "42", "source_question": "When was History of Pittsburgh established?", "aug_question": "What year was History of Pittsburgh established?", "answer": "1734"}
+{"aug_qid": "119", "source_qid": "42", "source_question": "When was History of Pittsburgh established?", "aug_question": "When did History of Pittsburgh get established?", "answer": "1734"}
+{"aug_qid": "120", "source_qid": "43", "source_question": "When was Philadelphia founded?", "aug_question": "In what year was Philadelphia founded?", "answer": "1682"}
+{"aug_qid": "121", "source_qid": "43", "source_question": "When was Philadelphia founded?", "aug_question": "What year was Philadelphia founded?", "answer": "1682"}
+{"aug_qid": "122", "source_qid": "43", "source_question": "When was Philadelphia founded?", "aug_question": "When did Philadelphia get founded?", "answer": "1682"}
+{"aug_qid": "123", "source_qid": "44", "source_question": "When was Philadelphia established?", "aug_question": "In what year was Philadelphia established?", "answer": "1870"}
+{"aug_qid": "124", "source_qid": "44", "source_question": "When was Philadelphia established?", "aug_question": "What year was Philadelphia established?", "answer": "1870"}
+{"aug_qid": "125", "source_qid": "44", "source_question": "When was Philadelphia established?", "aug_question": "When did Philadelphia get established?", "answer": "1870"}
+{"aug_qid": "126", "source_qid": "45", "source_question": "When was Area code 724 created?", "aug_question": "In what year was Area code 724 created?", "answer": "February 1, 1998"}
+{"aug_qid": "127", "source_qid": "45", "source_question": "When was Area code 724 created?", "aug_question": "What year was Area code 724 created?", "answer": "February 1, 1998"}
+{"aug_qid": "128", "source_qid": "45", "source_question": "When was Area code 724 created?", "aug_question": "When did Area code 724 get created?", "answer": "February 1, 1998"}
+{"aug_qid": "129", "source_qid": "46", "source_question": "When did British Empire begin?", "aug_question": "What year did British Empire begin?", "answer": "1600"}
+{"aug_qid": "130", "source_qid": "46", "source_question": "When did British Empire begin?", "aug_question": "When did British Empire start?", "answer": "1600"}
+{"aug_qid": "131", "source_qid": "46", "source_question": "When did British Empire begin?", "aug_question": "In what year did British Empire begin?", "answer": "1600"}
+{"aug_qid": "132", "source_qid": "47", "source_question": "When was British Empire established?", "aug_question": "In what year was British Empire established?", "answer": "1698"}
+{"aug_qid": "133", "source_qid": "47", "source_question": "When was British Empire established?", "aug_question": "What year was British Empire established?", "answer": "1698"}
+{"aug_qid": "134", "source_qid": "47", "source_question": "When was British Empire established?", "aug_question": "When did British Empire get established?", "answer": "1698"}
+{"aug_qid": "135", "source_qid": "48", "source_question": "When was Democratic Party (United States) founded?", "aug_question": "In what year was Democratic Party (United States) founded?", "answer": "1828"}
+{"aug_qid": "136", "source_qid": "48", "source_question": "When was Democratic Party (United States) founded?", "aug_question": "What year was Democratic Party (United States) founded?", "answer": "1828"}
+{"aug_qid": "137", "source_qid": "48", "source_question": "When was Democratic Party (United States) founded?", "aug_question": "When did Democratic Party (United States) get founded?", "answer": "1828"}
+{"aug_qid": "138", "source_qid": "51", "source_question": "When did French colonial empire begin?", "aug_question": "What year did French colonial empire begin?", "answer": "1830"}
+{"aug_qid": "139", "source_qid": "51", "source_question": "When did French colonial empire begin?", "aug_question": "When did French colonial empire start?", "answer": "1830"}
+{"aug_qid": "140", "source_qid": "51", "source_question": "When did French colonial empire begin?", "aug_question": "In what year did French colonial empire begin?", "answer": "1830"}
+{"aug_qid": "141", "source_qid": "52", "source_question": "When was French colonial empire launched?", "aug_question": "In what year was French colonial empire launched?", "answer": "1802"}
+{"aug_qid": "142", "source_qid": "52", "source_question": "When was French colonial empire launched?", "aug_question": "What year was French colonial empire launched?", "answer": "1802"}
+{"aug_qid": "143", "source_qid": "52", "source_question": "When was French colonial empire launched?", "aug_question": "When did French colonial empire get launched?", "answer": "1802"}
+{"aug_qid": "144", "source_qid": "53", "source_question": "When was Colony of Virginia chartered?", "aug_question": "In what year was Colony of Virginia chartered?", "answer": "1584"}
+{"aug_qid": "145", "source_qid": "53", "source_question": "When was Colony of Virginia chartered?", "aug_question": "What year was Colony of Virginia chartered?", "answer": "1584"}
+{"aug_qid": "146", "source_qid": "53", "source_question": "When was Colony of Virginia chartered?", "aug_question": "When did Colony of Virginia get chartered?", "answer": "1584"}
+{"aug_qid": "147", "source_qid": "54", "source_question": "When was Colony of Virginia established?", "aug_question": "In what year was Colony of Virginia established?", "answer": "1565"}
+{"aug_qid": "148", "source_qid": "54", "source_question": "When was Colony of Virginia established?", "aug_question": "What year was Colony of Virginia established?", "answer": "1565"}
+{"aug_qid": "149", "source_qid": "54", "source_question": "When was Colony of Virginia established?", "aug_question": "When did Colony of Virginia get established?", "answer": "1565"}
+{"aug_qid": "150", "source_qid": "55", "source_question": "When was Area code 412 created?", "aug_question": "In what year was Area code 412 created?", "answer": "1947"}
+{"aug_qid": "151", "source_qid": "55", "source_question": "When was Area code 412 created?", "aug_question": "What year was Area code 412 created?", "answer": "1947"}
+{"aug_qid": "152", "source_qid": "55", "source_question": "When was Area code 412 created?", "aug_question": "When did Area code 412 get created?", "answer": "1947"}
+{"aug_qid": "153", "source_qid": "56", "source_question": "When did History begin?", "aug_question": "What year did History begin?", "answer": "1938"}
+{"aug_qid": "154", "source_qid": "56", "source_question": "When did History begin?", "aug_question": "When did History start?", "answer": "1938"}
+{"aug_qid": "155", "source_qid": "56", "source_question": "When did History begin?", "aug_question": "In what year did History begin?", "answer": "1938"}
+{"aug_qid": "156", "source_qid": "57", "source_question": "Who founded History?", "aug_question": "Who is the founder of History?", "answer": "the Mellon family of Pittsburgh, to become known as Carnegie Mellon University"}
+{"aug_qid": "157", "source_qid": "57", "source_question": "Who founded History?", "aug_question": "Who was the founder of History?", "answer": "the Mellon family of Pittsburgh, to become known as Carnegie Mellon University"}
+{"aug_qid": "158", "source_qid": "57", "source_question": "Who founded History?", "aug_question": "Which person founded History?", "answer": "the Mellon family of Pittsburgh, to become known as Carnegie Mellon University"}
+{"aug_qid": "159", "source_qid": "58", "source_question": "When was Steelers Hall of Fame established?", "aug_question": "In what year was Steelers Hall of Fame established?", "answer": "1963"}
+{"aug_qid": "160", "source_qid": "58", "source_question": "When was Steelers Hall of Fame established?", "aug_question": "What year was Steelers Hall of Fame established?", "answer": "1963"}
+{"aug_qid": "161", "source_qid": "58", "source_question": "When was Steelers Hall of Fame established?", "aug_question": "When did Steelers Hall of Fame get established?", "answer": "1963"}
+{"aug_qid": "162", "source_qid": "59", "source_question": "When was Pittsburgh Steelers Women established?", "aug_question": "In what year was Pittsburgh Steelers Women established?", "answer": "2021"}
+{"aug_qid": "163", "source_qid": "59", "source_question": "When was Pittsburgh Steelers Women established?", "aug_question": "What year was Pittsburgh Steelers Women established?", "answer": "2021"}
+{"aug_qid": "164", "source_qid": "59", "source_question": "When was Pittsburgh Steelers Women established?", "aug_question": "When did Pittsburgh Steelers Women get established?", "answer": "2021"}
+{"aug_qid": "165", "source_qid": "60", "source_question": "When was Pittsburgh Steelers Women founded?", "aug_question": "In what year was Pittsburgh Steelers Women founded?", "answer": "2016"}
+{"aug_qid": "166", "source_qid": "60", "source_question": "When was Pittsburgh Steelers Women founded?", "aug_question": "What year was Pittsburgh Steelers Women founded?", "answer": "2016"}
+{"aug_qid": "167", "source_qid": "60", "source_question": "When was Pittsburgh Steelers Women founded?", "aug_question": "When did Pittsburgh Steelers Women get founded?", "answer": "2016"}
+{"aug_qid": "168", "source_qid": "61", "source_question": "Who founded Pittsburgh Steelers Women?", "aug_question": "Who is the founder of Pittsburgh Steelers Women?", "answer": "Jessica Eberley"}
+{"aug_qid": "169", "source_qid": "61", "source_question": "Who founded Pittsburgh Steelers Women?", "aug_question": "Who was the founder of Pittsburgh Steelers Women?", "answer": "Jessica Eberley"}
+{"aug_qid": "170", "source_qid": "61", "source_question": "Who founded Pittsburgh Steelers Women?", "aug_question": "Which person founded Pittsburgh Steelers Women?", "answer": "Jessica Eberley"}
+{"aug_qid": "171", "source_qid": "62", "source_question": "When was Steelers High School Football Showcase launched?", "aug_question": "In what year was Steelers High School Football Showcase launched?", "answer": "2018"}
+{"aug_qid": "172", "source_qid": "62", "source_question": "When was Steelers High School Football Showcase launched?", "aug_question": "What year was Steelers High School Football Showcase launched?", "answer": "2018"}
+{"aug_qid": "173", "source_qid": "62", "source_question": "When was Steelers High School Football Showcase launched?", "aug_question": "When did Steelers High School Football Showcase get launched?", "answer": "2018"}
+{"aug_qid": "174", "source_qid": "63", "source_question": "Who founded Steelers Hall of Honor?", "aug_question": "Who is the founder of Steelers Hall of Honor?", "answer": "Art Rooney"}
+{"aug_qid": "175", "source_qid": "63", "source_question": "Who founded Steelers Hall of Honor?", "aug_question": "Who was the founder of Steelers Hall of Honor?", "answer": "Art Rooney"}
+{"aug_qid": "176", "source_qid": "63", "source_question": "Who founded Steelers Hall of Honor?", "aug_question": "Which person founded Steelers Hall of Honor?", "answer": "Art Rooney"}
+{"aug_qid": "177", "source_qid": "64", "source_question": "When was Steelers Hall of Honor opened?", "aug_question": "In what year was Steelers Hall of Honor opened?", "answer": "2020"}
+{"aug_qid": "178", "source_qid": "64", "source_question": "When was Steelers Hall of Honor opened?", "aug_question": "What year was Steelers Hall of Honor opened?", "answer": "2020"}
+{"aug_qid": "179", "source_qid": "64", "source_question": "When was Steelers Hall of Honor opened?", "aug_question": "When did Steelers Hall of Honor get opened?", "answer": "2020"}
+{"aug_qid": "180", "source_qid": "65", "source_question": "When was Steelers Alumni Legends founded?", "aug_question": "In what year was Steelers Alumni Legends founded?", "answer": "1933"}
+{"aug_qid": "181", "source_qid": "65", "source_question": "When was Steelers Alumni Legends founded?", "aug_question": "What year was Steelers Alumni Legends founded?", "answer": "1933"}
+{"aug_qid": "182", "source_qid": "65", "source_question": "When was Steelers Alumni Legends founded?", "aug_question": "When did Steelers Alumni Legends get founded?", "answer": "1933"}
+{"aug_qid": "183", "source_qid": "66", "source_question": "When was Steelers Alumni Legends created?", "aug_question": "In what year was Steelers Alumni Legends created?", "answer": "1997"}
+{"aug_qid": "184", "source_qid": "66", "source_question": "When was Steelers Alumni Legends created?", "aug_question": "What year was Steelers Alumni Legends created?", "answer": "1997"}
+{"aug_qid": "185", "source_qid": "66", "source_question": "When was Steelers Alumni Legends created?", "aug_question": "When did Steelers Alumni Legends get created?", "answer": "1997"}
+{"aug_qid": "186", "source_qid": "67", "source_question": "When was Steelers Alumni Legends launched?", "aug_question": "In what year was Steelers Alumni Legends launched?", "answer": "2016"}
+{"aug_qid": "187", "source_qid": "67", "source_question": "When was Steelers Alumni Legends launched?", "aug_question": "What year was Steelers Alumni Legends launched?", "answer": "2016"}
+{"aug_qid": "188", "source_qid": "67", "source_question": "When was Steelers Alumni Legends launched?", "aug_question": "When did Steelers Alumni Legends get launched?", "answer": "2016"}
+{"aug_qid": "189", "source_qid": "68", "source_question": "When did Roberto Clemente, Pittsburgh's Hero begin?", "aug_question": "What year did Roberto Clemente, Pittsburgh's Hero begin?", "answer": "1952"}
+{"aug_qid": "190", "source_qid": "68", "source_question": "When did Roberto Clemente, Pittsburgh's Hero begin?", "aug_question": "When did Roberto Clemente, Pittsburgh's Hero start?", "answer": "1952"}
+{"aug_qid": "191", "source_qid": "68", "source_question": "When did Roberto Clemente, Pittsburgh's Hero begin?", "aug_question": "In what year did Roberto Clemente, Pittsburgh's Hero begin?", "answer": "1952"}
+{"aug_qid": "192", "source_qid": "69", "source_question": "When was Pittsburgh Steelers created?", "aug_question": "In what year was Pittsburgh Steelers created?", "answer": "1975"}
+{"aug_qid": "193", "source_qid": "69", "source_question": "When was Pittsburgh Steelers created?", "aug_question": "What year was Pittsburgh Steelers created?", "answer": "1975"}
+{"aug_qid": "194", "source_qid": "69", "source_question": "When was Pittsburgh Steelers created?", "aug_question": "When did Pittsburgh Steelers get created?", "answer": "1975"}
+{"aug_qid": "195", "source_qid": "70", "source_question": "When was Pittsburgh Sports Venues & Stadiums opened?", "aug_question": "In what year was Pittsburgh Sports Venues & Stadiums opened?", "answer": "2001"}
+{"aug_qid": "196", "source_qid": "70", "source_question": "When was Pittsburgh Sports Venues & Stadiums opened?", "aug_question": "What year was Pittsburgh Sports Venues & Stadiums opened?", "answer": "2001"}
+{"aug_qid": "197", "source_qid": "70", "source_question": "When was Pittsburgh Sports Venues & Stadiums opened?", "aug_question": "When did Pittsburgh Sports Venues & Stadiums get opened?", "answer": "2001"}
+{"aug_qid": "198", "source_qid": "71", "source_question": "When was Pittsburgh Sports founded?", "aug_question": "In what year was Pittsburgh Sports founded?", "answer": "2006"}
+{"aug_qid": "199", "source_qid": "71", "source_question": "When was Pittsburgh Sports founded?", "aug_question": "What year was Pittsburgh Sports founded?", "answer": "2006"}
+{"aug_qid": "200", "source_qid": "71", "source_question": "When was Pittsburgh Sports founded?", "aug_question": "When did Pittsburgh Sports get founded?", "answer": "2006"}
+{"aug_qid": "201", "source_qid": "72", "source_question": "When was PNC Park Facts opened?", "aug_question": "In what year was PNC Park Facts opened?", "answer": "April 9, 2001"}
+{"aug_qid": "202", "source_qid": "72", "source_question": "When was PNC Park Facts opened?", "aug_question": "What year was PNC Park Facts opened?", "answer": "April 9, 2001"}
+{"aug_qid": "203", "source_qid": "72", "source_question": "When was PNC Park Facts opened?", "aug_question": "When did PNC Park Facts get opened?", "answer": "April 9, 2001"}
+{"aug_qid": "204", "source_qid": "73", "source_question": "When was Pirates Baseball Award Winners created?", "aug_question": "In what year was Pirates Baseball Award Winners created?", "answer": "2006"}
+{"aug_qid": "205", "source_qid": "73", "source_question": "When was Pirates Baseball Award Winners created?", "aug_question": "What year was Pirates Baseball Award Winners created?", "answer": "2006"}
+{"aug_qid": "206", "source_qid": "73", "source_question": "When was Pirates Baseball Award Winners created?", "aug_question": "When did Pirates Baseball Award Winners get created?", "answer": "2006"}
+{"aug_qid": "207", "source_qid": "74", "source_question": "Where is Outside PNC Park located?", "aug_question": "What is the location of Outside PNC Park?", "answer": "the right field entrance to PNC Park"}
+{"aug_qid": "208", "source_qid": "74", "source_question": "Where is Outside PNC Park located?", "aug_question": "Where can Outside PNC Park be found?", "answer": "the right field entrance to PNC Park"}
+{"aug_qid": "209", "source_qid": "74", "source_question": "Where is Outside PNC Park located?", "aug_question": "Which location is Outside PNC Park in?", "answer": "the right field entrance to PNC Park"}
+{"aug_qid": "210", "source_qid": "75", "source_question": "When did Three Rivers Stadium Years begin?", "aug_question": "What year did Three Rivers Stadium Years begin?", "answer": "February 14, 1996"}
+{"aug_qid": "211", "source_qid": "75", "source_question": "When did Three Rivers Stadium Years begin?", "aug_question": "When did Three Rivers Stadium Years start?", "answer": "February 14, 1996"}
+{"aug_qid": "212", "source_qid": "75", "source_question": "When did Three Rivers Stadium Years begin?", "aug_question": "In what year did Three Rivers Stadium Years begin?", "answer": "February 14, 1996"}
+{"aug_qid": "213", "source_qid": "76", "source_question": "When did Pirates Broadcasters begin?", "aug_question": "What year did Pirates Broadcasters begin?", "answer": "1979"}
+{"aug_qid": "214", "source_qid": "76", "source_question": "When did Pirates Broadcasters begin?", "aug_question": "When did Pirates Broadcasters start?", "answer": "1979"}
+{"aug_qid": "215", "source_qid": "76", "source_question": "When did Pirates Broadcasters begin?", "aug_question": "In what year did Pirates Broadcasters begin?", "answer": "1979"}
+{"aug_qid": "216", "source_qid": "77", "source_question": "When was PNC Park Years opened?", "aug_question": "In what year was PNC Park Years opened?", "answer": "April 9, 2001"}
+{"aug_qid": "217", "source_qid": "77", "source_question": "When was PNC Park Years opened?", "aug_question": "What year was PNC Park Years opened?", "answer": "April 9, 2001"}
+{"aug_qid": "218", "source_qid": "77", "source_question": "When was PNC Park Years opened?", "aug_question": "When did PNC Park Years get opened?", "answer": "April 9, 2001"}
+{"aug_qid": "219", "source_qid": "78", "source_question": "When was 611bbd1e7a18ffa8 founded?", "aug_question": "In what year was 611bbd1e7a18ffa8 founded?", "answer": "1979"}
+{"aug_qid": "220", "source_qid": "78", "source_question": "When was 611bbd1e7a18ffa8 founded?", "aug_question": "What year was 611bbd1e7a18ffa8 founded?", "answer": "1979"}
+{"aug_qid": "221", "source_qid": "78", "source_question": "When was 611bbd1e7a18ffa8 founded?", "aug_question": "When did 611bbd1e7a18ffa8 get founded?", "answer": "1979"}
+{"aug_qid": "222", "source_qid": "79", "source_question": "Where is Frequently Asked Questions located?", "aug_question": "What is the location of Frequently Asked Questions?", "answer": "4620 Henry St"}
+{"aug_qid": "223", "source_qid": "79", "source_question": "Where is Frequently Asked Questions located?", "aug_question": "Where can Frequently Asked Questions be found?", "answer": "4620 Henry St"}
+{"aug_qid": "224", "source_qid": "79", "source_question": "Where is Frequently Asked Questions located?", "aug_question": "Which location is Frequently Asked Questions in?", "answer": "4620 Henry St"}
+{"aug_qid": "225", "source_qid": "80", "source_question": "When was June established?", "aug_question": "In what year was June established?", "answer": "2022"}
+{"aug_qid": "226", "source_qid": "80", "source_question": "When was June established?", "aug_question": "What year was June established?", "answer": "2022"}
+{"aug_qid": "227", "source_qid": "80", "source_question": "When was June established?", "aug_question": "When did June get established?", "answer": "2022"}
+{"aug_qid": "228", "source_qid": "81", "source_question": "When was David Badre To Lead Carnegie Mellon’s Neuroscience Institute established?", "aug_question": "In what year was David Badre To Lead Carnegie Mellon’s Neuroscience Institute established?", "answer": "2018"}
+{"aug_qid": "229", "source_qid": "81", "source_question": "When was David Badre To Lead Carnegie Mellon’s Neuroscience Institute established?", "aug_question": "What year was David Badre To Lead Carnegie Mellon’s Neuroscience Institute established?", "answer": "2018"}
+{"aug_qid": "230", "source_qid": "81", "source_question": "When was David Badre To Lead Carnegie Mellon’s Neuroscience Institute established?", "aug_question": "When did David Badre To Lead Carnegie Mellon’s Neuroscience Institute get established?", "answer": "2018"}
+{"aug_qid": "231", "source_qid": "82", "source_question": "When was Hiring Faculty Positions established?", "aug_question": "In what year was Hiring Faculty Positions established?", "answer": "1979"}
+{"aug_qid": "232", "source_qid": "82", "source_question": "When was Hiring Faculty Positions established?", "aug_question": "What year was Hiring Faculty Positions established?", "answer": "1979"}
+{"aug_qid": "233", "source_qid": "82", "source_question": "When was Hiring Faculty Positions established?", "aug_question": "When did Hiring Faculty Positions get established?", "answer": "1979"}
+{"aug_qid": "234", "source_qid": "83", "source_question": "When was About created?", "aug_question": "In what year was About created?", "answer": "1997"}
+{"aug_qid": "235", "source_qid": "83", "source_question": "When was About created?", "aug_question": "What year was About created?", "answer": "1997"}
+{"aug_qid": "236", "source_qid": "83", "source_question": "When was About created?", "aug_question": "When did About get created?", "answer": "1997"}
+{"aug_qid": "237", "source_qid": "84", "source_question": "When was About launched?", "aug_question": "In what year was About launched?", "answer": "1999"}
+{"aug_qid": "238", "source_qid": "84", "source_question": "When was About launched?", "aug_question": "What year was About launched?", "answer": "1999"}
+{"aug_qid": "239", "source_qid": "84", "source_question": "When was About launched?", "aug_question": "When did About get launched?", "answer": "1999"}
+{"aug_qid": "240", "source_qid": "85", "source_question": "When was Hamad bin Jassim Center for Computer Science Education established?", "aug_question": "In what year was Hamad bin Jassim Center for Computer Science Education established?", "answer": "2018"}
+{"aug_qid": "241", "source_qid": "85", "source_question": "When was Hamad bin Jassim Center for Computer Science Education established?", "aug_question": "What year was Hamad bin Jassim Center for Computer Science Education established?", "answer": "2018"}
+{"aug_qid": "242", "source_qid": "85", "source_question": "When was Hamad bin Jassim Center for Computer Science Education established?", "aug_question": "When did Hamad bin Jassim Center for Computer Science Education get established?", "answer": "2018"}
+{"aug_qid": "243", "source_qid": "86", "source_question": "When was Center for New Work launched?", "aug_question": "In what year was Center for New Work launched?", "answer": "2003"}
+{"aug_qid": "244", "source_qid": "86", "source_question": "When was Center for New Work launched?", "aug_question": "What year was Center for New Work launched?", "answer": "2003"}
+{"aug_qid": "245", "source_qid": "86", "source_question": "When was Center for New Work launched?", "aug_question": "When did Center for New Work get launched?", "answer": "2003"}
+{"aug_qid": "246", "source_qid": "87", "source_question": "When was Center for New Work founded?", "aug_question": "In what year was Center for New Work founded?", "answer": "1975"}
+{"aug_qid": "247", "source_qid": "87", "source_question": "When was Center for New Work founded?", "aug_question": "What year was Center for New Work founded?", "answer": "1975"}
+{"aug_qid": "248", "source_qid": "87", "source_question": "When was Center for New Work founded?", "aug_question": "When did Center for New Work get founded?", "answer": "1975"}
+{"aug_qid": "249", "source_qid": "88", "source_question": "When was Undergraduate Innovation Scholars created?", "aug_question": "In what year was Undergraduate Innovation Scholars created?", "answer": "2013"}
+{"aug_qid": "250", "source_qid": "88", "source_question": "When was Undergraduate Innovation Scholars created?", "aug_question": "What year was Undergraduate Innovation Scholars created?", "answer": "2013"}
+{"aug_qid": "251", "source_qid": "88", "source_question": "When was Undergraduate Innovation Scholars created?", "aug_question": "When did Undergraduate Innovation Scholars get created?", "answer": "2013"}
+{"aug_qid": "252", "source_qid": "89", "source_question": "When was Carnegie Mellon School of Drama founded?", "aug_question": "In what year was Carnegie Mellon School of Drama founded?", "answer": "1989"}
+{"aug_qid": "253", "source_qid": "89", "source_question": "When was Carnegie Mellon School of Drama founded?", "aug_question": "What year was Carnegie Mellon School of Drama founded?", "answer": "1989"}
+{"aug_qid": "254", "source_qid": "89", "source_question": "When was Carnegie Mellon School of Drama founded?", "aug_question": "When did Carnegie Mellon School of Drama get founded?", "answer": "1989"}
+{"aug_qid": "255", "source_qid": "90", "source_question": "When was Carnegie Mellon University School of Drama opened?", "aug_question": "In what year was Carnegie Mellon University School of Drama opened?", "answer": "2000"}
+{"aug_qid": "256", "source_qid": "90", "source_question": "When was Carnegie Mellon University School of Drama opened?", "aug_question": "What year was Carnegie Mellon University School of Drama opened?", "answer": "2000"}
+{"aug_qid": "257", "source_qid": "90", "source_question": "When was Carnegie Mellon University School of Drama opened?", "aug_question": "When did Carnegie Mellon University School of Drama get opened?", "answer": "2000"}
+{"aug_qid": "258", "source_qid": "91", "source_question": "When did From Playground to Broadway begin?", "aug_question": "What year did From Playground to Broadway begin?", "answer": "2015"}
+{"aug_qid": "259", "source_qid": "91", "source_question": "When did From Playground to Broadway begin?", "aug_question": "When did From Playground to Broadway start?", "answer": "2015"}
+{"aug_qid": "260", "source_qid": "91", "source_question": "When did From Playground to Broadway begin?", "aug_question": "In what year did From Playground to Broadway begin?", "answer": "2015"}
+{"aug_qid": "261", "source_qid": "92", "source_question": "When was From Playground to Broadway opened?", "aug_question": "In what year was From Playground to Broadway opened?", "answer": "2013"}
+{"aug_qid": "262", "source_qid": "92", "source_question": "When was From Playground to Broadway opened?", "aug_question": "What year was From Playground to Broadway opened?", "answer": "2013"}
+{"aug_qid": "263", "source_qid": "92", "source_question": "When was From Playground to Broadway opened?", "aug_question": "When did From Playground to Broadway get opened?", "answer": "2013"}
+{"aug_qid": "264", "source_qid": "93", "source_question": "When was Advisory Council founded?", "aug_question": "In what year was Advisory Council founded?", "answer": "2015"}
+{"aug_qid": "265", "source_qid": "93", "source_question": "When was Advisory Council founded?", "aug_question": "What year was Advisory Council founded?", "answer": "2015"}
+{"aug_qid": "266", "source_qid": "93", "source_question": "When was Advisory Council founded?", "aug_question": "When did Advisory Council get founded?", "answer": "2015"}
+{"aug_qid": "267", "source_qid": "94", "source_question": "When was Family Weekend founded?", "aug_question": "In what year was Family Weekend founded?", "answer": "2008"}
+{"aug_qid": "268", "source_qid": "94", "source_question": "When was Family Weekend founded?", "aug_question": "What year was Family Weekend founded?", "answer": "2008"}
+{"aug_qid": "269", "source_qid": "94", "source_question": "When was Family Weekend founded?", "aug_question": "When did Family Weekend get founded?", "answer": "2008"}
+{"aug_qid": "270", "source_qid": "95", "source_question": "When did The Kiltie Band begin?", "aug_question": "What year did The Kiltie Band begin?", "answer": "1908"}
+{"aug_qid": "271", "source_qid": "95", "source_question": "When did The Kiltie Band begin?", "aug_question": "When did The Kiltie Band start?", "answer": "1908"}
+{"aug_qid": "272", "source_qid": "95", "source_question": "When did The Kiltie Band begin?", "aug_question": "In what year did The Kiltie Band begin?", "answer": "1908"}
+{"aug_qid": "273", "source_qid": "96", "source_question": "When did Student Research and Innovation begin?", "aug_question": "What year did Student Research and Innovation begin?", "answer": "1995"}
+{"aug_qid": "274", "source_qid": "96", "source_question": "When did Student Research and Innovation begin?", "aug_question": "When did Student Research and Innovation start?", "answer": "1995"}
+{"aug_qid": "275", "source_qid": "96", "source_question": "When did Student Research and Innovation begin?", "aug_question": "In what year did Student Research and Innovation begin?", "answer": "1995"}
+{"aug_qid": "276", "source_qid": "97", "source_question": "When was History founded?", "aug_question": "In what year was History founded?", "answer": "1986"}
+{"aug_qid": "277", "source_qid": "97", "source_question": "When was History founded?", "aug_question": "What year was History founded?", "answer": "1986"}
+{"aug_qid": "278", "source_qid": "97", "source_question": "When was History founded?", "aug_question": "When did History get founded?", "answer": "1986"}
+{"aug_qid": "279", "source_qid": "98", "source_question": "When was Tartan Facts founded?", "aug_question": "In what year was Tartan Facts founded?", "answer": "1900"}
+{"aug_qid": "280", "source_qid": "98", "source_question": "When was Tartan Facts founded?", "aug_question": "What year was Tartan Facts founded?", "answer": "1900"}
+{"aug_qid": "281", "source_qid": "98", "source_question": "When was Tartan Facts founded?", "aug_question": "When did Tartan Facts get founded?", "answer": "1900"}
+{"aug_qid": "282", "source_qid": "99", "source_question": "What is the mascot of Tartan Facts?", "aug_question": "What mascot does Tartan Facts use?", "answer": "wearing a plaid scarf around its neck"}
+{"aug_qid": "283", "source_qid": "99", "source_question": "What is the mascot of Tartan Facts?", "aug_question": "What is Tartan Facts's mascot?", "answer": "wearing a plaid scarf around its neck"}
+{"aug_qid": "284", "source_qid": "100", "source_question": "When did Acquisition Transformation begin?", "aug_question": "What year did Acquisition Transformation begin?", "answer": "2019"}
+{"aug_qid": "285", "source_qid": "100", "source_question": "When did Acquisition Transformation begin?", "aug_question": "When did Acquisition Transformation start?", "answer": "2019"}
+{"aug_qid": "286", "source_qid": "100", "source_question": "When did Acquisition Transformation begin?", "aug_question": "In what year did Acquisition Transformation begin?", "answer": "2019"}
+{"aug_qid": "287", "source_qid": "101", "source_question": "When did How CMU Built a World-Leading Robotics Ecosystem begin?", "aug_question": "What year did How CMU Built a World-Leading Robotics Ecosystem begin?", "answer": "1979"}
+{"aug_qid": "288", "source_qid": "101", "source_question": "When did How CMU Built a World-Leading Robotics Ecosystem begin?", "aug_question": "When did How CMU Built a World-Leading Robotics Ecosystem start?", "answer": "1979"}
+{"aug_qid": "289", "source_qid": "101", "source_question": "When did How CMU Built a World-Leading Robotics Ecosystem begin?", "aug_question": "In what year did How CMU Built a World-Leading Robotics Ecosystem begin?", "answer": "1979"}
+{"aug_qid": "290", "source_qid": "102", "source_question": "When was Department of Philosophy < Carnegie Mellon University founded?", "aug_question": "In what year was Department of Philosophy < Carnegie Mellon University founded?", "answer": "1985"}
+{"aug_qid": "291", "source_qid": "102", "source_question": "When was Department of Philosophy < Carnegie Mellon University founded?", "aug_question": "What year was Department of Philosophy < Carnegie Mellon University founded?", "answer": "1985"}
+{"aug_qid": "292", "source_qid": "102", "source_question": "When was Department of Philosophy < Carnegie Mellon University founded?", "aug_question": "When did Department of Philosophy < Carnegie Mellon University get founded?", "answer": "1985"}
+{"aug_qid": "293", "source_qid": "103", "source_question": "When did Department of Philosophy < Carnegie Mellon University begin?", "aug_question": "What year did Department of Philosophy < Carnegie Mellon University begin?", "answer": "1996"}
+{"aug_qid": "294", "source_qid": "103", "source_question": "When did Department of Philosophy < Carnegie Mellon University begin?", "aug_question": "When did Department of Philosophy < Carnegie Mellon University start?", "answer": "1996"}
+{"aug_qid": "295", "source_qid": "103", "source_question": "When did Department of Philosophy < Carnegie Mellon University begin?", "aug_question": "In what year did Department of Philosophy < Carnegie Mellon University begin?", "answer": "1996"}
+{"aug_qid": "296", "source_qid": "104", "source_question": "When was SCS Media Kit & Press Contacts opened?", "aug_question": "In what year was SCS Media Kit & Press Contacts opened?", "answer": "2009"}
+{"aug_qid": "297", "source_qid": "104", "source_question": "When was SCS Media Kit & Press Contacts opened?", "aug_question": "What year was SCS Media Kit & Press Contacts opened?", "answer": "2009"}
+{"aug_qid": "298", "source_qid": "104", "source_question": "When was SCS Media Kit & Press Contacts opened?", "aug_question": "When did SCS Media Kit & Press Contacts get opened?", "answer": "2009"}
+{"aug_qid": "299", "source_qid": "105", "source_question": "When was The President launched?", "aug_question": "In what year was The President launched?", "answer": "2025"}
+{"aug_qid": "300", "source_qid": "105", "source_question": "When was The President launched?", "aug_question": "What year was The President launched?", "answer": "2025"}
+{"aug_qid": "301", "source_qid": "105", "source_question": "When was The President launched?", "aug_question": "When did The President get launched?", "answer": "2025"}
+{"aug_qid": "302", "source_qid": "106", "source_question": "When did Leadership begin?", "aug_question": "What year did Leadership begin?", "answer": "1978"}
+{"aug_qid": "303", "source_qid": "106", "source_question": "When did Leadership begin?", "aug_question": "When did Leadership start?", "answer": "1978"}
+{"aug_qid": "304", "source_qid": "106", "source_question": "When did Leadership begin?", "aug_question": "In what year did Leadership begin?", "answer": "1978"}
+{"aug_qid": "305", "source_qid": "107", "source_question": "When was Leadership established?", "aug_question": "In what year was Leadership established?", "answer": "1988"}
+{"aug_qid": "306", "source_qid": "107", "source_question": "When was Leadership established?", "aug_question": "What year was Leadership established?", "answer": "1988"}
+{"aug_qid": "307", "source_qid": "107", "source_question": "When was Leadership established?", "aug_question": "When did Leadership get established?", "answer": "1988"}
+{"aug_qid": "308", "source_qid": "108", "source_question": "When was Mellon College of Science established?", "aug_question": "In what year was Mellon College of Science established?", "answer": "2023"}
+{"aug_qid": "309", "source_qid": "108", "source_question": "When was Mellon College of Science established?", "aug_question": "What year was Mellon College of Science established?", "answer": "2023"}
+{"aug_qid": "310", "source_qid": "108", "source_question": "When was Mellon College of Science established?", "aug_question": "When did Mellon College of Science get established?", "answer": "2023"}
+{"aug_qid": "311", "source_qid": "110", "source_question": "When was November established?", "aug_question": "In what year was November established?", "answer": "2023"}
+{"aug_qid": "312", "source_qid": "110", "source_question": "When was November established?", "aug_question": "What year was November established?", "answer": "2023"}
+{"aug_qid": "313", "source_qid": "110", "source_question": "When was November established?", "aug_question": "When did November get established?", "answer": "2023"}
+{"aug_qid": "314", "source_qid": "111", "source_question": "When was ECE Alumni Named to Forbes 30 Under 30 founded?", "aug_question": "In what year was ECE Alumni Named to Forbes 30 Under 30 founded?", "answer": "2021"}
+{"aug_qid": "315", "source_qid": "111", "source_question": "When was ECE Alumni Named to Forbes 30 Under 30 founded?", "aug_question": "What year was ECE Alumni Named to Forbes 30 Under 30 founded?", "answer": "2021"}
+{"aug_qid": "316", "source_qid": "111", "source_question": "When was ECE Alumni Named to Forbes 30 Under 30 founded?", "aug_question": "When did ECE Alumni Named to Forbes 30 Under 30 get founded?", "answer": "2021"}
+{"aug_qid": "317", "source_qid": "112", "source_question": "When was About the Dean founded?", "aug_question": "In what year was About the Dean founded?", "answer": "1999"}
+{"aug_qid": "318", "source_qid": "112", "source_question": "When was About the Dean founded?", "aug_question": "What year was About the Dean founded?", "answer": "1999"}
+{"aug_qid": "319", "source_qid": "112", "source_question": "When was About the Dean founded?", "aug_question": "When did About the Dean get founded?", "answer": "1999"}
+{"aug_qid": "320", "source_qid": "113", "source_question": "When was Information Networking Institute founded?", "aug_question": "In what year was Information Networking Institute founded?", "answer": "2005"}
+{"aug_qid": "321", "source_qid": "113", "source_question": "When was Information Networking Institute founded?", "aug_question": "What year was Information Networking Institute founded?", "answer": "2005"}
+{"aug_qid": "322", "source_qid": "113", "source_question": "When was Information Networking Institute founded?", "aug_question": "When did Information Networking Institute get founded?", "answer": "2005"}
+{"aug_qid": "323", "source_qid": "114", "source_question": "When was Summer Research Opportunities launched?", "aug_question": "In what year was Summer Research Opportunities launched?", "answer": "2006"}
+{"aug_qid": "324", "source_qid": "114", "source_question": "When was Summer Research Opportunities launched?", "aug_question": "What year was Summer Research Opportunities launched?", "answer": "2006"}
+{"aug_qid": "325", "source_qid": "114", "source_question": "When was Summer Research Opportunities launched?", "aug_question": "When did Summer Research Opportunities get launched?", "answer": "2006"}
+{"aug_qid": "326", "source_qid": "115", "source_question": "When was Smart Traffic Signals launched?", "aug_question": "In what year was Smart Traffic Signals launched?", "answer": "2009"}
+{"aug_qid": "327", "source_qid": "115", "source_question": "When was Smart Traffic Signals launched?", "aug_question": "What year was Smart Traffic Signals launched?", "answer": "2009"}
+{"aug_qid": "328", "source_qid": "115", "source_question": "When was Smart Traffic Signals launched?", "aug_question": "When did Smart Traffic Signals get launched?", "answer": "2009"}
+{"aug_qid": "329", "source_qid": "116", "source_question": "When did Intelligent Future begin?", "aug_question": "What year did Intelligent Future begin?", "answer": "1949"}
+{"aug_qid": "330", "source_qid": "116", "source_question": "When did Intelligent Future begin?", "aug_question": "When did Intelligent Future start?", "answer": "1949"}
+{"aug_qid": "331", "source_qid": "116", "source_question": "When did Intelligent Future begin?", "aug_question": "In what year did Intelligent Future begin?", "answer": "1949"}
+{"aug_qid": "332", "source_qid": "117", "source_question": "When was The Humanities Center founded?", "aug_question": "In what year was The Humanities Center founded?", "answer": "2003"}
+{"aug_qid": "333", "source_qid": "117", "source_question": "When was The Humanities Center founded?", "aug_question": "What year was The Humanities Center founded?", "answer": "2003"}
+{"aug_qid": "334", "source_qid": "117", "source_question": "When was The Humanities Center founded?", "aug_question": "When did The Humanities Center get founded?", "answer": "2003"}
+{"aug_qid": "335", "source_qid": "118", "source_question": "When was Giving to SCS established?", "aug_question": "In what year was Giving to SCS established?", "answer": "2022"}
+{"aug_qid": "336", "source_qid": "118", "source_question": "When was Giving to SCS established?", "aug_question": "What year was Giving to SCS established?", "answer": "2022"}
+{"aug_qid": "337", "source_qid": "118", "source_question": "When was Giving to SCS established?", "aug_question": "When did Giving to SCS get established?", "answer": "2022"}
+{"aug_qid": "338", "source_qid": "119", "source_question": "Who founded Silicon Valley?", "aug_question": "Who is the founder of Silicon Valley?", "answer": "this network of alumni"}
+{"aug_qid": "339", "source_qid": "119", "source_question": "Who founded Silicon Valley?", "aug_question": "Who was the founder of Silicon Valley?", "answer": "this network of alumni"}
+{"aug_qid": "340", "source_qid": "119", "source_question": "Who founded Silicon Valley?", "aug_question": "Which person founded Silicon Valley?", "answer": "this network of alumni"}
+{"aug_qid": "341", "source_qid": "120", "source_question": "When was History of Innovation established?", "aug_question": "In what year was History of Innovation established?", "answer": "1984"}
+{"aug_qid": "342", "source_qid": "120", "source_question": "When was History of Innovation established?", "aug_question": "What year was History of Innovation established?", "answer": "1984"}
+{"aug_qid": "343", "source_qid": "120", "source_question": "When was History of Innovation established?", "aug_question": "When did History of Innovation get established?", "answer": "1984"}
+{"aug_qid": "344", "source_qid": "121", "source_question": "When did About begin?", "aug_question": "What year did About begin?", "answer": "2006"}
+{"aug_qid": "345", "source_qid": "121", "source_question": "When did About begin?", "aug_question": "When did About start?", "answer": "2006"}
+{"aug_qid": "346", "source_qid": "121", "source_question": "When did About begin?", "aug_question": "In what year did About begin?", "answer": "2006"}
+{"aug_qid": "347", "source_qid": "122", "source_question": "When was Work with Us established?", "aug_question": "In what year was Work with Us established?", "answer": "1984"}
+{"aug_qid": "348", "source_qid": "122", "source_question": "When was Work with Us established?", "aug_question": "What year was Work with Us established?", "answer": "1984"}
+{"aug_qid": "349", "source_qid": "122", "source_question": "When was Work with Us established?", "aug_question": "When did Work with Us get established?", "answer": "1984"}
+{"aug_qid": "350", "source_qid": "123", "source_question": "When was McWilliams Center for Cosmology and Astrophysics founded?", "aug_question": "In what year was McWilliams Center for Cosmology and Astrophysics founded?", "answer": "2007"}
+{"aug_qid": "351", "source_qid": "123", "source_question": "When was McWilliams Center for Cosmology and Astrophysics founded?", "aug_question": "What year was McWilliams Center for Cosmology and Astrophysics founded?", "answer": "2007"}
+{"aug_qid": "352", "source_qid": "123", "source_question": "When was McWilliams Center for Cosmology and Astrophysics founded?", "aug_question": "When did McWilliams Center for Cosmology and Astrophysics get founded?", "answer": "2007"}
+{"aug_qid": "353", "source_qid": "124", "source_question": "When was The 20-Year Impact of CMU-Q established?", "aug_question": "In what year was The 20-Year Impact of CMU-Q established?", "answer": "2018"}
+{"aug_qid": "354", "source_qid": "124", "source_question": "When was The 20-Year Impact of CMU-Q established?", "aug_question": "What year was The 20-Year Impact of CMU-Q established?", "answer": "2018"}
+{"aug_qid": "355", "source_qid": "124", "source_question": "When was The 20-Year Impact of CMU-Q established?", "aug_question": "When did The 20-Year Impact of CMU-Q get established?", "answer": "2018"}
+{"aug_qid": "356", "source_qid": "125", "source_question": "When was Carnegie Mellon School of Drama established?", "aug_question": "In what year was Carnegie Mellon School of Drama established?", "answer": "1914"}
+{"aug_qid": "357", "source_qid": "125", "source_question": "When was Carnegie Mellon School of Drama established?", "aug_question": "What year was Carnegie Mellon School of Drama established?", "answer": "1914"}
+{"aug_qid": "358", "source_qid": "125", "source_question": "When was Carnegie Mellon School of Drama established?", "aug_question": "When did Carnegie Mellon School of Drama get established?", "answer": "1914"}
+{"aug_qid": "359", "source_qid": "126", "source_question": "When was A history of SCS created?", "aug_question": "In what year was A history of SCS created?", "answer": "1961"}
+{"aug_qid": "360", "source_qid": "126", "source_question": "When was A history of SCS created?", "aug_question": "What year was A history of SCS created?", "answer": "1961"}
+{"aug_qid": "361", "source_qid": "126", "source_question": "When was A history of SCS created?", "aug_question": "When did A history of SCS get created?", "answer": "1961"}
+{"aug_qid": "362", "source_qid": "127", "source_question": "When was A history of SCS established?", "aug_question": "In what year was A history of SCS established?", "answer": "1965"}
+{"aug_qid": "363", "source_qid": "127", "source_question": "When was A history of SCS established?", "aug_question": "What year was A history of SCS established?", "answer": "1965"}
+{"aug_qid": "364", "source_qid": "127", "source_question": "When was A history of SCS established?", "aug_question": "When did A history of SCS get established?", "answer": "1965"}
+{"aug_qid": "365", "source_qid": "129", "source_question": "When was Carnegie Mellon School of Drama opened?", "aug_question": "In what year was Carnegie Mellon School of Drama opened?", "answer": "April 23, 1914"}
+{"aug_qid": "366", "source_qid": "129", "source_question": "When was Carnegie Mellon School of Drama opened?", "aug_question": "What year was Carnegie Mellon School of Drama opened?", "answer": "April 23, 1914"}
+{"aug_qid": "367", "source_qid": "129", "source_question": "When was Carnegie Mellon School of Drama opened?", "aug_question": "When did Carnegie Mellon School of Drama get opened?", "answer": "April 23, 1914"}
+{"aug_qid": "368", "source_qid": "130", "source_question": "When was Afretec established?", "aug_question": "In what year was Afretec established?", "answer": "2022"}
+{"aug_qid": "369", "source_qid": "130", "source_question": "When was Afretec established?", "aug_question": "What year was Afretec established?", "answer": "2022"}
+{"aug_qid": "370", "source_qid": "130", "source_question": "When was Afretec established?", "aug_question": "When did Afretec get established?", "answer": "2022"}
+{"aug_qid": "371", "source_qid": "131", "source_question": "When was The Trademark Licensing Office established?", "aug_question": "In what year was The Trademark Licensing Office established?", "answer": "1994"}
+{"aug_qid": "372", "source_qid": "131", "source_question": "When was The Trademark Licensing Office established?", "aug_question": "What year was The Trademark Licensing Office established?", "answer": "1994"}
+{"aug_qid": "373", "source_qid": "131", "source_question": "When was The Trademark Licensing Office established?", "aug_question": "When did The Trademark Licensing Office get established?", "answer": "1994"}
+{"aug_qid": "374", "source_qid": "132", "source_question": "When was Washington, DC established?", "aug_question": "In what year was Washington, DC established?", "answer": "1867"}
+{"aug_qid": "375", "source_qid": "132", "source_question": "When was Washington, DC established?", "aug_question": "What year was Washington, DC established?", "answer": "1867"}
+{"aug_qid": "376", "source_qid": "132", "source_question": "When was Washington, DC established?", "aug_question": "When did Washington, DC get established?", "answer": "1867"}
+{"aug_qid": "377", "source_qid": "134", "source_question": "When did Year in Review begin?", "aug_question": "What year did Year in Review begin?", "answer": "1969"}
+{"aug_qid": "378", "source_qid": "134", "source_question": "When did Year in Review begin?", "aug_question": "When did Year in Review start?", "answer": "1969"}
+{"aug_qid": "379", "source_qid": "134", "source_question": "When did Year in Review begin?", "aug_question": "In what year did Year in Review begin?", "answer": "1969"}
+{"aug_qid": "380", "source_qid": "135", "source_question": "When was About the 2024 Pittsburgh Taco Festival founded?", "aug_question": "In what year was About the 2024 Pittsburgh Taco Festival founded?", "answer": "2016"}
+{"aug_qid": "381", "source_qid": "135", "source_question": "When was About the 2024 Pittsburgh Taco Festival founded?", "aug_question": "What year was About the 2024 Pittsburgh Taco Festival founded?", "answer": "2016"}
+{"aug_qid": "382", "source_qid": "135", "source_question": "When was About the 2024 Pittsburgh Taco Festival founded?", "aug_question": "When did About the 2024 Pittsburgh Taco Festival get founded?", "answer": "2016"}
+{"aug_qid": "383", "source_qid": "136", "source_question": "Where is Pittsburgh Taco Festival 2025 located?", "aug_question": "What is the location of Pittsburgh Taco Festival 2025?", "answer": "2875 Railroad Street"}
+{"aug_qid": "384", "source_qid": "136", "source_question": "Where is Pittsburgh Taco Festival 2025 located?", "aug_question": "Where can Pittsburgh Taco Festival 2025 be found?", "answer": "2875 Railroad Street"}
+{"aug_qid": "385", "source_qid": "136", "source_question": "Where is Pittsburgh Taco Festival 2025 located?", "aug_question": "Which location is Pittsburgh Taco Festival 2025 in?", "answer": "2875 Railroad Street"}
+{"aug_qid": "386", "source_qid": "137", "source_question": "When was Soul Food Festival in Pittsburgh 2025 established?", "aug_question": "In what year was Soul Food Festival in Pittsburgh 2025 established?", "answer": "2019"}
+{"aug_qid": "387", "source_qid": "137", "source_question": "When was Soul Food Festival in Pittsburgh 2025 established?", "aug_question": "What year was Soul Food Festival in Pittsburgh 2025 established?", "answer": "2019"}
+{"aug_qid": "388", "source_qid": "137", "source_question": "When was Soul Food Festival in Pittsburgh 2025 established?", "aug_question": "When did Soul Food Festival in Pittsburgh 2025 get established?", "answer": "2019"}
+{"aug_qid": "389", "source_qid": "138", "source_question": "When was Banana Split Princess Pageant created?", "aug_question": "In what year was Banana Split Princess Pageant created?", "answer": "1904"}
+{"aug_qid": "390", "source_qid": "138", "source_question": "When was Banana Split Princess Pageant created?", "aug_question": "What year was Banana Split Princess Pageant created?", "answer": "1904"}
+{"aug_qid": "391", "source_qid": "138", "source_question": "When was Banana Split Princess Pageant created?", "aug_question": "When did Banana Split Princess Pageant get created?", "answer": "1904"}
+{"aug_qid": "392", "source_qid": "139", "source_question": "When was Games Events in Pittsburgh opened?", "aug_question": "In what year was Games Events in Pittsburgh opened?", "answer": "2015"}
+{"aug_qid": "393", "source_qid": "139", "source_question": "When was Games Events in Pittsburgh opened?", "aug_question": "What year was Games Events in Pittsburgh opened?", "answer": "2015"}
+{"aug_qid": "394", "source_qid": "139", "source_question": "When was Games Events in Pittsburgh opened?", "aug_question": "When did Games Events in Pittsburgh get opened?", "answer": "2015"}
+{"aug_qid": "395", "source_qid": "140", "source_question": "Where is Robert Morris Colonials vs. Detroit Mercy Titans Moon Tickets located?", "aug_question": "What is the location of Robert Morris Colonials vs. Detroit Mercy Titans Moon Tickets?", "answer": "Moon"}
+{"aug_qid": "396", "source_qid": "140", "source_question": "Where is Robert Morris Colonials vs. Detroit Mercy Titans Moon Tickets located?", "aug_question": "Where can Robert Morris Colonials vs. Detroit Mercy Titans Moon Tickets be found?", "answer": "Moon"}
+{"aug_qid": "397", "source_qid": "140", "source_question": "Where is Robert Morris Colonials vs. Detroit Mercy Titans Moon Tickets located?", "aug_question": "Which location is Robert Morris Colonials vs. Detroit Mercy Titans Moon Tickets in?", "answer": "Moon"}
+{"aug_qid": "398", "source_qid": "141", "source_question": "Where is Mamma Mania located?", "aug_question": "What is the location of Mamma Mania?", "answer": "Irwin"}
+{"aug_qid": "399", "source_qid": "141", "source_question": "Where is Mamma Mania located?", "aug_question": "Where can Mamma Mania be found?", "answer": "Irwin"}
+{"aug_qid": "400", "source_qid": "141", "source_question": "Where is Mamma Mania located?", "aug_question": "Which location is Mamma Mania in?", "answer": "Irwin"}
+{"aug_qid": "401", "source_qid": "142", "source_question": "Where is World Oddities Expo Pittsburgh Tickets located?", "aug_question": "What is the location of World Oddities Expo Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "402", "source_qid": "142", "source_question": "Where is World Oddities Expo Pittsburgh Tickets located?", "aug_question": "Where can World Oddities Expo Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "403", "source_qid": "142", "source_question": "Where is World Oddities Expo Pittsburgh Tickets located?", "aug_question": "Which location is World Oddities Expo Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "404", "source_qid": "143", "source_question": "Where is E5C4P3 located?", "aug_question": "What is the location of E5C4P3?", "answer": "Warrendale"}
+{"aug_qid": "405", "source_qid": "143", "source_question": "Where is E5C4P3 located?", "aug_question": "Where can E5C4P3 be found?", "answer": "Warrendale"}
+{"aug_qid": "406", "source_qid": "143", "source_question": "Where is E5C4P3 located?", "aug_question": "Which location is E5C4P3 in?", "answer": "Warrendale"}
+{"aug_qid": "407", "source_qid": "144", "source_question": "Where is Brass Against Warrendale Tickets located?", "aug_question": "What is the location of Brass Against Warrendale Tickets?", "answer": "Warrendale"}
+{"aug_qid": "408", "source_qid": "144", "source_question": "Where is Brass Against Warrendale Tickets located?", "aug_question": "Where can Brass Against Warrendale Tickets be found?", "answer": "Warrendale"}
+{"aug_qid": "409", "source_qid": "144", "source_question": "Where is Brass Against Warrendale Tickets located?", "aug_question": "Which location is Brass Against Warrendale Tickets in?", "answer": "Warrendale"}
+{"aug_qid": "410", "source_qid": "145", "source_question": "Where is Duquesne Dukes vs. Davidson Wildcats Pittsburgh Tickets located?", "aug_question": "What is the location of Duquesne Dukes vs. Davidson Wildcats Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "411", "source_qid": "145", "source_question": "Where is Duquesne Dukes vs. Davidson Wildcats Pittsburgh Tickets located?", "aug_question": "Where can Duquesne Dukes vs. Davidson Wildcats Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "412", "source_qid": "145", "source_question": "Where is Duquesne Dukes vs. Davidson Wildcats Pittsburgh Tickets located?", "aug_question": "Which location is Duquesne Dukes vs. Davidson Wildcats Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "413", "source_qid": "146", "source_question": "Where is Transcendence located?", "aug_question": "What is the location of Transcendence?", "answer": "Pittsburgh"}
+{"aug_qid": "414", "source_qid": "146", "source_question": "Where is Transcendence located?", "aug_question": "Where can Transcendence be found?", "answer": "Pittsburgh"}
+{"aug_qid": "415", "source_qid": "146", "source_question": "Where is Transcendence located?", "aug_question": "Which location is Transcendence in?", "answer": "Pittsburgh"}
+{"aug_qid": "416", "source_qid": "147", "source_question": "Where is Beauty and The Beast Pittsburgh Tickets located?", "aug_question": "What is the location of Beauty and The Beast Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "417", "source_qid": "147", "source_question": "Where is Beauty and The Beast Pittsburgh Tickets located?", "aug_question": "Where can Beauty and The Beast Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "418", "source_qid": "147", "source_question": "Where is Beauty and The Beast Pittsburgh Tickets located?", "aug_question": "Which location is Beauty and The Beast Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "419", "source_qid": "148", "source_question": "Where is Rascal Flatts, Lauren Alaina & Chris Lane Pittsburgh Tickets located?", "aug_question": "What is the location of Rascal Flatts, Lauren Alaina & Chris Lane Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "420", "source_qid": "148", "source_question": "Where is Rascal Flatts, Lauren Alaina & Chris Lane Pittsburgh Tickets located?", "aug_question": "Where can Rascal Flatts, Lauren Alaina & Chris Lane Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "421", "source_qid": "148", "source_question": "Where is Rascal Flatts, Lauren Alaina & Chris Lane Pittsburgh Tickets located?", "aug_question": "Which location is Rascal Flatts, Lauren Alaina & Chris Lane Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "422", "source_qid": "149", "source_question": "Where is K-Pop Raves located?", "aug_question": "What is the location of K-Pop Raves?", "answer": "Warrendale"}
+{"aug_qid": "423", "source_qid": "149", "source_question": "Where is K-Pop Raves located?", "aug_question": "Where can K-Pop Raves be found?", "answer": "Warrendale"}
+{"aug_qid": "424", "source_qid": "149", "source_question": "Where is K-Pop Raves located?", "aug_question": "Which location is K-Pop Raves in?", "answer": "Warrendale"}
+{"aug_qid": "425", "source_qid": "150", "source_question": "Where is The Nashville Nights Band Warrendale Tickets located?", "aug_question": "What is the location of The Nashville Nights Band Warrendale Tickets?", "answer": "Warrendale"}
+{"aug_qid": "426", "source_qid": "150", "source_question": "Where is The Nashville Nights Band Warrendale Tickets located?", "aug_question": "Where can The Nashville Nights Band Warrendale Tickets be found?", "answer": "Warrendale"}
+{"aug_qid": "427", "source_qid": "150", "source_question": "Where is The Nashville Nights Band Warrendale Tickets located?", "aug_question": "Which location is The Nashville Nights Band Warrendale Tickets in?", "answer": "Warrendale"}
+{"aug_qid": "428", "source_qid": "151", "source_question": "Where is Paul Virzi Homestead Tickets located?", "aug_question": "What is the location of Paul Virzi Homestead Tickets?", "answer": "Homestead"}
+{"aug_qid": "429", "source_qid": "151", "source_question": "Where is Paul Virzi Homestead Tickets located?", "aug_question": "Where can Paul Virzi Homestead Tickets be found?", "answer": "Homestead"}
+{"aug_qid": "430", "source_qid": "151", "source_question": "Where is Paul Virzi Homestead Tickets located?", "aug_question": "Which location is Paul Virzi Homestead Tickets in?", "answer": "Homestead"}
+{"aug_qid": "431", "source_qid": "152", "source_question": "Where is Annie Pittsburgh Tickets located?", "aug_question": "What is the location of Annie Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "432", "source_qid": "152", "source_question": "Where is Annie Pittsburgh Tickets located?", "aug_question": "Where can Annie Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "433", "source_qid": "152", "source_question": "Where is Annie Pittsburgh Tickets located?", "aug_question": "Which location is Annie Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "434", "source_qid": "153", "source_question": "Where is INZO Pittsburgh Tickets located?", "aug_question": "What is the location of INZO Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "435", "source_qid": "153", "source_question": "Where is INZO Pittsburgh Tickets located?", "aug_question": "Where can INZO Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "436", "source_qid": "153", "source_question": "Where is INZO Pittsburgh Tickets located?", "aug_question": "Which location is INZO Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "437", "source_qid": "154", "source_question": "Where is STS9 located?", "aug_question": "What is the location of STS9?", "answer": "McKees Rocks"}
+{"aug_qid": "438", "source_qid": "154", "source_question": "Where is STS9 located?", "aug_question": "Where can STS9 be found?", "answer": "McKees Rocks"}
+{"aug_qid": "439", "source_qid": "154", "source_question": "Where is STS9 located?", "aug_question": "Which location is STS9 in?", "answer": "McKees Rocks"}
+{"aug_qid": "440", "source_qid": "155", "source_question": "Where is Lucy Darling Pittsburgh Tickets located?", "aug_question": "What is the location of Lucy Darling Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "441", "source_qid": "155", "source_question": "Where is Lucy Darling Pittsburgh Tickets located?", "aug_question": "Where can Lucy Darling Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "442", "source_qid": "155", "source_question": "Where is Lucy Darling Pittsburgh Tickets located?", "aug_question": "Which location is Lucy Darling Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "443", "source_qid": "156", "source_question": "Where is Driftwood Pittsburgh Tickets located?", "aug_question": "What is the location of Driftwood Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "444", "source_qid": "156", "source_question": "Where is Driftwood Pittsburgh Tickets located?", "aug_question": "Where can Driftwood Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "445", "source_qid": "156", "source_question": "Where is Driftwood Pittsburgh Tickets located?", "aug_question": "Which location is Driftwood Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "446", "source_qid": "157", "source_question": "Where is Heated Rivalry Night Pittsburgh Tickets located?", "aug_question": "What is the location of Heated Rivalry Night Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "447", "source_qid": "157", "source_question": "Where is Heated Rivalry Night Pittsburgh Tickets located?", "aug_question": "Where can Heated Rivalry Night Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "448", "source_qid": "157", "source_question": "Where is Heated Rivalry Night Pittsburgh Tickets located?", "aug_question": "Which location is Heated Rivalry Night Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "449", "source_qid": "158", "source_question": "Where is Wisecrack Live Pittsburgh Tickets located?", "aug_question": "What is the location of Wisecrack Live Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "450", "source_qid": "158", "source_question": "Where is Wisecrack Live Pittsburgh Tickets located?", "aug_question": "Where can Wisecrack Live Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "451", "source_qid": "158", "source_question": "Where is Wisecrack Live Pittsburgh Tickets located?", "aug_question": "Which location is Wisecrack Live Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "452", "source_qid": "159", "source_question": "Where is Pittsburgh Penguins vs. New Jersey Devils Pittsburgh Tickets located?", "aug_question": "What is the location of Pittsburgh Penguins vs. New Jersey Devils Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "453", "source_qid": "159", "source_question": "Where is Pittsburgh Penguins vs. New Jersey Devils Pittsburgh Tickets located?", "aug_question": "Where can Pittsburgh Penguins vs. New Jersey Devils Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "454", "source_qid": "159", "source_question": "Where is Pittsburgh Penguins vs. New Jersey Devils Pittsburgh Tickets located?", "aug_question": "Which location is Pittsburgh Penguins vs. New Jersey Devils Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "455", "source_qid": "160", "source_question": "Where is Elise Trouw Pittsburgh Tickets located?", "aug_question": "What is the location of Elise Trouw Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "456", "source_qid": "160", "source_question": "Where is Elise Trouw Pittsburgh Tickets located?", "aug_question": "Where can Elise Trouw Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "457", "source_qid": "160", "source_question": "Where is Elise Trouw Pittsburgh Tickets located?", "aug_question": "Which location is Elise Trouw Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "458", "source_qid": "161", "source_question": "Where is The Broken Hearts located?", "aug_question": "What is the location of The Broken Hearts?", "answer": "Warrendale"}
+{"aug_qid": "459", "source_qid": "161", "source_question": "Where is The Broken Hearts located?", "aug_question": "Where can The Broken Hearts be found?", "answer": "Warrendale"}
+{"aug_qid": "460", "source_qid": "161", "source_question": "Where is The Broken Hearts located?", "aug_question": "Which location is The Broken Hearts in?", "answer": "Warrendale"}
+{"aug_qid": "461", "source_qid": "162", "source_question": "Where is Terry Fator Homestead Tickets located?", "aug_question": "What is the location of Terry Fator Homestead Tickets?", "answer": "Homestead"}
+{"aug_qid": "462", "source_qid": "162", "source_question": "Where is Terry Fator Homestead Tickets located?", "aug_question": "Where can Terry Fator Homestead Tickets be found?", "answer": "Homestead"}
+{"aug_qid": "463", "source_qid": "162", "source_question": "Where is Terry Fator Homestead Tickets located?", "aug_question": "Which location is Terry Fator Homestead Tickets in?", "answer": "Homestead"}
+{"aug_qid": "464", "source_qid": "163", "source_question": "Where is Nia Sioux Pittsburgh Tickets located?", "aug_question": "What is the location of Nia Sioux Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "465", "source_qid": "163", "source_question": "Where is Nia Sioux Pittsburgh Tickets located?", "aug_question": "Where can Nia Sioux Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "466", "source_qid": "163", "source_question": "Where is Nia Sioux Pittsburgh Tickets located?", "aug_question": "Which location is Nia Sioux Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "467", "source_qid": "164", "source_question": "Where is Pure Soul located?", "aug_question": "What is the location of Pure Soul?", "answer": "Pittsburgh"}
+{"aug_qid": "468", "source_qid": "164", "source_question": "Where is Pure Soul located?", "aug_question": "Where can Pure Soul be found?", "answer": "Pittsburgh"}
+{"aug_qid": "469", "source_qid": "164", "source_question": "Where is Pure Soul located?", "aug_question": "Which location is Pure Soul in?", "answer": "Pittsburgh"}
+{"aug_qid": "470", "source_qid": "165", "source_question": "Where is The Conspiracy Theory Pittsburgh Tickets located?", "aug_question": "What is the location of The Conspiracy Theory Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "471", "source_qid": "165", "source_question": "Where is The Conspiracy Theory Pittsburgh Tickets located?", "aug_question": "Where can The Conspiracy Theory Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "472", "source_qid": "165", "source_question": "Where is The Conspiracy Theory Pittsburgh Tickets located?", "aug_question": "Which location is The Conspiracy Theory Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "473", "source_qid": "166", "source_question": "Where is Stavo located?", "aug_question": "What is the location of Stavo?", "answer": "Pittsburgh"}
+{"aug_qid": "474", "source_qid": "166", "source_question": "Where is Stavo located?", "aug_question": "Where can Stavo be found?", "answer": "Pittsburgh"}
+{"aug_qid": "475", "source_qid": "166", "source_question": "Where is Stavo located?", "aug_question": "Which location is Stavo in?", "answer": "Pittsburgh"}
+{"aug_qid": "476", "source_qid": "167", "source_question": "Where is Bad Marriage Pittsburgh Tickets located?", "aug_question": "What is the location of Bad Marriage Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "477", "source_qid": "167", "source_question": "Where is Bad Marriage Pittsburgh Tickets located?", "aug_question": "Where can Bad Marriage Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "478", "source_qid": "167", "source_question": "Where is Bad Marriage Pittsburgh Tickets located?", "aug_question": "Which location is Bad Marriage Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "479", "source_qid": "168", "source_question": "Where is Saxsquatch Pittsburgh Tickets located?", "aug_question": "What is the location of Saxsquatch Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "480", "source_qid": "168", "source_question": "Where is Saxsquatch Pittsburgh Tickets located?", "aug_question": "Where can Saxsquatch Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "481", "source_qid": "168", "source_question": "Where is Saxsquatch Pittsburgh Tickets located?", "aug_question": "Which location is Saxsquatch Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "482", "source_qid": "169", "source_question": "Where is Pittsburgh Symphony Orchestra: American Soundscapes Pittsburgh Tickets located?", "aug_question": "What is the location of Pittsburgh Symphony Orchestra: American Soundscapes Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "483", "source_qid": "169", "source_question": "Where is Pittsburgh Symphony Orchestra: American Soundscapes Pittsburgh Tickets located?", "aug_question": "Where can Pittsburgh Symphony Orchestra: American Soundscapes Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "484", "source_qid": "169", "source_question": "Where is Pittsburgh Symphony Orchestra: American Soundscapes Pittsburgh Tickets located?", "aug_question": "Which location is Pittsburgh Symphony Orchestra: American Soundscapes Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "485", "source_qid": "170", "source_question": "Where is Home & Garden Show Pittsburgh Tickets located?", "aug_question": "What is the location of Home & Garden Show Pittsburgh Tickets?", "answer": "Pittsburgh"}
+{"aug_qid": "486", "source_qid": "170", "source_question": "Where is Home & Garden Show Pittsburgh Tickets located?", "aug_question": "Where can Home & Garden Show Pittsburgh Tickets be found?", "answer": "Pittsburgh"}
+{"aug_qid": "487", "source_qid": "170", "source_question": "Where is Home & Garden Show Pittsburgh Tickets located?", "aug_question": "Which location is Home & Garden Show Pittsburgh Tickets in?", "answer": "Pittsburgh"}
+{"aug_qid": "488", "source_qid": "171", "source_question": "When did Research and Reports begin?", "aug_question": "What year did Research and Reports begin?", "answer": "2008"}
+{"aug_qid": "489", "source_qid": "171", "source_question": "When did Research and Reports begin?", "aug_question": "When did Research and Reports start?", "answer": "2008"}
+{"aug_qid": "490", "source_qid": "171", "source_question": "When did Research and Reports begin?", "aug_question": "In what year did Research and Reports begin?", "answer": "2008"}
+{"aug_qid": "491", "source_qid": "172", "source_question": "When did Downtown Pittsburgh On-Street Services begin?", "aug_question": "What year did Downtown Pittsburgh On-Street Services begin?", "answer": "2017"}
+{"aug_qid": "492", "source_qid": "172", "source_question": "When did Downtown Pittsburgh On-Street Services begin?", "aug_question": "When did Downtown Pittsburgh On-Street Services start?", "answer": "2017"}
+{"aug_qid": "493", "source_qid": "172", "source_question": "When did Downtown Pittsburgh On-Street Services begin?", "aug_question": "In what year did Downtown Pittsburgh On-Street Services begin?", "answer": "2017"}
+{"aug_qid": "494", "source_qid": "173", "source_question": "When was Downtown Lifestyle opened?", "aug_question": "In what year was Downtown Lifestyle opened?", "answer": "1974"}
+{"aug_qid": "495", "source_qid": "173", "source_question": "When was Downtown Lifestyle opened?", "aug_question": "What year was Downtown Lifestyle opened?", "answer": "1974"}
+{"aug_qid": "496", "source_qid": "173", "source_question": "When was Downtown Lifestyle opened?", "aug_question": "When did Downtown Lifestyle get opened?", "answer": "1974"}
+{"aug_qid": "497", "source_qid": "174", "source_question": "When did Market Square Modernization begin?", "aug_question": "What year did Market Square Modernization begin?", "answer": "April 1, 2025"}
+{"aug_qid": "498", "source_qid": "174", "source_question": "When did Market Square Modernization begin?", "aug_question": "When did Market Square Modernization start?", "answer": "April 1, 2025"}
+{"aug_qid": "499", "source_qid": "174", "source_question": "When did Market Square Modernization begin?", "aug_question": "In what year did Market Square Modernization begin?", "answer": "April 1, 2025"}
+{"aug_qid": "500", "source_qid": "175", "source_question": "When was Downtown Mobility Plan launched?", "aug_question": "In what year was Downtown Mobility Plan launched?", "answer": "2015"}
+{"aug_qid": "501", "source_qid": "175", "source_question": "When was Downtown Mobility Plan launched?", "aug_question": "What year was Downtown Mobility Plan launched?", "answer": "2015"}
+{"aug_qid": "502", "source_qid": "175", "source_question": "When was Downtown Mobility Plan launched?", "aug_question": "When did Downtown Mobility Plan get launched?", "answer": "2015"}
+{"aug_qid": "503", "source_qid": "176", "source_question": "When was About the Pittsburgh Downtown Partnership created?", "aug_question": "In what year was About the Pittsburgh Downtown Partnership created?", "answer": "1997"}
+{"aug_qid": "504", "source_qid": "176", "source_question": "When was About the Pittsburgh Downtown Partnership created?", "aug_question": "What year was About the Pittsburgh Downtown Partnership created?", "answer": "1997"}
+{"aug_qid": "505", "source_qid": "176", "source_question": "When was About the Pittsburgh Downtown Partnership created?", "aug_question": "When did About the Pittsburgh Downtown Partnership get created?", "answer": "1997"}
+{"aug_qid": "506", "source_qid": "177", "source_question": "When was Plates & Perspectives founded?", "aug_question": "In what year was Plates & Perspectives founded?", "answer": "2021"}
+{"aug_qid": "507", "source_qid": "177", "source_question": "When was Plates & Perspectives founded?", "aug_question": "What year was Plates & Perspectives founded?", "answer": "2021"}
+{"aug_qid": "508", "source_qid": "177", "source_question": "When was Plates & Perspectives founded?", "aug_question": "When did Plates & Perspectives get founded?", "answer": "2021"}
+{"aug_qid": "509", "source_qid": "178", "source_question": "When was Celebrating Black History Month in Downtown Pittsburgh founded?", "aug_question": "In what year was Celebrating Black History Month in Downtown Pittsburgh founded?", "answer": "2021"}
+{"aug_qid": "510", "source_qid": "178", "source_question": "When was Celebrating Black History Month in Downtown Pittsburgh founded?", "aug_question": "What year was Celebrating Black History Month in Downtown Pittsburgh founded?", "answer": "2021"}
+{"aug_qid": "511", "source_qid": "178", "source_question": "When was Celebrating Black History Month in Downtown Pittsburgh founded?", "aug_question": "When did Celebrating Black History Month in Downtown Pittsburgh get founded?", "answer": "2021"}
+{"aug_qid": "512", "source_qid": "179", "source_question": "Where is Meadowcroft Field Trips located?", "aug_question": "What is the location of Meadowcroft Field Trips?", "answer": "the top of 65 steps"}
+{"aug_qid": "513", "source_qid": "179", "source_question": "Where is Meadowcroft Field Trips located?", "aug_question": "Where can Meadowcroft Field Trips be found?", "answer": "the top of 65 steps"}
+{"aug_qid": "514", "source_qid": "179", "source_question": "Where is Meadowcroft Field Trips located?", "aug_question": "Which location is Meadowcroft Field Trips in?", "answer": "the top of 65 steps"}
+{"aug_qid": "515", "source_qid": "180", "source_question": "Where is Directions & Parking located?", "aug_question": "What is the location of Directions & Parking?", "answer": "the town of Avella in Washington County, Pa"}
+{"aug_qid": "516", "source_qid": "180", "source_question": "Where is Directions & Parking located?", "aug_question": "Where can Directions & Parking be found?", "answer": "the town of Avella in Washington County, Pa"}
+{"aug_qid": "517", "source_qid": "180", "source_question": "Where is Directions & Parking located?", "aug_question": "Which location is Directions & Parking in?", "answer": "the town of Avella in Washington County, Pa"}
+{"aug_qid": "518", "source_qid": "181", "source_question": "When was Act 48 Workshop: Washington and the West Session 1 established?", "aug_question": "In what year was Act 48 Workshop: Washington and the West Session 1 established?", "answer": "2018"}
+{"aug_qid": "519", "source_qid": "181", "source_question": "When was Act 48 Workshop: Washington and the West Session 1 established?", "aug_question": "What year was Act 48 Workshop: Washington and the West Session 1 established?", "answer": "2018"}
+{"aug_qid": "520", "source_qid": "181", "source_question": "When was Act 48 Workshop: Washington and the West Session 1 established?", "aug_question": "When did Act 48 Workshop: Washington and the West Session 1 get established?", "answer": "2018"}
+{"aug_qid": "521", "source_qid": "182", "source_question": "Where is About located?", "aug_question": "What is the location of About?", "answer": "Avella, Washington County, Pa"}
+{"aug_qid": "522", "source_qid": "182", "source_question": "Where is About located?", "aug_question": "Where can About be found?", "answer": "Avella, Washington County, Pa"}
+{"aug_qid": "523", "source_qid": "182", "source_question": "Where is About located?", "aug_question": "Which location is About in?", "answer": "Avella, Washington County, Pa"}
+{"aug_qid": "524", "source_qid": "183", "source_question": "When was About founded?", "aug_question": "In what year was About founded?", "answer": "1879"}
+{"aug_qid": "525", "source_qid": "183", "source_question": "When was About founded?", "aug_question": "What year was About founded?", "answer": "1879"}
+{"aug_qid": "526", "source_qid": "183", "source_question": "When was About founded?", "aug_question": "When did About get founded?", "answer": "1879"}
+{"aug_qid": "527", "source_qid": "184", "source_question": "When was Act 48 Workshop: Washington and the West Session 2 established?", "aug_question": "In what year was Act 48 Workshop: Washington and the West Session 2 established?", "answer": "2018"}
+{"aug_qid": "528", "source_qid": "184", "source_question": "When was Act 48 Workshop: Washington and the West Session 2 established?", "aug_question": "What year was Act 48 Workshop: Washington and the West Session 2 established?", "answer": "2018"}
+{"aug_qid": "529", "source_qid": "184", "source_question": "When was Act 48 Workshop: Washington and the West Session 2 established?", "aug_question": "When did Act 48 Workshop: Washington and the West Session 2 get established?", "answer": "2018"}
+{"aug_qid": "530", "source_qid": "185", "source_question": "When was Commemorating America’s 250th established?", "aug_question": "In what year was Commemorating America’s 250th established?", "answer": "2015"}
+{"aug_qid": "531", "source_qid": "185", "source_question": "When was Commemorating America’s 250th established?", "aug_question": "What year was Commemorating America’s 250th established?", "answer": "2015"}
+{"aug_qid": "532", "source_qid": "185", "source_question": "When was Commemorating America’s 250th established?", "aug_question": "When did Commemorating America’s 250th get established?", "answer": "2015"}
+{"aug_qid": "533", "source_qid": "186", "source_question": "When was Fort Pitt Museum opened?", "aug_question": "In what year was Fort Pitt Museum opened?", "answer": "1969"}
+{"aug_qid": "534", "source_qid": "186", "source_question": "When was Fort Pitt Museum opened?", "aug_question": "What year was Fort Pitt Museum opened?", "answer": "1969"}
+{"aug_qid": "535", "source_qid": "186", "source_question": "When was Fort Pitt Museum opened?", "aug_question": "When did Fort Pitt Museum get opened?", "answer": "1969"}
+{"aug_qid": "536", "source_qid": "187", "source_question": "When was Rauh Jewish History Program & Archives founded?", "aug_question": "In what year was Rauh Jewish History Program & Archives founded?", "answer": "1988"}
+{"aug_qid": "537", "source_qid": "187", "source_question": "When was Rauh Jewish History Program & Archives founded?", "aug_question": "What year was Rauh Jewish History Program & Archives founded?", "answer": "1988"}
+{"aug_qid": "538", "source_qid": "187", "source_question": "When was Rauh Jewish History Program & Archives founded?", "aug_question": "When did Rauh Jewish History Program & Archives get founded?", "answer": "1988"}
+{"aug_qid": "539", "source_qid": "188", "source_question": "When was Detre Library & Archives founded?", "aug_question": "In what year was Detre Library & Archives founded?", "answer": "1879"}
+{"aug_qid": "540", "source_qid": "188", "source_question": "When was Detre Library & Archives founded?", "aug_question": "What year was Detre Library & Archives founded?", "answer": "1879"}
+{"aug_qid": "541", "source_qid": "188", "source_question": "When was Detre Library & Archives founded?", "aug_question": "When did Detre Library & Archives get founded?", "answer": "1879"}
+{"aug_qid": "542", "source_qid": "189", "source_question": "When did Our People begin?", "aug_question": "What year did Our People begin?", "answer": "2005"}
+{"aug_qid": "543", "source_qid": "189", "source_question": "When did Our People begin?", "aug_question": "When did Our People start?", "answer": "2005"}
+{"aug_qid": "544", "source_qid": "189", "source_question": "When did Our People begin?", "aug_question": "In what year did Our People begin?", "answer": "2005"}
+{"aug_qid": "545", "source_qid": "190", "source_question": "When did Collection Spotlight: The Gaddie-Truman Family Papers and Photographs begin?", "aug_question": "What year did Collection Spotlight: The Gaddie-Truman Family Papers and Photographs begin?", "answer": "1953"}
+{"aug_qid": "546", "source_qid": "190", "source_question": "When did Collection Spotlight: The Gaddie-Truman Family Papers and Photographs begin?", "aug_question": "When did Collection Spotlight: The Gaddie-Truman Family Papers and Photographs start?", "answer": "1953"}
+{"aug_qid": "547", "source_qid": "190", "source_question": "When did Collection Spotlight: The Gaddie-Truman Family Papers and Photographs begin?", "aug_question": "In what year did Collection Spotlight: The Gaddie-Truman Family Papers and Photographs begin?", "answer": "1953"}
+{"aug_qid": "548", "source_qid": "191", "source_question": "When was Crandall-McKenzie & Henderson: Keeping Pittsburghers Clean opened?", "aug_question": "In what year was Crandall-McKenzie & Henderson: Keeping Pittsburghers Clean opened?", "answer": "1901"}
+{"aug_qid": "549", "source_qid": "191", "source_question": "When was Crandall-McKenzie & Henderson: Keeping Pittsburghers Clean opened?", "aug_question": "What year was Crandall-McKenzie & Henderson: Keeping Pittsburghers Clean opened?", "answer": "1901"}
+{"aug_qid": "550", "source_qid": "191", "source_question": "When was Crandall-McKenzie & Henderson: Keeping Pittsburghers Clean opened?", "aug_question": "When did Crandall-McKenzie & Henderson: Keeping Pittsburghers Clean get opened?", "answer": "1901"}
+{"aug_qid": "551", "source_qid": "192", "source_question": "Where is Heinz History Center located?", "aug_question": "What is the location of Heinz History Center?", "answer": "Pittsburgh’s historic Strip District"}
+{"aug_qid": "552", "source_qid": "192", "source_question": "Where is Heinz History Center located?", "aug_question": "Where can Heinz History Center be found?", "answer": "Pittsburgh’s historic Strip District"}
+{"aug_qid": "553", "source_qid": "192", "source_question": "Where is Heinz History Center located?", "aug_question": "Which location is Heinz History Center in?", "answer": "Pittsburgh’s historic Strip District"}
+{"aug_qid": "554", "source_qid": "193", "source_question": "When was Italian American Program founded?", "aug_question": "In what year was Italian American Program founded?", "answer": "1990"}
+{"aug_qid": "555", "source_qid": "193", "source_question": "When was Italian American Program founded?", "aug_question": "What year was Italian American Program founded?", "answer": "1990"}
+{"aug_qid": "556", "source_qid": "193", "source_question": "When was Italian American Program founded?", "aug_question": "When did Italian American Program get founded?", "answer": "1990"}
+{"aug_qid": "557", "source_qid": "194", "source_question": "When was Young Washington with the Pittsburgh CLO established?", "aug_question": "In what year was Young Washington with the Pittsburgh CLO established?", "answer": "2018"}
+{"aug_qid": "558", "source_qid": "194", "source_question": "When was Young Washington with the Pittsburgh CLO established?", "aug_question": "What year was Young Washington with the Pittsburgh CLO established?", "answer": "2018"}
+{"aug_qid": "559", "source_qid": "194", "source_question": "When was Young Washington with the Pittsburgh CLO established?", "aug_question": "When did Young Washington with the Pittsburgh CLO get established?", "answer": "2018"}
+{"aug_qid": "560", "source_qid": "195", "source_question": "Where is Grable Visitor Center located?", "aug_question": "What is the location of Grable Visitor Center?", "answer": "the center of the Frick’s 10-acre campus"}
+{"aug_qid": "561", "source_qid": "195", "source_question": "Where is Grable Visitor Center located?", "aug_question": "Where can Grable Visitor Center be found?", "answer": "the center of the Frick’s 10-acre campus"}
+{"aug_qid": "562", "source_qid": "195", "source_question": "Where is Grable Visitor Center located?", "aug_question": "Which location is Grable Visitor Center in?", "answer": "the center of the Frick’s 10-acre campus"}
+{"aug_qid": "563", "source_qid": "196", "source_question": "When was Clayton opened?", "aug_question": "In what year was Clayton opened?", "answer": "1990"}
+{"aug_qid": "564", "source_qid": "196", "source_question": "When was Clayton opened?", "aug_question": "What year was Clayton opened?", "answer": "1990"}
+{"aug_qid": "565", "source_qid": "196", "source_question": "When was Clayton opened?", "aug_question": "When did Clayton get opened?", "answer": "1990"}
+{"aug_qid": "566", "source_qid": "197", "source_question": "When was Historic Home and Gardens opened?", "aug_question": "In what year was Historic Home and Gardens opened?", "answer": "1970"}
+{"aug_qid": "567", "source_qid": "197", "source_question": "When was Historic Home and Gardens opened?", "aug_question": "What year was Historic Home and Gardens opened?", "answer": "1970"}
+{"aug_qid": "568", "source_qid": "197", "source_question": "When was Historic Home and Gardens opened?", "aug_question": "When did Historic Home and Gardens get opened?", "answer": "1970"}
+{"aug_qid": "569", "source_qid": "198", "source_question": "When did Our History begin?", "aug_question": "What year did Our History begin?", "answer": "1974"}
+{"aug_qid": "570", "source_qid": "198", "source_question": "When did Our History begin?", "aug_question": "When did Our History start?", "answer": "1974"}
+{"aug_qid": "571", "source_qid": "198", "source_question": "When did Our History begin?", "aug_question": "In what year did Our History begin?", "answer": "1974"}
+{"aug_qid": "572", "source_qid": "199", "source_question": "When was Carnegie Museum of Art opened?", "aug_question": "In what year was Carnegie Museum of Art opened?", "answer": "1895"}
+{"aug_qid": "573", "source_qid": "199", "source_question": "When was Carnegie Museum of Art opened?", "aug_question": "What year was Carnegie Museum of Art opened?", "answer": "1895"}
+{"aug_qid": "574", "source_qid": "199", "source_question": "When was Carnegie Museum of Art opened?", "aug_question": "When did Carnegie Museum of Art get opened?", "answer": "1895"}
+{"aug_qid": "575", "source_qid": "200", "source_question": "Where is Worlds Collected, Stories Revealed located?", "aug_question": "What is the location of Worlds Collected, Stories Revealed?", "answer": "the R"}
+{"aug_qid": "576", "source_qid": "200", "source_question": "Where is Worlds Collected, Stories Revealed located?", "aug_question": "Where can Worlds Collected, Stories Revealed be found?", "answer": "the R"}
+{"aug_qid": "577", "source_qid": "200", "source_question": "Where is Worlds Collected, Stories Revealed located?", "aug_question": "Which location is Worlds Collected, Stories Revealed in?", "answer": "the R"}
+{"aug_qid": "578", "source_qid": "201", "source_question": "When was Worlds Collected, Stories Revealed opened?", "aug_question": "In what year was Worlds Collected, Stories Revealed opened?", "answer": "2024"}
+{"aug_qid": "579", "source_qid": "201", "source_question": "When was Worlds Collected, Stories Revealed opened?", "aug_question": "What year was Worlds Collected, Stories Revealed opened?", "answer": "2024"}
+{"aug_qid": "580", "source_qid": "201", "source_question": "When was Worlds Collected, Stories Revealed opened?", "aug_question": "When did Worlds Collected, Stories Revealed get opened?", "answer": "2024"}
+{"aug_qid": "581", "source_qid": "202", "source_question": "When did Worlds Collected, Stories Revealed begin?", "aug_question": "What year did Worlds Collected, Stories Revealed begin?", "answer": "2018"}
+{"aug_qid": "582", "source_qid": "202", "source_question": "When did Worlds Collected, Stories Revealed begin?", "aug_question": "When did Worlds Collected, Stories Revealed start?", "answer": "2018"}
+{"aug_qid": "583", "source_qid": "202", "source_question": "When did Worlds Collected, Stories Revealed begin?", "aug_question": "In what year did Worlds Collected, Stories Revealed begin?", "answer": "2018"}
+{"aug_qid": "584", "source_qid": "203", "source_question": "When did Asking Questions of Art begin?", "aug_question": "What year did Asking Questions of Art begin?", "answer": "2023"}
+{"aug_qid": "585", "source_qid": "203", "source_question": "When did Asking Questions of Art begin?", "aug_question": "When did Asking Questions of Art start?", "answer": "2023"}
+{"aug_qid": "586", "source_qid": "203", "source_question": "When did Asking Questions of Art begin?", "aug_question": "In what year did Asking Questions of Art begin?", "answer": "2023"}
+{"aug_qid": "587", "source_qid": "204", "source_question": "When was Press established?", "aug_question": "In what year was Press established?", "answer": "1895"}
+{"aug_qid": "588", "source_qid": "204", "source_question": "When was Press established?", "aug_question": "What year was Press established?", "answer": "1895"}
+{"aug_qid": "589", "source_qid": "204", "source_question": "When was Press established?", "aug_question": "When did Press get established?", "answer": "1895"}
+{"aug_qid": "590", "source_qid": "205", "source_question": "When was Pittsburgh in Three Hours created?", "aug_question": "In what year was Pittsburgh in Three Hours created?", "answer": "1898"}
+{"aug_qid": "591", "source_qid": "205", "source_question": "When was Pittsburgh in Three Hours created?", "aug_question": "What year was Pittsburgh in Three Hours created?", "answer": "1898"}
+{"aug_qid": "592", "source_qid": "205", "source_question": "When was Pittsburgh in Three Hours created?", "aug_question": "When did Pittsburgh in Three Hours get created?", "answer": "1898"}
+{"aug_qid": "593", "source_qid": "206", "source_question": "When was Pittsburgh Opera: Mission and History founded?", "aug_question": "In what year was Pittsburgh Opera: Mission and History founded?", "answer": "1939"}
+{"aug_qid": "594", "source_qid": "206", "source_question": "When was Pittsburgh Opera: Mission and History founded?", "aug_question": "What year was Pittsburgh Opera: Mission and History founded?", "answer": "1939"}
+{"aug_qid": "595", "source_qid": "206", "source_question": "When was Pittsburgh Opera: Mission and History founded?", "aug_question": "When did Pittsburgh Opera: Mission and History get founded?", "answer": "1939"}
+{"aug_qid": "596", "source_qid": "207", "source_question": "Where is Pittsburgh Opera FAQs located?", "aug_question": "What is the location of Pittsburgh Opera FAQs?", "answer": "the Benedum Center, just inside the lobby doors"}
+{"aug_qid": "597", "source_qid": "207", "source_question": "Where is Pittsburgh Opera FAQs located?", "aug_question": "Where can Pittsburgh Opera FAQs be found?", "answer": "the Benedum Center, just inside the lobby doors"}
+{"aug_qid": "598", "source_qid": "207", "source_question": "Where is Pittsburgh Opera FAQs located?", "aug_question": "Which location is Pittsburgh Opera FAQs in?", "answer": "the Benedum Center, just inside the lobby doors"}
+{"aug_qid": "599", "source_qid": "208", "source_question": "When was Pittsburgh Opera: Employment and Internships established?", "aug_question": "In what year was Pittsburgh Opera: Employment and Internships established?", "answer": "1939"}
+{"aug_qid": "600", "source_qid": "208", "source_question": "When was Pittsburgh Opera: Employment and Internships established?", "aug_question": "What year was Pittsburgh Opera: Employment and Internships established?", "answer": "1939"}
+{"aug_qid": "601", "source_qid": "208", "source_question": "When was Pittsburgh Opera: Employment and Internships established?", "aug_question": "When did Pittsburgh Opera: Employment and Internships get established?", "answer": "1939"}
+{"aug_qid": "602", "source_qid": "209", "source_question": "When was About Pittsburgh Opera established?", "aug_question": "In what year was About Pittsburgh Opera established?", "answer": "1939"}
+{"aug_qid": "603", "source_qid": "209", "source_question": "When was About Pittsburgh Opera established?", "aug_question": "What year was About Pittsburgh Opera established?", "answer": "1939"}
+{"aug_qid": "604", "source_qid": "209", "source_question": "When was About Pittsburgh Opera established?", "aug_question": "When did About Pittsburgh Opera get established?", "answer": "1939"}
+{"aug_qid": "605", "source_qid": "210", "source_question": "Where is Pittsburgh Opera ticketing information and policies located?", "aug_question": "What is the location of Pittsburgh Opera ticketing information and policies?", "answer": "the Benedum Center entrance lobby to the right of the entry doors"}
+{"aug_qid": "606", "source_qid": "210", "source_question": "Where is Pittsburgh Opera ticketing information and policies located?", "aug_question": "Where can Pittsburgh Opera ticketing information and policies be found?", "answer": "the Benedum Center entrance lobby to the right of the entry doors"}
+{"aug_qid": "607", "source_qid": "210", "source_question": "Where is Pittsburgh Opera ticketing information and policies located?", "aug_question": "Which location is Pittsburgh Opera ticketing information and policies in?", "answer": "the Benedum Center entrance lobby to the right of the entry doors"}
+{"aug_qid": "608", "source_qid": "211", "source_question": "When was Día de los Muertos founded?", "aug_question": "In what year was Día de los Muertos founded?", "answer": "2002"}
+{"aug_qid": "609", "source_qid": "211", "source_question": "When was Día de los Muertos founded?", "aug_question": "What year was Día de los Muertos founded?", "answer": "2002"}
+{"aug_qid": "610", "source_qid": "211", "source_question": "When was Día de los Muertos founded?", "aug_question": "When did Día de los Muertos get founded?", "answer": "2002"}
+{"aug_qid": "611", "source_qid": "212", "source_question": "When did Pittsburgh Cultural Trust's Lullaby Project begin?", "aug_question": "What year did Pittsburgh Cultural Trust's Lullaby Project begin?", "answer": "June 24, 2024"}
+{"aug_qid": "612", "source_qid": "212", "source_question": "When did Pittsburgh Cultural Trust's Lullaby Project begin?", "aug_question": "When did Pittsburgh Cultural Trust's Lullaby Project start?", "answer": "June 24, 2024"}
+{"aug_qid": "613", "source_qid": "212", "source_question": "When did Pittsburgh Cultural Trust's Lullaby Project begin?", "aug_question": "In what year did Pittsburgh Cultural Trust's Lullaby Project begin?", "answer": "June 24, 2024"}
+{"aug_qid": "614", "source_qid": "213", "source_question": "When was Join the Legal Society established?", "aug_question": "In what year was Join the Legal Society established?", "answer": "2011"}
+{"aug_qid": "615", "source_qid": "213", "source_question": "When was Join the Legal Society established?", "aug_question": "What year was Join the Legal Society established?", "answer": "2011"}
+{"aug_qid": "616", "source_qid": "213", "source_question": "When was Join the Legal Society established?", "aug_question": "When did Join the Legal Society get established?", "answer": "2011"}
+{"aug_qid": "617", "source_qid": "214", "source_question": "Where is Greer Cabaret Theater located?", "aug_question": "What is the location of Greer Cabaret Theater?", "answer": "the intersection of Penn Avenue and Seventh Street in Downtown Pittsburgh"}
+{"aug_qid": "618", "source_qid": "214", "source_question": "Where is Greer Cabaret Theater located?", "aug_question": "Where can Greer Cabaret Theater be found?", "answer": "the intersection of Penn Avenue and Seventh Street in Downtown Pittsburgh"}
+{"aug_qid": "619", "source_qid": "214", "source_question": "Where is Greer Cabaret Theater located?", "aug_question": "Which location is Greer Cabaret Theater in?", "answer": "the intersection of Penn Avenue and Seventh Street in Downtown Pittsburgh"}
+{"aug_qid": "620", "source_qid": "215", "source_question": "When was Harris Theater opened?", "aug_question": "In what year was Harris Theater opened?", "answer": "November 9, 1995"}
+{"aug_qid": "621", "source_qid": "215", "source_question": "When was Harris Theater opened?", "aug_question": "What year was Harris Theater opened?", "answer": "November 9, 1995"}
+{"aug_qid": "622", "source_qid": "215", "source_question": "When was Harris Theater opened?", "aug_question": "When did Harris Theater get opened?", "answer": "November 9, 1995"}
+{"aug_qid": "623", "source_qid": "216", "source_question": "When was Background & History founded?", "aug_question": "In what year was Background & History founded?", "answer": "1984"}
+{"aug_qid": "624", "source_qid": "216", "source_question": "When was Background & History founded?", "aug_question": "What year was Background & History founded?", "answer": "1984"}
+{"aug_qid": "625", "source_qid": "216", "source_question": "When was Background & History founded?", "aug_question": "When did Background & History get founded?", "answer": "1984"}
+{"aug_qid": "626", "source_qid": "217", "source_question": "Where is Benedum Center located?", "aug_question": "What is the location of Benedum Center?", "answer": "237 7th Street, Pittsburgh, PA 15222"}
+{"aug_qid": "627", "source_qid": "217", "source_question": "Where is Benedum Center located?", "aug_question": "Where can Benedum Center be found?", "answer": "237 7th Street, Pittsburgh, PA 15222"}
+{"aug_qid": "628", "source_qid": "217", "source_question": "Where is Benedum Center located?", "aug_question": "Which location is Benedum Center in?", "answer": "237 7th Street, Pittsburgh, PA 15222"}
