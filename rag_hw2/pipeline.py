@@ -73,6 +73,8 @@ class RetrievalConfig:
         sparse_weight= 0.5,
         multi_query= False,
         multi_query_max= 2,
+        hyde= False,
+        hyde_max_new_tokens= 64,
         rerank_fetch_k= None,
         diversify_docs= False,
         doc_cap= 2,
@@ -87,6 +89,8 @@ class RetrievalConfig:
         self.sparse_weight = sparse_weight
         self.multi_query = bool(multi_query)
         self.multi_query_max = int(multi_query_max)
+        self.hyde = bool(hyde)
+        self.hyde_max_new_tokens = int(hyde_max_new_tokens)
         self.rerank_fetch_k = rerank_fetch_k
         self.diversify_docs = bool(diversify_docs)
         self.doc_cap = int(doc_cap)
@@ -103,6 +107,8 @@ class RetrievalConfig:
             "sparse_weight": self.sparse_weight,
             "multi_query": self.multi_query,
             "multi_query_max": self.multi_query_max,
+            "hyde": self.hyde,
+            "hyde_max_new_tokens": self.hyde_max_new_tokens,
             "rerank_fetch_k": self.rerank_fetch_k,
             "diversify_docs": self.diversify_docs,
             "doc_cap": self.doc_cap,
@@ -393,6 +399,37 @@ class RAGPipeline:
             )
         raise ValueError(f"Unknown retrieval mode: {mode}")
 
+    def _retrieve_hyde_dense(self, question, target_top_k) :
+        if not self.cfg.hyde:
+            return [], ""
+        if self.cfg.mode not in {"dense", "hybrid"}:
+            return [], ""
+        if not self.retriever or not getattr(self.retriever, "dense", None):
+            return [], ""
+        generate_hypothesis = getattr(self.reader, "generate_hypothesis", None)
+        if not callable(generate_hypothesis):
+            return [], ""
+        hypo = _normalize_ws(generate_hypothesis(question, max_new_tokens=self.cfg.hyde_max_new_tokens))
+        if not hypo:
+            return [], ""
+        hyde_results = self.retriever.retrieve_dense(hypo, top_k=target_top_k)
+        out = []
+        for r in hyde_results:
+            parts = dict(r.component_scores) if r.component_scores else {}
+            parts["hyde"] = 1.0
+            parts["hyde_len"] = float(len(hypo.split()))
+            out.append(
+                RetrievedChunk(
+                    chunk_id=r.chunk_id,
+                    score=float(r.score),
+                    rank=r.rank,
+                    source=r.source,
+                    chunk=r.chunk,
+                    component_scores=parts,
+                )
+            )
+        return out, hypo
+
     def retrieve(self, question) :
         mode = self.cfg.mode
         if mode == "closedbook":
@@ -403,14 +440,27 @@ class RAGPipeline:
         if self.reranker and self.cfg.rerank_fetch_k:
             target_top_k = max(int(self.cfg.top_k), int(self.cfg.rerank_fetch_k))
 
-        if not self.cfg.multi_query:
-            return self._retrieve_single(question, mode, target_top_k)
-
         base_results = self._retrieve_single(question, mode, target_top_k)
+        result_lists = [base_results]
+
+        hyde_results, _ = self._retrieve_hyde_dense(question, target_top_k)
+        if hyde_results:
+            result_lists.append(hyde_results)
+
+        if not self.cfg.multi_query:
+            if len(result_lists) == 1:
+                return base_results
+            merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)
+            preserve_n = min(3, max(1, int(self.cfg.top_k)))
+            return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)
+
         alt_queries = _build_multi_queries(question, max_n=self.cfg.multi_query_max)
         if not alt_queries:
-            return base_results
-        result_lists = [base_results]
+            if len(result_lists) == 1:
+                return base_results
+            merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)
+            preserve_n = min(3, max(1, int(self.cfg.top_k)))
+            return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)
         for q in alt_queries:
             result_lists.append(self._retrieve_single(q, mode, target_top_k))
         merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)

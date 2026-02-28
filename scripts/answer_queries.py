@@ -78,6 +78,8 @@ def parse_args() :
     p.add_argument("--sparse-weight", type=float, default=0.5)
     p.add_argument("--multi-query", action="store_true", help="Enable simple multi-query expansion before reranking.")
     p.add_argument("--multi-query-max", type=int, default=2, help="Number of additional rewritten queries.")
+    p.add_argument("--hyde", action="store_true", help="Enable HyDE query expansion for dense retrieval.")
+    p.add_argument("--hyde-max-new-tokens", type=int, default=64, help="Max new tokens for HyDE hypothetical passage.")
     p.add_argument("--reranker-model", type=str, default="BAAI/bge-reranker-large", help="Optional cross-encoder reranker model.")
     p.add_argument("--rerank-fetch-k", type=int, default=50, help="Retrieve this many candidates before reranking.")
     p.add_argument("--reranker-batch-size", type=int, default=16)
@@ -159,6 +161,8 @@ def main() :
             sparse_weight=args.sparse_weight,
             multi_query=args.multi_query,
             multi_query_max=args.multi_query_max,
+            hyde=args.hyde,
+            hyde_max_new_tokens=args.hyde_max_new_tokens,
             rerank_fetch_k=args.rerank_fetch_k,
             diversify_docs=args.diversify_docs,
             doc_cap=args.doc_cap,

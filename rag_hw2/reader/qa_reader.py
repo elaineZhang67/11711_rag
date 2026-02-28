@@ -300,6 +300,9 @@ class Reader:
     def answer(self, question, contexts) :
         raise NotImplementedError
 
+    def generate_hypothesis(self, question, max_new_tokens= 64) :
+        return ""
+
 
 class TransformersReader:
     def __init__(
@@ -344,6 +347,33 @@ class TransformersReader:
         if self.task == "text-generation" and raw.startswith(prompt):
             raw = raw[len(prompt) :]
         return postprocess_answer(raw, question=question)
+
+    def generate_hypothesis(self, question, max_new_tokens= 64) :
+        prompt = (
+            "Write a short factual passage that likely answers the question.\n"
+            "Use 1-2 concise sentences with concrete entities, dates, and places when relevant.\n"
+            "Do not mention sources or uncertainty.\n\n"
+            f"Question: {question}\n"
+            "Passage:"
+        )
+        gen_kwargs = {
+            "max_new_tokens": max_new_tokens,
+            "do_sample": False,
+        }
+        out = self.pipe(prompt, **gen_kwargs)
+        if not out:
+            return ""
+        raw = out[0].get("generated_text") or out[0].get("summary_text") or ""
+        if self.task == "text-generation" and raw.startswith(prompt):
+            raw = raw[len(prompt) :]
+        text = _normalize_whitespace(raw)
+        sents = _simple_sentence_split(text)
+        if len(sents) > 2:
+            text = " ".join(sents[:2]).strip()
+        words = text.split()
+        if len(words) > 60:
+            text = " ".join(words[:60]).strip()
+        return text
 
 
 def make_reader(
