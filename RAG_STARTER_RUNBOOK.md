@@ -88,20 +88,6 @@ python3 scripts/build_dense_index.py \
 
 ## Step 6: Answer Leaderboard Queries
 
-Quick debug (no LLM; heuristic reader):
-
-```bash
-python3 scripts/answer_queries.py \
-  --queries leaderboard_queries.json \
-  --output data/outputs/leaderboard_heuristic.json \
-  --chunks data/processed/chunks.jsonl \
-  --sparse-dir data/indices/sparse_bm25 \
-  --dense-dir data/indices/dense_faiss \
-  --mode hybrid \
-  --reader-backend heuristic \
-  --andrewid YOUR_ANDREWID
-```
-
 With an open HuggingFace model (example):
 
 ```bash
@@ -144,7 +130,9 @@ If you have your own labeled dev references:
 python3 scripts/run_ablation.py \
   --queries data/dev/questions.json \
   --references data/dev/reference_answers.json \
-  --reader-backend heuristic
+  --reader-backend transformers \
+  --reader-model google/flan-t5-base \
+  --reader-task text2text-generation
 ```
 
 ## Step 8: Evaluate Predictions (local dev set)

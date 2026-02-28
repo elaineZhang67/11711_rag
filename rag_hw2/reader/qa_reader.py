@@ -278,21 +278,6 @@ class Reader:
         raise NotImplementedError
 
 
-class HeuristicReader:
-    """Fallback reader for quick debugging without an LLM."""
-
-    def __init__(self) :
-        pass
-
-    def answer(self, question, contexts) :
-        if not contexts:
-            return ""
-        top = contexts[0].text.strip()
-        sents = _simple_sentence_split(top)
-        cand = sents[0] if sents else top.split("\n")[0]
-        return postprocess_answer(cand[:240], question=question)
-
-
 class TransformersReader:
     def __init__(
         self,
@@ -347,8 +332,6 @@ def make_reader(
     device= None,
     max_context_chars= 5000,
 ) :
-    if backend == "heuristic":
-        return HeuristicReader()
     if backend == "transformers":
         if not model_name:
             raise ValueError("model_name is required for transformers reader")

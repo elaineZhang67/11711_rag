@@ -83,7 +83,7 @@ def parse_args() :
     p.add_argument("--reranker-batch-size", type=int, default=16)
     p.add_argument("--reranker-max-length", type=int, default=512)
     p.add_argument("--reranker-device", type=str, default=None, help="Reranker device, e.g., cpu or cuda:0.")
-    p.add_argument("--reader-backend", choices=["transformers", "heuristic"], default="transformers")
+    p.add_argument("--reader-backend", choices=["transformers"], default="transformers")
     p.add_argument("--reader-model", type=str, default="Qwen/Qwen2.5-14B-Instruct")
     p.add_argument("--reader-task", choices=["text-generation", "text2text-generation"], default="text-generation")
     p.add_argument("--max-new-tokens", type=int, default=120)

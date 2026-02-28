@@ -17,7 +17,7 @@ def parse_args() :
     p.add_argument("--chunks", default="data/processed/chunks.jsonl")
     p.add_argument("--sparse-dir", default="data/indices/sparse_bm25")
     p.add_argument("--dense-dir", default="data/indices/dense_faiss")
-    p.add_argument("--reader-backend", choices=["transformers", "heuristic"], default="transformers")
+    p.add_argument("--reader-backend", choices=["transformers"], default="transformers")
     p.add_argument("--reader-model", default="Qwen/Qwen2.5-14B-Instruct")
     p.add_argument("--reader-task", choices=["text-generation", "text2text-generation"], default="text-generation")
     p.add_argument("--modes", nargs="+", default=["sparse", "dense", "hybrid"])

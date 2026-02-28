@@ -7,6 +7,7 @@
 - Run 4: `30.22%` (`F1 24.28`, `Recall 17.72`, `ROUGE 20.14`, `LLM 3.350`)
 - Run 5: `42.10%` (`F1 32.86`, `Recall 40.09`, `ROUGE 30.32`, `LLM 3.605`)
 - Run 6: `46.85%` (`F1 31.74`, `Recall 46.51`, `ROUGE 28.89`, `LLM 4.210`)
+- Run 7: `49.05%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.299`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -112,6 +113,16 @@
 - new best total score in this report
 - recall and LLM judge both improved vs prior best
 - confirms conservative MQ (`max=1`) can help when fusion stays on `rrf`
+
+## Run 7 (RRF + MQ1 + No Extractive-First)
+- Score: `49.05%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.299`)
+- Key change vs Run 6:
+- disabled extractive-first final answer path in `rag_hw2/pipeline.py`
+- system now always uses reader generation + postprocessing for final answer
+- Result pattern:
+- best overall score so far
+- improved across all reported metrics (F1/Recall/ROUGE/LLM judge)
+- consistent with removal of brittle person/date snippet extraction errors
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)

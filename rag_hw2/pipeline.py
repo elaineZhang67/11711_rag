@@ -1,20 +1,10 @@
 from __future__ import annotations
 
 import re
-from typing import Any
 
-from rag_hw2.reader.qa_reader import Reader, postprocess_answer
-from rag_hw2.retrieval.hybrid import HybridRetriever
 from rag_hw2.types import RetrievedChunk
 
 _WS_RE = re.compile(r"\s+")
-_YEAR_RE = re.compile(r"\b(1[0-9]{3}|20[0-9]{2})\b")
-_DATE_RE = re.compile(
-    r"\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|"
-    r"sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+\d{1,2},?\s+\d{4}\b",
-    re.IGNORECASE,
-)
-_NAME_RE = re.compile(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-zA-Z'.-]+){1,4})\b")
 _STOPWORDS = {
     "what",
     "which",
@@ -58,33 +48,6 @@ _STOPWORDS = {
     "by",
     "of",
     "to",
-}
-_MONTHS = {
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-}
-_ORG_TAIL_WORDS = {
-    "University",
-    "School",
-    "Institute",
-    "College",
-    "Center",
-    "Centre",
-    "Department",
-    "Hall",
-    "Museum",
-    "Hospital",
-    "Library",
 }
 _LIST_NOISE_HINTS = [
     "list of",
@@ -341,127 +304,6 @@ def _apply_score_shaping(question, retrieved) :
     for i, r in enumerate(shaped, start=1):
         r.rank = i
     return shaped
-
-
-def _simple_sentence_split(text) :
-    if not text:
-        return []
-    parts = re.split(r"(?<=[.!?])\s+|\n+", text.strip())
-    return [p.strip() for p in parts if p.strip()]
-
-
-def _question_terms(question) :
-    return _tokenize_query_terms(question)
-
-
-def _best_support_sentence(question, contexts) :
-    terms = _question_terms(question)
-    best = ""
-    best_score = -1
-    for c in contexts[:3]:
-        for s in _simple_sentence_split(c.text):
-            low = s.lower()
-            overlap = 0
-            for t in terms:
-                if t in low:
-                    overlap += 1
-            score = overlap * 10 + min(4, len(s.split()) // 8)
-            if score > best_score:
-                best_score = score
-                best = s
-    if best:
-        return best
-    if contexts:
-        sents = _simple_sentence_split(contexts[0].text)
-        if sents:
-            return sents[0]
-    return ""
-
-
-def _looks_year_question(question) :
-    q = (question or "").lower()
-    return "what year" in q or (q.startswith("when ") and "year" in q)
-
-
-def _looks_when_question(question) :
-    return (question or "").lower().startswith("when ")
-
-
-def _looks_person_question(question) :
-    q = (question or "").lower().strip()
-    if q.startswith("who "):
-        return True
-    person_like = [
-        "which notable artist",
-        "which artist",
-        "which alumnus",
-        "which alumnus",
-        "which person",
-        "who is",
-        "who was",
-    ]
-    for p in person_like:
-        if p in q:
-            return True
-    return False
-
-
-def _extract_name_from_sentence(sent) :
-    names = [m.group(1).strip() for m in _NAME_RE.finditer(sent or "")]
-    if not names:
-        return ""
-    filtered = []
-    for n in names:
-        parts = n.split()
-        if not parts:
-            continue
-        if parts[0] in _MONTHS:
-            continue
-        if parts[-1] in _ORG_TAIL_WORDS:
-            continue
-        low = n.lower()
-        if "carnegie mellon university" in low:
-            continue
-        filtered.append(n)
-    if not filtered:
-        return ""
-    filtered.sort(key=lambda x: len(x.split()), reverse=True)
-    return filtered[0]
-
-
-def _extractive_first_answer(question, contexts) :
-    if not contexts:
-        return ""
-    sent = _best_support_sentence(question, contexts)
-    if not sent:
-        return ""
-
-    if _looks_year_question(question):
-        m = _YEAR_RE.search(sent)
-        if m:
-            return m.group(1)
-        for c in contexts[:3]:
-            m = _YEAR_RE.search(c.text or "")
-            if m:
-                return m.group(1)
-        return ""
-
-    if _looks_when_question(question):
-        m = _DATE_RE.search(sent)
-        if m:
-            return _normalize_ws(m.group(0))
-        m = _YEAR_RE.search(sent)
-        if m:
-            return m.group(1)
-        return ""
-
-    if _looks_person_question(question):
-        n = _extract_name_from_sentence(sent)
-        if n:
-            return n
-        return ""
-
-    return ""
 
 
 class RAGPipeline:
