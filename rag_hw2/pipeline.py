@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 
-from rag_hw2.types import RetrievedChunk
+from rag_hw2.types import Chunk, RetrievedChunk
 
 _WS_RE = re.compile(r"\s+")
 _STOPWORDS = {
@@ -78,6 +78,11 @@ class RetrievalConfig:
         rerank_fetch_k= None,
         diversify_docs= False,
         doc_cap= 2,
+        context_mode= "child",
+        parent_window= 1,
+        parent_min_hits= 2,
+        parent_max_contexts= 3,
+        parent_max_chars= 5000,
     ) :
         self.mode = mode  # sparse | dense | hybrid | closedbook
         self.top_k = top_k
@@ -94,6 +99,11 @@ class RetrievalConfig:
         self.rerank_fetch_k = rerank_fetch_k
         self.diversify_docs = bool(diversify_docs)
         self.doc_cap = int(doc_cap)
+        self.context_mode = context_mode  # child | parent_merge
+        self.parent_window = int(parent_window)
+        self.parent_min_hits = int(parent_min_hits)
+        self.parent_max_contexts = int(parent_max_contexts)
+        self.parent_max_chars = int(parent_max_chars)
 
     def to_dict(self) :
         return {
@@ -112,6 +122,11 @@ class RetrievalConfig:
             "rerank_fetch_k": self.rerank_fetch_k,
             "diversify_docs": self.diversify_docs,
             "doc_cap": self.doc_cap,
+            "context_mode": self.context_mode,
+            "parent_window": self.parent_window,
+            "parent_min_hits": self.parent_min_hits,
+            "parent_max_contexts": self.parent_max_contexts,
+            "parent_max_chars": self.parent_max_chars,
         }
 
 
@@ -380,6 +395,13 @@ class RAGPipeline:
         self.reader = reader
         self.cfg = retrieval_cfg
         self.reranker = reranker
+        self._doc_chunks = {}
+        chunk_store = getattr(retriever, "chunk_store", None) if retriever is not None else None
+        if chunk_store is not None:
+            for ch in chunk_store.chunks:
+                self._doc_chunks.setdefault(ch.doc_id, []).append(ch)
+            for doc_id in self._doc_chunks:
+                self._doc_chunks[doc_id].sort(key=lambda x: int(x.chunk_index) if x.chunk_index is not None else 0)
 
     def _retrieve_single(self, question, mode, target_top_k) :
         if mode == "sparse":
@@ -467,6 +489,96 @@ class RAGPipeline:
         preserve_n = min(3, max(1, int(self.cfg.top_k)))
         return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)
 
+    def _build_parent_contexts(self, retrieved) :
+        child_contexts = [r.chunk for r in retrieved if r.chunk is not None]
+        if self.cfg.context_mode != "parent_merge":
+            return child_contexts
+        if not child_contexts or not self._doc_chunks:
+            return child_contexts
+
+        per_doc = {}
+        for r in retrieved:
+            ch = r.chunk
+            if ch is None or ch.doc_id is None:
+                continue
+            try:
+                idx = int(ch.chunk_index)
+            except Exception:
+                continue
+            rec = per_doc.get(ch.doc_id)
+            if rec is None:
+                rec = {"best_score": float(r.score), "hits": 0, "seed_indices": set()}
+                per_doc[ch.doc_id] = rec
+            rec["hits"] += 1
+            rec["seed_indices"].add(idx)
+            if float(r.score) > rec["best_score"]:
+                rec["best_score"] = float(r.score)
+
+        min_hits = max(1, int(self.cfg.parent_min_hits))
+        window = max(0, int(self.cfg.parent_window))
+        max_chars = max(300, int(self.cfg.parent_max_chars))
+        merged = []
+
+        for doc_id, rec in per_doc.items():
+            if rec["hits"] < min_hits:
+                continue
+            doc_chunks = self._doc_chunks.get(doc_id, [])
+            if not doc_chunks:
+                continue
+
+            wanted = set()
+            for idx in rec["seed_indices"]:
+                for j in range(idx - window, idx + window + 1):
+                    wanted.add(j)
+
+            selected = []
+            for ch in doc_chunks:
+                try:
+                    ci = int(ch.chunk_index)
+                except Exception:
+                    continue
+                if ci in wanted:
+                    selected.append(ch)
+            if not selected:
+                continue
+
+            selected.sort(key=lambda x: int(x.chunk_index) if x.chunk_index is not None else 0)
+            text = _normalize_ws(" ".join((c.text or "").strip() for c in selected))
+            if len(text) > max_chars:
+                text = text[:max_chars].rsplit(" ", 1)[0]
+
+            first = selected[0]
+            last = selected[-1]
+            try:
+                start_idx = int(first.chunk_index)
+            except Exception:
+                start_idx = 0
+            try:
+                end_idx = int(last.chunk_index)
+            except Exception:
+                end_idx = start_idx
+            parent_chunk = Chunk(
+                chunk_id=f"parent:{doc_id}:{start_idx}-{end_idx}",
+                doc_id=doc_id,
+                text=text,
+                title=first.title,
+                source_path=first.source_path,
+                source_url=first.source_url,
+                start_char=first.start_char,
+                end_char=last.end_char,
+                chunk_index=start_idx,
+                metadata=first.metadata,
+            )
+            merged.append((rec["best_score"], parent_chunk))
+
+        if not merged:
+            return child_contexts
+
+        merged.sort(key=lambda x: x[0], reverse=True)
+        max_ctx = max(1, int(self.cfg.parent_max_contexts))
+        contexts = [x[1] for x in merged[:max_ctx]]
+        return contexts if contexts else child_contexts
+
     def answer_query(self, qid, question) :
         retrieved = self.retrieve(question)
         if retrieved:
@@ -475,7 +587,7 @@ class RAGPipeline:
             retrieved = self.reranker.rerank(question, retrieved, top_k=self.cfg.top_k)
         if retrieved and self.cfg.diversify_docs:
             retrieved = _apply_doc_diversification(retrieved, top_k=self.cfg.top_k, doc_cap=self.cfg.doc_cap)
-        contexts = [r.chunk for r in retrieved if r.chunk is not None]
+        contexts = self._build_parent_contexts(retrieved)
         answer = _sanitize_answer(self.reader.answer(question, contexts))
         trace = []
         for r in retrieved:

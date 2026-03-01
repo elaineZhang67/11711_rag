@@ -13,6 +13,8 @@
 - Run 10: `49.71%` (`F1 42.09`, `Recall 41.96`, `ROUGE 39.00`, `LLM 4.032`)
 - Run 11: `49.32%` (`F1 38.58`, `Recall 43.67`, `ROUGE 35.08`, `LLM 4.197`)
 - Run 12: `50.81%` (`F1 37.48`, `Recall 45.97`, `ROUGE 34.27`, `LLM 4.420`)
+- Run 13: `49.83%` (`F1 37.51`, `Recall 44.99`, `ROUGE 34.50`, `LLM 4.293`)
+- Run 14: `48.90%` (`F1 35.86`, `Recall 44.37`, `ROUGE 32.74`, `LLM 4.306`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -179,6 +181,26 @@
 - new best total score so far
 - strongest LLM judge so far
 - compared to Run 10: total score improved (`49.71 -> 50.81`) with lower F1/ROUGE but stronger Recall/LLM quality
+
+## Run 13 (QVec Dense Index Replacement)
+- Score: `49.83%` (`F1 37.51`, `Recall 44.99`, `ROUGE 34.50`, `LLM 4.293`)
+- Key changes vs Run 12:
+- dense index switched to question-vector indexing (generated one question per chunk, embedded those instead of raw chunk text)
+- retrieval kept as hybrid + RRF + reranker (`top_k=3`, `fetch_k_each=120`, `rerank_fetch_k=50`)
+- Result pattern:
+- lower total score vs Run 12 (`50.81 -> 49.83`)
+- slight F1/ROUGE gain over Run 12 but lower Recall/LLM judge
+- practical conclusion: full dense replacement by qvec did not beat HyDE-only setup in current pipeline
+
+## Run 14 (QVec + HyDE)
+- Score: `48.90%` (`F1 35.86`, `Recall 44.37`, `ROUGE 32.74`, `LLM 4.306`)
+- Key changes vs Run 13:
+- enabled HyDE on top of question-vector dense index (`qvec + hyde`)
+- retrieval/ranking remained hybrid + RRF + reranker (`top_k=3`, `fetch_k_each=120`, `rerank_fetch_k=50`)
+- Result pattern:
+- drop in total score vs Run 13 (`49.83 -> 48.90`)
+- overlap metrics and recall decreased; LLM judge remained relatively high
+- practical conclusion: in this setup, adding HyDE on top of qvec did not help
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)

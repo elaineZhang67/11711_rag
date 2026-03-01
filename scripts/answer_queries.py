@@ -87,6 +87,11 @@ def parse_args() :
     p.add_argument("--reranker-device", type=str, default=None, help="Reranker device, e.g., cpu or cuda:0.")
     p.add_argument("--diversify-docs", action="store_true", help="Apply doc-level diversification after reranking.")
     p.add_argument("--doc-cap", type=int, default=2, help="Max chunks per document when diversification is enabled.")
+    p.add_argument("--context-mode", choices=["child", "parent_merge"], default="child", help="Context assembly mode for the reader.")
+    p.add_argument("--parent-window", type=int, default=1, help="Neighbor child chunks on each side when parent_merge is enabled.")
+    p.add_argument("--parent-min-hits", type=int, default=2, help="Min retrieved child hits from same doc before parent merge is used.")
+    p.add_argument("--parent-max-contexts", type=int, default=3, help="Max merged parent contexts passed to reader.")
+    p.add_argument("--parent-max-chars", type=int, default=5000, help="Max chars per merged parent context.")
     p.add_argument("--reader-backend", choices=["transformers"], default="transformers")
     p.add_argument("--reader-model", type=str, default="Qwen/Qwen2.5-14B-Instruct")
     p.add_argument("--reader-task", choices=["text-generation", "text2text-generation"], default="text-generation")
@@ -166,6 +171,11 @@ def main() :
             rerank_fetch_k=args.rerank_fetch_k,
             diversify_docs=args.diversify_docs,
             doc_cap=args.doc_cap,
+            context_mode=args.context_mode,
+            parent_window=args.parent_window,
+            parent_min_hits=args.parent_min_hits,
+            parent_max_contexts=args.parent_max_contexts,
+            parent_max_chars=args.parent_max_chars,
         ),
         reranker=reranker,
     )
