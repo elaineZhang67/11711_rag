@@ -16,6 +16,7 @@
 - Run 13: `49.83%` (`F1 37.51`, `Recall 44.99`, `ROUGE 34.50`, `LLM 4.293`)
 - Run 14: `48.90%` (`F1 35.86`, `Recall 44.37`, `ROUGE 32.74`, `LLM 4.306`)
 - Run 15: `50.77%` (`F1 37.48`, `Recall 45.97`, `ROUGE 34.27`, `LLM 4.414`)
+- Run 16: `48.86%` (`F1 41.46`, `Recall 40.31`, `ROUGE 38.99`, `LLM 3.987`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -212,6 +213,20 @@
 - strong recovery vs Run 14 (`48.90 -> 50.77`)
 - very close to Run 12 (`50.81`) with slightly lower LLM judge
 - practical conclusion: qvec remains off; HyDE remains primary gain source
+
+## Run 16 (HyDE + Clean Best-Answer Postprocess)
+- Score: `48.86%` (`F1 41.46`, `Recall 40.31`, `ROUGE 38.99`, `LLM 3.987`)
+- Key changes vs Run 15:
+- stronger factoid postprocess: prefer single-sentence factual answers
+- uncertainty/meta cleanup: strip `context does not...`, `however`, `[From context]`, `likely`, `appears to`
+- fallback behavior changed to best-effort direct answer (no `UNKNOWN` output)
+- HyDE retrieval kept on with downweight (`hyde_weight=0.85`) and lower rerank breadth (`rerank_fetch_k=40`)
+- Run command:
+- `python scripts/answer_queries.py --run-name rrf_hyde_t100_cleanbest --queries leaderboard_queries.json --chunks data/processed/chunks_sentence.jsonl --sparse-dir data/indices/sparse_bm25_sentence --dense-dir data/indices/dense_faiss_bge_large_v15 --mode hybrid --fusion-method rrf --top-k 3 --fetch-k-each 120 --hyde --hyde-max-new-tokens 64 --hyde-weight 0.85 --reranker-model BAAI/bge-reranker-large --rerank-fetch-k 40 --reranker-device cuda:0 --reader-backend transformers --reader-model Qwen/Qwen2.5-14B-Instruct --reader-task text-generation --device 0 --max-new-tokens 100 --andrewid Venonat2 --verbose`
+- Result pattern:
+- F1/ROUGE improved strongly vs Run 15
+- Recall/LLM judge dropped, causing lower total score
+- practical conclusion: this setting is precision/overlap-oriented but less robust on recall-oriented judging
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
