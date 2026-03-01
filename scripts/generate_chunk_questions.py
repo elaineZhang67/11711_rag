@@ -79,6 +79,10 @@ def main() :
     if device is not None:
         kwargs["device"] = device
     pipe = hf_pipeline(**kwargs)
+    # Avoid transformers warning: both max_new_tokens and default max_length.
+    model_gc = getattr(pipe.model, "generation_config", None)
+    if model_gc is not None:
+        model_gc.max_length = None
 
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)

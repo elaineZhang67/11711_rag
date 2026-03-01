@@ -331,6 +331,10 @@ class TransformersReader:
         if self.device is not None:
             kwargs["device"] = self.device
         self.pipe = hf_pipeline(**kwargs)
+        # Avoid transformers warning: both max_new_tokens and default max_length.
+        model_gc = getattr(self.pipe.model, "generation_config", None)
+        if model_gc is not None:
+            model_gc.max_length = None
 
     def answer(self, question, contexts) :
         prompt = build_rag_prompt(question, contexts, max_context_chars=self.max_context_chars)
