@@ -78,6 +78,34 @@ def _tokenize_example(tokenizer, ex, max_length) :
     }
 
 
+def _filter_invalid_items(items, vocab_size):
+    kept = []
+    dropped_bad_token = 0
+    dropped_bad_label = 0
+    dropped_all_ignored = 0
+
+    for it in items:
+        ids = it.get("input_ids", [])
+        labels = it.get("labels", [])
+        if any((t < 0 or t >= vocab_size) for t in ids):
+            dropped_bad_token += 1
+            continue
+        if any((l != -100 and (l < 0 or l >= vocab_size)) for l in labels):
+            dropped_bad_label += 1
+            continue
+        if labels and all(l == -100 for l in labels):
+            dropped_all_ignored += 1
+            continue
+        kept.append(it)
+
+    stats = {
+        "dropped_bad_token": dropped_bad_token,
+        "dropped_bad_label": dropped_bad_label,
+        "dropped_all_ignored": dropped_all_ignored,
+    }
+    return kept, stats
+
+
 class ListDataset:
     def __init__(self, items):
         self.items = items
@@ -162,6 +190,7 @@ def main() :
     tokenizer = AutoTokenizer.from_pretrained(args.base_model, trust_remote_code=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+    vocab_size = len(tokenizer)
 
     quantization_config = None
     if not args.no_4bit:
@@ -184,6 +213,9 @@ def main() :
     if quantization_config is not None:
         model = prepare_model_for_kbit_training(model)
     model.config.use_cache = False
+    model.config.pad_token_id = tokenizer.pad_token_id
+    if getattr(model, "generation_config", None) is not None:
+        model.generation_config.pad_token_id = tokenizer.pad_token_id
     model.gradient_checkpointing_enable()
 
     lora_cfg = LoraConfig(
@@ -199,6 +231,13 @@ def main() :
 
     train_items = [_tokenize_example(tokenizer, ex, args.max_length) for ex in train_examples]
     eval_items = [_tokenize_example(tokenizer, ex, args.max_length) for ex in eval_examples] if eval_examples else []
+    train_items, train_drop_stats = _filter_invalid_items(train_items, vocab_size=vocab_size)
+    eval_items, eval_drop_stats = _filter_invalid_items(eval_items, vocab_size=vocab_size) if eval_items else ([], {})
+    if not train_items:
+        raise RuntimeError("No valid train examples remain after token/label validation.")
+    print(f"Tokenized train items: {len(train_items)} | dropped: {train_drop_stats}")
+    if eval_examples:
+        print(f"Tokenized eval items: {len(eval_items)} | dropped: {eval_drop_stats}")
 
     train_ds = ListDataset(train_items)
     eval_ds = ListDataset(eval_items) if eval_items else None

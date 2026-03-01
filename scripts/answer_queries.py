@@ -151,6 +151,14 @@ def main() :
 
     reranker = None
     if args.reranker_model:
+        reranker_max_length = int(args.reranker_max_length)
+        if "bge-reranker" in args.reranker_model.lower() and reranker_max_length > 512:
+            if args.verbose:
+                print(
+                    f"[warn] {args.reranker_model} supports max length around 512; "
+                    f"clamping reranker_max_length {reranker_max_length} -> 512."
+                )
+            reranker_max_length = 512
         reranker_device = args.reranker_device
         if reranker_device is None and args.device is not None:
             if args.device.isdigit():
@@ -163,7 +171,7 @@ def main() :
             model_name=args.reranker_model,
             device=reranker_device,
             batch_size=args.reranker_batch_size,
-            max_length=args.reranker_max_length,
+            max_length=reranker_max_length,
         )
 
     reader = make_reader(
