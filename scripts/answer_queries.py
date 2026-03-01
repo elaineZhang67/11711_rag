@@ -92,6 +92,9 @@ def parse_args() :
     p.add_argument("--parent-min-hits", type=int, default=2, help="Min retrieved child hits from same doc before parent merge is used.")
     p.add_argument("--parent-max-contexts", type=int, default=3, help="Max merged parent contexts passed to reader.")
     p.add_argument("--parent-max-chars", type=int, default=5000, help="Max chars per merged parent context.")
+    p.add_argument("--factual-span-snap", action="store_true", help="Snap factual answers to short extractive spans from retrieved contexts.")
+    p.add_argument("--span-snap-min-f1", type=float, default=0.78, help="Min token F1 between generated answer and candidate span.")
+    p.add_argument("--span-snap-max-words", type=int, default=14, help="Max words in extractive span candidate.")
     p.add_argument("--reader-backend", choices=["transformers"], default="transformers")
     p.add_argument("--reader-model", type=str, default="Qwen/Qwen2.5-14B-Instruct")
     p.add_argument("--reader-task", choices=["text-generation", "text2text-generation"], default="text-generation")
@@ -176,6 +179,9 @@ def main() :
             parent_min_hits=args.parent_min_hits,
             parent_max_contexts=args.parent_max_contexts,
             parent_max_chars=args.parent_max_chars,
+            factual_span_snap=args.factual_span_snap,
+            span_snap_min_f1=args.span_snap_min_f1,
+            span_snap_max_words=args.span_snap_max_words,
         ),
         reranker=reranker,
     )

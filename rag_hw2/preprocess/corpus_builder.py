@@ -4,6 +4,7 @@ import hashlib
 import json
 import re
 import unicodedata
+from collections import Counter
 from pathlib import Path
 from typing import Iterable
 
@@ -66,6 +67,73 @@ def _dedupe_texts_exact(texts) :
 
 def _compute_doc_id(source_key) :
     return hashlib.sha1(source_key.encode("utf-8")).hexdigest()[:16]
+
+
+def _compile_patterns(values) :
+    out = []
+    for v in values or []:
+        try:
+            out.append(re.compile(str(v), re.IGNORECASE))
+        except Exception:
+            continue
+    return out
+
+
+def _match_any(text, patterns) :
+    t = str(text or "")
+    for p in patterns:
+        if p.search(t):
+            return True
+    return False
+
+
+def _repeat_line_ratio(text) :
+    lines = [_normalize_whitespace(x) for x in (text or "").splitlines()]
+    lines = [x for x in lines if x]
+    if len(lines) < 4:
+        return 0.0
+    c = Counter(lines)
+    return max(c.values()) / max(1, len(lines))
+
+
+def _quality_filter_decision(
+    rec,
+    text,
+    url_patterns,
+    path_patterns,
+    title_patterns,
+    text_patterns,
+    min_alpha_ratio= 0.45,
+    max_digit_ratio= 0.45,
+    max_repeat_line_ratio= 0.5,
+) :
+    source_url = rec.get("source_url") or ""
+    source_path = rec.get("source_path") or ""
+    title = rec.get("title") or ""
+
+    if _match_any(source_url, url_patterns):
+        return False, "url_pattern"
+    if _match_any(source_path, path_patterns):
+        return False, "path_pattern"
+    if _match_any(title, title_patterns):
+        return False, "title_pattern"
+    if _match_any(text, text_patterns):
+        return False, "text_pattern"
+
+    compact = re.sub(r"\s+", "", text or "")
+    if not compact:
+        return False, "empty"
+    alpha = sum(ch.isalpha() for ch in compact)
+    digit = sum(ch.isdigit() for ch in compact)
+    alpha_ratio = alpha / max(1, len(compact))
+    digit_ratio = digit / max(1, len(compact))
+    if alpha_ratio < float(min_alpha_ratio):
+        return False, "low_alpha_ratio"
+    if digit_ratio > float(max_digit_ratio):
+        return False, "high_digit_ratio"
+    if _repeat_line_ratio(text) > float(max_repeat_line_ratio):
+        return False, "repeat_lines"
+    return True, ""
 
 
 def _load_crawl_manifest(raw_dirs) :
@@ -167,10 +235,22 @@ def build_corpus(
     min_chars= 100,
     dedupe_exact= True,
     include_images= False,
+    quality_filter= False,
+    drop_url_patterns= None,
+    drop_path_patterns= None,
+    drop_title_patterns= None,
+    drop_text_patterns= None,
+    min_alpha_ratio= 0.45,
+    max_digit_ratio= 0.45,
+    max_repeat_line_ratio= 0.5,
     verbose= False,
 ) :
     if include_images:
         _check_image_ocr_dependencies()
+    url_patterns = _compile_patterns(drop_url_patterns)
+    path_patterns = _compile_patterns(drop_path_patterns)
+    title_patterns = _compile_patterns(drop_title_patterns)
+    text_patterns = _compile_patterns(drop_text_patterns)
     url_by_file = _load_crawl_manifest(input_dirs)
     docs = []
     raw_recs = []
@@ -188,6 +268,22 @@ def build_corpus(
         text = rec["text"].strip()
         if len(text) < min_chars:
             continue
+        if quality_filter:
+            ok, why = _quality_filter_decision(
+                rec,
+                text,
+                url_patterns=url_patterns,
+                path_patterns=path_patterns,
+                title_patterns=title_patterns,
+                text_patterns=text_patterns,
+                min_alpha_ratio=min_alpha_ratio,
+                max_digit_ratio=max_digit_ratio,
+                max_repeat_line_ratio=max_repeat_line_ratio,
+            )
+            if not ok:
+                if verbose:
+                    print(f"[corpus] filtered {p}: {why}")
+                continue
         if verbose:
             print(f"[corpus] {p} -> {len(text)} chars")
         source_key = rec.get("source_url") or rec.get("source_path") or str(p)
