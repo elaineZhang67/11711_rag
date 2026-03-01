@@ -75,6 +75,7 @@ class RetrievalConfig:
         multi_query_max= 2,
         hyde= False,
         hyde_max_new_tokens= 64,
+        hyde_weight= 0.85,
         rerank_fetch_k= None,
         diversify_docs= False,
         doc_cap= 2,
@@ -96,6 +97,7 @@ class RetrievalConfig:
         self.multi_query_max = int(multi_query_max)
         self.hyde = bool(hyde)
         self.hyde_max_new_tokens = int(hyde_max_new_tokens)
+        self.hyde_weight = float(hyde_weight)
         self.rerank_fetch_k = rerank_fetch_k
         self.diversify_docs = bool(diversify_docs)
         self.doc_cap = int(doc_cap)
@@ -119,6 +121,7 @@ class RetrievalConfig:
             "multi_query_max": self.multi_query_max,
             "hyde": self.hyde,
             "hyde_max_new_tokens": self.hyde_max_new_tokens,
+            "hyde_weight": self.hyde_weight,
             "rerank_fetch_k": self.rerank_fetch_k,
             "diversify_docs": self.diversify_docs,
             "doc_cap": self.doc_cap,
@@ -435,15 +438,18 @@ class RAGPipeline:
         if not hypo:
             return [], ""
         hyde_results = self.retriever.retrieve_dense(hypo, top_k=target_top_k)
+        hyde_weight = min(1.0, max(0.0, float(self.cfg.hyde_weight)))
         out = []
         for r in hyde_results:
             parts = dict(r.component_scores) if r.component_scores else {}
             parts["hyde"] = 1.0
             parts["hyde_len"] = float(len(hypo.split()))
+            parts["hyde_weight"] = float(hyde_weight)
+            parts["hyde_raw_score"] = float(r.score)
             out.append(
                 RetrievedChunk(
                     chunk_id=r.chunk_id,
-                    score=float(r.score),
+                    score=float(r.score) * hyde_weight,
                     rank=r.rank,
                     source=r.source,
                     chunk=r.chunk,

@@ -1,10 +1,10 @@
 Leaderboard Result
 ------------------
 Attempt:
-Total score:
-F1:
-Recall:
-ROUGE(avg):
-LLM judge:
+Total score: 50.81
+F1:37.48
+Recall: 45.97
+ROUGE(avg): 34.27
+LLM judge: 4.420
 
 Notes:
