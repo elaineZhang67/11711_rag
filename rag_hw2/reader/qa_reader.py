@@ -10,7 +10,6 @@ from rag_hw2.types import Chunk
 _WS_RE = re.compile(r"\s+")
 _QUOTE_RE = re.compile(r'^[\"\'“”‘’`]+|[\"\'“”‘’`]+$')
 _CITATION_TAIL_RE = re.compile(r"(?:\s*\[\d+\])+$")
-_META_TAG_RE = re.compile(r"\[(?:from context|source|citation|evidence)[^\]]*\]", re.IGNORECASE)
 _YEAR_RE = re.compile(r"\b(1[0-9]{3}|20[0-9]{2})\b")
 _DATE_RE = re.compile(
     r"\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|"
@@ -59,7 +58,6 @@ def build_rag_prompt(question, contexts, max_context_chars= 5000) :
         "Do not repeat aliases or alternate names unless the question explicitly asks for them.\n"
         "For date/year questions, return the exact date or year from the context when available.\n"
         "If the context is weak or missing, give your best answer based on your knowledge.\n"
-        "Never say the context is missing, never output 'unknown', and never add uncertainty disclaimers.\n"
         "Do your best to be concise, but include enough detail to answer correctly.\n\n"
         "Limit your final answer to at most 3 sentences.\n\n"
         f"Question: {question}\n\n"
@@ -274,62 +272,6 @@ def _remove_trailing_explanation(text) :
     return text
 
 
-def _strip_uncertainty_and_meta_text(text) :
-    text = _META_TAG_RE.sub("", text).strip()
-    if not text:
-        return ""
-    sents = _simple_sentence_split(text)
-    if not sents:
-        return text
-    bad_markers = [
-        "context does not",
-        "context did not",
-        "not mentioned in the context",
-        "no additional information",
-        "cannot be determined",
-        "cannot be inferred",
-        "it can be inferred",
-        "likely",
-        "appears to",
-        "not specified",
-        "from context",
-    ]
-    kept = []
-    for s in sents:
-        low = s.lower()
-        if any(m in low for m in bad_markers):
-            continue
-        kept.append(s.strip())
-    return " ".join(kept).strip()
-
-
-def _best_effort_direct_fallback(text) :
-    t = _META_TAG_RE.sub("", (text or "")).strip()
-    if not t:
-        return ""
-    cleanup_patterns = [
-        r"(?:the\s+)?context\s+does\s+not[^.?!;]*[.?!;]?",
-        r"(?:the\s+)?context\s+did\s+not[^.?!;]*[.?!;]?",
-        r"no additional information[^.?!;]*[.?!;]?",
-        r"not mentioned in the context[^.?!;]*[.?!;]?",
-        r"not specified[^.?!;]*[.?!;]?",
-        r"cannot be determined[^.?!;]*[.?!;]?",
-        r"cannot be inferred[^.?!;]*[.?!;]?",
-        r"it can be inferred[^.?!;]*[.?!;]?",
-        r"\blikely\b",
-        r"\bappears to\b",
-    ]
-    for p in cleanup_patterns:
-        t = re.sub(p, " ", t, flags=re.IGNORECASE)
-    t = re.sub(r"\bhowever\b[:,]?\s*", " ", t, flags=re.IGNORECASE)
-    t = re.sub(r"\bunknown\b", " ", t, flags=re.IGNORECASE)
-    t = _normalize_whitespace(t).strip(" \t:,-")
-    if not t:
-        return ""
-    sents = _simple_sentence_split(t)
-    return sents[0].strip() if sents else t
-
-
 def _keep_first_sentence_if_compact(text, question) :
     if not text or not _looks_singular_fact_question(question):
         return text
@@ -372,12 +314,6 @@ def postprocess_answer(text, question= None) :
     text = _collapse_semicolon_for_singular_question(text, question)
     text = _collapse_parenthetical_alias(text)
     text = _remove_trailing_explanation(text)
-    pre_uncertainty_text = text
-    text = _strip_uncertainty_and_meta_text(text)
-    if not text:
-        text = _best_effort_direct_fallback(pre_uncertainty_text)
-    if not text:
-        text = pre_uncertainty_text
     text = _normalize_date_or_year_for_question(text, question)
     text = _keep_first_sentence_if_compact(text, question)
     if _looks_explanatory_question(question):
@@ -387,9 +323,10 @@ def postprocess_answer(text, question= None) :
     else:
         max_sents = 1
     text = _truncate_to_max_sentences(text, max_sentences=max_sents)
-    low = text.lower().strip()
+    # Normalize some common non-answer fillers.
+    low = text.lower()
     if low in {"unknown.", "unknown", "not found", "not provided", "insufficient information"}:
-        text = _best_effort_direct_fallback(pre_uncertainty_text)
+        text = "UNKNOWN"
     # Remove trailing sentence punctuation if answer looks like a short span.
     if len(text.split()) <= 12:
         text = text.rstrip(" .")

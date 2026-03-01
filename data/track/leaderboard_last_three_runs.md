@@ -17,6 +17,7 @@
 - Run 14: `48.90%` (`F1 35.86`, `Recall 44.37`, `ROUGE 32.74`, `LLM 4.306`)
 - Run 15: `50.77%` (`F1 37.48`, `Recall 45.97`, `ROUGE 34.27`, `LLM 4.414`)
 - Run 16: `48.86%` (`F1 41.46`, `Recall 40.31`, `ROUGE 38.99`, `LLM 3.987`)
+- Run 17: `49.46%` (`F1 38.10`, `Recall 44.73`, `ROUGE 34.90`, `LLM 4.204`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -227,6 +228,10 @@
 - F1/ROUGE improved strongly vs Run 15
 - Recall/LLM judge dropped, causing lower total score
 - practical conclusion: this setting is precision/overlap-oriented but less robust on recall-oriented judging
+
+## Run 17 (Run)
+- Score: `49.46%` (`F1 38.10`, `Recall 44.73`, `ROUGE 34.90`, `LLM 4.204`)
+
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
