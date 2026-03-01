@@ -5,14 +5,6 @@ import re
 from rag_hw2.types import Chunk, RetrievedChunk
 
 _WS_RE = re.compile(r"\s+")
-_YEAR_RE = re.compile(r"\b(1[0-9]{3}|20[0-9]{2})\b")
-_DATE_RE = re.compile(
-    r"\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|"
-    r"sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+\d{1,2},?\s+\d{4}\b",
-    re.IGNORECASE,
-)
-_QUOTED_SPAN_RE = re.compile(r"[\"“”'‘’]([^\"“”'‘’]{2,140})[\"“”'‘’]")
-_TITLE_SPAN_RE = re.compile(r"\b[A-Z][A-Za-z0-9&'./-]*(?:\s+[A-Z][A-Za-z0-9&'./-]*){0,5}\b")
 _STOPWORDS = {
     "what",
     "which",
@@ -91,9 +83,6 @@ class RetrievalConfig:
         parent_min_hits= 2,
         parent_max_contexts= 3,
         parent_max_chars= 5000,
-        factual_span_snap= False,
-        span_snap_min_f1= 0.78,
-        span_snap_max_words= 14,
     ) :
         self.mode = mode  # sparse | dense | hybrid | closedbook
         self.top_k = top_k
@@ -115,9 +104,6 @@ class RetrievalConfig:
         self.parent_min_hits = int(parent_min_hits)
         self.parent_max_contexts = int(parent_max_contexts)
         self.parent_max_chars = int(parent_max_chars)
-        self.factual_span_snap = bool(factual_span_snap)
-        self.span_snap_min_f1 = float(span_snap_min_f1)
-        self.span_snap_max_words = int(span_snap_max_words)
 
     def to_dict(self) :
         return {
@@ -141,9 +127,6 @@ class RetrievalConfig:
             "parent_min_hits": self.parent_min_hits,
             "parent_max_contexts": self.parent_max_contexts,
             "parent_max_chars": self.parent_max_chars,
-            "factual_span_snap": self.factual_span_snap,
-            "span_snap_min_f1": self.span_snap_min_f1,
-            "span_snap_max_words": self.span_snap_max_words,
         }
 
 
@@ -154,143 +137,6 @@ def _sanitize_answer(answer) :
 
 def _normalize_ws(text) :
     return _WS_RE.sub(" ", (text or "")).strip()
-
-
-def _simple_sentence_split(text) :
-    t = _normalize_ws(text)
-    if not t:
-        return []
-    parts = re.split(r"(?<=[.!?])\s+(?=[A-Z0-9\"'])", t)
-    return [p.strip() for p in parts if p.strip()]
-
-
-def _tokenize_terms(text) :
-    out = []
-    for t in re.findall(r"[a-z0-9]+", (text or "").lower()):
-        if len(t) < 2:
-            continue
-        if t in _STOPWORDS:
-            continue
-        out.append(t)
-    return out
-
-
-def _token_f1(a_terms, b_terms) :
-    if not a_terms or not b_terms:
-        return 0.0
-    a = set(a_terms)
-    b = set(b_terms)
-    inter = len(a & b)
-    if inter == 0:
-        return 0.0
-    prec = inter / max(1, len(b))
-    rec = inter / max(1, len(a))
-    if prec + rec == 0:
-        return 0.0
-    return 2 * prec * rec / (prec + rec)
-
-
-def _looks_explanatory_question(question) :
-    q = (question or "").lower().strip()
-    if q.startswith("why ") or q.startswith("how "):
-        return True
-    markers = ["what happened", "describe", "explain", "significance", "importance", "impact", "reason"]
-    return any(m in q for m in markers)
-
-
-def _looks_factual_question(question) :
-    q = (question or "").lower().strip()
-    if not q:
-        return False
-    if _looks_explanatory_question(q):
-        return False
-    return q.startswith(("what ", "who ", "where ", "when ", "which ", "name "))
-
-
-def _looks_when_question(question) :
-    return (question or "").lower().strip().startswith("when ")
-
-
-def _looks_year_question(question) :
-    q = (question or "").lower()
-    return "what year" in q or (q.strip().startswith("when ") and "year" in q)
-
-
-def _candidate_spans_from_text(text, max_words= 14) :
-    t = _normalize_ws(text)
-    if not t:
-        return []
-    cands = []
-
-    for m in _DATE_RE.finditer(t):
-        cands.append(m.group(0).strip())
-    for m in _YEAR_RE.finditer(t):
-        cands.append(m.group(0).strip())
-    for m in _QUOTED_SPAN_RE.finditer(t):
-        cands.append(_normalize_ws(m.group(1)))
-    for m in _TITLE_SPAN_RE.finditer(t):
-        cands.append(_normalize_ws(m.group(0)))
-
-    out = []
-    seen = set()
-    for c in cands:
-        c = c.strip(" \t,;:.\"'()[]{}")
-        if not c:
-            continue
-        wc = len(c.split())
-        if wc < 1 or wc > max(1, int(max_words)):
-            continue
-        key = c.lower()
-        if key in seen:
-            continue
-        seen.add(key)
-        out.append(c)
-    return out
-
-
-def _snap_factual_answer(answer, question, contexts, min_f1= 0.78, max_words= 14) :
-    ans = _normalize_ws(answer)
-    if not ans:
-        return ans
-    if not _looks_factual_question(question):
-        return ans
-    if not contexts:
-        return ans
-
-    if _looks_year_question(question):
-        years = _YEAR_RE.findall(ans)
-        if len(years) == 1:
-            return years[0]
-
-    ans_terms = _tokenize_terms(ans)
-    if not ans_terms:
-        return ans
-
-    best = None
-    best_score = 0.0
-    for ch in contexts[:3]:
-        if ch is None:
-            continue
-        text = (ch.text or "")[:6000]
-        for cand in _candidate_spans_from_text(text, max_words=max_words):
-            cand_terms = _tokenize_terms(cand)
-            if not cand_terms:
-                continue
-            f1 = _token_f1(ans_terms, cand_terms)
-            if f1 < float(min_f1):
-                continue
-            score = f1
-            if cand.lower() in ans.lower():
-                score += 0.08
-            if _looks_when_question(question) and (_DATE_RE.search(cand) or _YEAR_RE.search(cand)):
-                score += 0.06
-            score -= 0.002 * len(cand.split())
-            if score > best_score:
-                best_score = score
-                best = cand
-    if best is None:
-        return ans
-    return _normalize_ws(best).rstrip(" .")
 
 
 def _tokenize_query_terms(question) :
@@ -743,16 +589,6 @@ class RAGPipeline:
             retrieved = _apply_doc_diversification(retrieved, top_k=self.cfg.top_k, doc_cap=self.cfg.doc_cap)
         contexts = self._build_parent_contexts(retrieved)
         answer = _sanitize_answer(self.reader.answer(question, contexts))
-        if self.cfg.factual_span_snap:
-            answer = _sanitize_answer(
-                _snap_factual_answer(
-                    answer,
-                    question,
-                    contexts,
-                    min_f1=self.cfg.span_snap_min_f1,
-                    max_words=self.cfg.span_snap_max_words,
-                )
-            )
         trace = []
         for r in retrieved:
             ch = r.chunk

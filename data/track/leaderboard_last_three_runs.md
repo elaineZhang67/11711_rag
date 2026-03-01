@@ -15,6 +15,7 @@
 - Run 12: `50.81%` (`F1 37.48`, `Recall 45.97`, `ROUGE 34.27`, `LLM 4.420`)
 - Run 13: `49.83%` (`F1 37.51`, `Recall 44.99`, `ROUGE 34.50`, `LLM 4.293`)
 - Run 14: `48.90%` (`F1 35.86`, `Recall 44.37`, `ROUGE 32.74`, `LLM 4.306`)
+- Run 15: `50.77%` (`F1 37.48`, `Recall 45.97`, `ROUGE 34.27`, `LLM 4.414`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -201,6 +202,16 @@
 - drop in total score vs Run 13 (`49.83 -> 48.90`)
 - overlap metrics and recall decreased; LLM judge remained relatively high
 - practical conclusion: in this setup, adding HyDE on top of qvec did not help
+
+## Run 15 (HyDE + Factual Span Snap)
+- Score: `50.77%` (`F1 37.48`, `Recall 45.97`, `ROUGE 34.27`, `LLM 4.414`)
+- Key changes vs Run 14:
+- switched back to non-qvec dense index (qvec off), HyDE on
+- enabled conservative factual span snap (`--factual-span-snap`) with child context mode
+- Result pattern:
+- strong recovery vs Run 14 (`48.90 -> 50.77`)
+- very close to Run 12 (`50.81`) with slightly lower LLM judge
+- practical conclusion: qvec remains off; HyDE remains primary gain source
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
