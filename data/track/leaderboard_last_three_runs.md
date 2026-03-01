@@ -12,6 +12,7 @@
 - Run 9: `49.25%` (`F1 33.75`, `Recall 49.20`, `ROUGE 30.77`, `LLM 4.331`)
 - Run 10: `49.71%` (`F1 42.09`, `Recall 41.96`, `ROUGE 39.00`, `LLM 4.032`)
 - Run 11: `49.32%` (`F1 38.58`, `Recall 43.67`, `ROUGE 35.08`, `LLM 4.197`)
+- Run 12: `50.81%` (`F1 37.48`, `Recall 45.97`, `ROUGE 34.27`, `LLM 4.420`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -167,6 +168,17 @@
 - total score dropped slightly vs Run 10 (`49.71 -> 49.32`)
 - F1/ROUGE dropped; Recall/LLM judge increased
 - practical conclusion: allowing 2 sentences helps judged quality but hurts exact-overlap metrics
+
+## Run 12 (HyDE Enabled, MQ Off)
+- Score: `50.81%` (`F1 37.48`, `Recall 45.97`, `ROUGE 34.27`, `LLM 4.420`)
+- Key changes vs Run 11:
+- enabled HyDE retrieval (`--hyde --hyde-max-new-tokens 64`)
+- multi-query disabled (no `--multi-query`)
+- kept `RRF`, `top_k=3`, `fetch_k_each=120`, `rerank_fetch_k=50`, `max_new_tokens=100`
+- Result pattern:
+- new best total score so far
+- strongest LLM judge so far
+- compared to Run 10: total score improved (`49.71 -> 50.81`) with lower F1/ROUGE but stronger Recall/LLM quality
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)

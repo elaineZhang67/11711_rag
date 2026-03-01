@@ -17,10 +17,12 @@ class DenseIndexArtifacts:
         chunk_ids,
         embedding_model,
         normalize_embeddings= True,
+        embedding_text_mode= "chunk",
     ) :
         self.chunk_ids = list(chunk_ids)
         self.embedding_model = embedding_model
         self.normalize_embeddings = normalize_embeddings
+        self.embedding_text_mode = embedding_text_mode
 
 
 def _save_pickle(obj, path) :
@@ -103,13 +105,27 @@ def build_dense_faiss_index(
     model_name= "BAAI/bge-large-en-v1.5",
     batch_size= 64,
     normalize_embeddings= True,
+    embed_texts_by_chunk_id= None,
+    embedding_text_mode= "chunk",
     verbose= False,
 ) :
     faiss_lib = _load_faiss_lib()
     encoder = _load_encoder_model(model_name)
-    texts = [c.text for c in chunk_store.chunks]
+    use_alt = bool(embed_texts_by_chunk_id)
+    alt_used = 0
+    texts = []
+    for c in chunk_store.chunks:
+        txt = c.text
+        if use_alt:
+            alt = str(embed_texts_by_chunk_id.get(c.chunk_id, "")).strip()
+            if alt:
+                txt = alt
+                alt_used += 1
+        texts.append(txt)
     if verbose:
-        print(f"[dense] embedding {len(texts)} chunks with {model_name}")
+        print(f"[dense] embedding {len(texts)} chunks with {model_name} (mode={embedding_text_mode})")
+        if use_alt:
+            print(f"[dense] using alternate embed text for {alt_used}/{len(texts)} chunks")
     embeddings = encoder.encode(
         texts,
         batch_size=batch_size,
@@ -128,6 +144,7 @@ def build_dense_faiss_index(
             chunk_ids=chunk_store.ids(),
             embedding_model=model_name,
             normalize_embeddings=normalize_embeddings,
+            embedding_text_mode=embedding_text_mode,
         ),
         chunk_store=chunk_store,
     )
