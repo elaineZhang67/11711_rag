@@ -58,6 +58,18 @@ _LIST_NOISE_HINTS = [
     "/faculty",
     "/staff",
 ]
+_EXPLANATORY_HINTS = [
+    "why ",
+    "how ",
+    "what happened",
+    "describe",
+    "explain",
+    "significance",
+    "importance",
+    "impact",
+    "history",
+    "role",
+]
 
 
 class RetrievalConfig:
@@ -76,6 +88,28 @@ class RetrievalConfig:
         hyde= False,
         hyde_max_new_tokens= 64,
         hyde_weight= 0.85,
+        query_routing= False,
+        factoid_top_k= 3,
+        factoid_fetch_k_each= 120,
+        factoid_rerank_fetch_k= 50,
+        factoid_hyde_weight= 0.85,
+        factoid_multi_query= False,
+        factoid_multi_query_max= 1,
+        explanatory_top_k= 4,
+        explanatory_fetch_k_each= 200,
+        explanatory_rerank_fetch_k= 80,
+        explanatory_hyde_weight= 1.0,
+        explanatory_multi_query= True,
+        explanatory_multi_query_max= 1,
+        confidence_fallback= False,
+        fallback_top_k= 4,
+        fallback_fetch_k_each= 220,
+        fallback_rerank_fetch_k= 90,
+        fallback_hyde_weight= 1.0,
+        fallback_multi_query= True,
+        fallback_multi_query_max= 1,
+        fallback_min_top1= -1.0,
+        fallback_min_gap= 0.05,
         rerank_fetch_k= None,
         diversify_docs= False,
         doc_cap= 2,
@@ -98,6 +132,28 @@ class RetrievalConfig:
         self.hyde = bool(hyde)
         self.hyde_max_new_tokens = int(hyde_max_new_tokens)
         self.hyde_weight = float(hyde_weight)
+        self.query_routing = bool(query_routing)
+        self.factoid_top_k = int(factoid_top_k)
+        self.factoid_fetch_k_each = int(factoid_fetch_k_each)
+        self.factoid_rerank_fetch_k = int(factoid_rerank_fetch_k)
+        self.factoid_hyde_weight = float(factoid_hyde_weight)
+        self.factoid_multi_query = bool(factoid_multi_query)
+        self.factoid_multi_query_max = int(factoid_multi_query_max)
+        self.explanatory_top_k = int(explanatory_top_k)
+        self.explanatory_fetch_k_each = int(explanatory_fetch_k_each)
+        self.explanatory_rerank_fetch_k = int(explanatory_rerank_fetch_k)
+        self.explanatory_hyde_weight = float(explanatory_hyde_weight)
+        self.explanatory_multi_query = bool(explanatory_multi_query)
+        self.explanatory_multi_query_max = int(explanatory_multi_query_max)
+        self.confidence_fallback = bool(confidence_fallback)
+        self.fallback_top_k = int(fallback_top_k)
+        self.fallback_fetch_k_each = int(fallback_fetch_k_each)
+        self.fallback_rerank_fetch_k = int(fallback_rerank_fetch_k)
+        self.fallback_hyde_weight = float(fallback_hyde_weight)
+        self.fallback_multi_query = bool(fallback_multi_query)
+        self.fallback_multi_query_max = int(fallback_multi_query_max)
+        self.fallback_min_top1 = float(fallback_min_top1)
+        self.fallback_min_gap = float(fallback_min_gap)
         self.rerank_fetch_k = rerank_fetch_k
         self.diversify_docs = bool(diversify_docs)
         self.doc_cap = int(doc_cap)
@@ -122,6 +178,28 @@ class RetrievalConfig:
             "hyde": self.hyde,
             "hyde_max_new_tokens": self.hyde_max_new_tokens,
             "hyde_weight": self.hyde_weight,
+            "query_routing": self.query_routing,
+            "factoid_top_k": self.factoid_top_k,
+            "factoid_fetch_k_each": self.factoid_fetch_k_each,
+            "factoid_rerank_fetch_k": self.factoid_rerank_fetch_k,
+            "factoid_hyde_weight": self.factoid_hyde_weight,
+            "factoid_multi_query": self.factoid_multi_query,
+            "factoid_multi_query_max": self.factoid_multi_query_max,
+            "explanatory_top_k": self.explanatory_top_k,
+            "explanatory_fetch_k_each": self.explanatory_fetch_k_each,
+            "explanatory_rerank_fetch_k": self.explanatory_rerank_fetch_k,
+            "explanatory_hyde_weight": self.explanatory_hyde_weight,
+            "explanatory_multi_query": self.explanatory_multi_query,
+            "explanatory_multi_query_max": self.explanatory_multi_query_max,
+            "confidence_fallback": self.confidence_fallback,
+            "fallback_top_k": self.fallback_top_k,
+            "fallback_fetch_k_each": self.fallback_fetch_k_each,
+            "fallback_rerank_fetch_k": self.fallback_rerank_fetch_k,
+            "fallback_hyde_weight": self.fallback_hyde_weight,
+            "fallback_multi_query": self.fallback_multi_query,
+            "fallback_multi_query_max": self.fallback_multi_query_max,
+            "fallback_min_top1": self.fallback_min_top1,
+            "fallback_min_gap": self.fallback_min_gap,
             "rerank_fetch_k": self.rerank_fetch_k,
             "diversify_docs": self.diversify_docs,
             "doc_cap": self.doc_cap,
@@ -140,6 +218,15 @@ def _sanitize_answer(answer) :
 
 def _normalize_ws(text) :
     return _WS_RE.sub(" ", (text or "")).strip()
+
+
+def _looks_explanatory_question(question) :
+    q = _normalize_ws(question).lower()
+    if not q:
+        return False
+    if q.startswith("how many ") or q.startswith("how much "):
+        return False
+    return any(h in q for h in _EXPLANATORY_HINTS)
 
 
 def _tokenize_query_terms(question) :
@@ -406,7 +493,7 @@ class RAGPipeline:
             for doc_id in self._doc_chunks:
                 self._doc_chunks[doc_id].sort(key=lambda x: int(x.chunk_index) if x.chunk_index is not None else 0)
 
-    def _retrieve_single(self, question, mode, target_top_k) :
+    def _retrieve_single(self, question, mode, target_top_k, fetch_k_each) :
         if mode == "sparse":
             return self.retriever.retrieve_sparse(question, top_k=target_top_k)
         if mode == "dense":
@@ -415,7 +502,7 @@ class RAGPipeline:
             return self.retriever.retrieve_hybrid(
                 question,
                 top_k=target_top_k,
-                fetch_k_each=self.cfg.fetch_k_each,
+                fetch_k_each=fetch_k_each,
                 method=self.cfg.fusion_method,
                 alpha=self.cfg.fusion_alpha,
                 rrf_k=self.cfg.rrf_k,
@@ -424,7 +511,7 @@ class RAGPipeline:
             )
         raise ValueError(f"Unknown retrieval mode: {mode}")
 
-    def _retrieve_hyde_dense(self, question, target_top_k) :
+    def _retrieve_hyde_dense(self, question, target_top_k, hyde_weight) :
         if not self.cfg.hyde:
             return [], ""
         if self.cfg.mode not in {"dense", "hybrid"}:
@@ -438,7 +525,7 @@ class RAGPipeline:
         if not hypo:
             return [], ""
         hyde_results = self.retriever.retrieve_dense(hypo, top_k=target_top_k)
-        hyde_weight = min(1.0, max(0.0, float(self.cfg.hyde_weight)))
+        hyde_weight = min(1.0, max(0.0, float(hyde_weight)))
         out = []
         for r in hyde_results:
             parts = dict(r.component_scores) if r.component_scores else {}
@@ -458,42 +545,121 @@ class RAGPipeline:
             )
         return out, hypo
 
-    def retrieve(self, question) :
+    def retrieve(
+        self,
+        question,
+        top_k= None,
+        fetch_k_each= None,
+        rerank_fetch_k= None,
+        multi_query= None,
+        multi_query_max= None,
+        hyde_weight= None,
+    ) :
         mode = self.cfg.mode
         if mode == "closedbook":
             return []
         if not self.retriever:
             raise ValueError("Retriever not available.")
-        target_top_k = self.cfg.top_k
-        if self.reranker and self.cfg.rerank_fetch_k:
-            target_top_k = max(int(self.cfg.top_k), int(self.cfg.rerank_fetch_k))
+        use_top_k = int(self.cfg.top_k) if top_k is None else int(top_k)
+        use_fetch_k_each = int(self.cfg.fetch_k_each) if fetch_k_each is None else int(fetch_k_each)
+        use_rerank_fetch_k = self.cfg.rerank_fetch_k if rerank_fetch_k is None else rerank_fetch_k
+        use_mq = self.cfg.multi_query if multi_query is None else bool(multi_query)
+        use_mq_max = int(self.cfg.multi_query_max) if multi_query_max is None else int(multi_query_max)
+        use_hyde_weight = float(self.cfg.hyde_weight) if hyde_weight is None else float(hyde_weight)
 
-        base_results = self._retrieve_single(question, mode, target_top_k)
+        target_top_k = use_top_k
+        if self.reranker and use_rerank_fetch_k:
+            target_top_k = max(int(use_top_k), int(use_rerank_fetch_k))
+
+        base_results = self._retrieve_single(question, mode, target_top_k, use_fetch_k_each)
         result_lists = [base_results]
 
-        hyde_results, _ = self._retrieve_hyde_dense(question, target_top_k)
+        hyde_results, _ = self._retrieve_hyde_dense(question, target_top_k, use_hyde_weight)
         if hyde_results:
             result_lists.append(hyde_results)
 
-        if not self.cfg.multi_query:
+        if not use_mq:
             if len(result_lists) == 1:
                 return base_results
             merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)
-            preserve_n = min(3, max(1, int(self.cfg.top_k)))
+            preserve_n = min(3, max(1, int(use_top_k)))
             return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)
 
-        alt_queries = _build_multi_queries(question, max_n=self.cfg.multi_query_max)
+        alt_queries = _build_multi_queries(question, max_n=use_mq_max)
         if not alt_queries:
             if len(result_lists) == 1:
                 return base_results
             merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)
-            preserve_n = min(3, max(1, int(self.cfg.top_k)))
+            preserve_n = min(3, max(1, int(use_top_k)))
             return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)
         for q in alt_queries:
-            result_lists.append(self._retrieve_single(q, mode, target_top_k))
+            result_lists.append(self._retrieve_single(q, mode, target_top_k, use_fetch_k_each))
         merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)
-        preserve_n = min(3, max(1, int(self.cfg.top_k)))
+        preserve_n = min(3, max(1, int(use_top_k)))
         return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)
+
+    def _run_rerank_path(self, question, retrieved, top_k) :
+        if retrieved:
+            retrieved = _apply_score_shaping(question, retrieved)
+        if self.reranker and retrieved:
+            retrieved = self.reranker.rerank(question, retrieved, top_k=top_k)
+        if retrieved and self.cfg.diversify_docs:
+            retrieved = _apply_doc_diversification(retrieved, top_k=top_k, doc_cap=self.cfg.doc_cap)
+        return retrieved
+
+    def _confidence_tuple(self, retrieved) :
+        if not retrieved:
+            return (-1e9, -1e9)
+        s1 = float(retrieved[0].score)
+        s2 = float(retrieved[1].score) if len(retrieved) > 1 else s1 - 1.0
+        return (s1, s1 - s2)
+
+    def _is_low_confidence(self, retrieved) :
+        if not retrieved:
+            return True
+        top1, gap = self._confidence_tuple(retrieved)
+        low_gap = gap < float(self.cfg.fallback_min_gap)
+        min_top1 = float(self.cfg.fallback_min_top1)
+        if min_top1 >= 0.0 and top1 < min_top1:
+            return True
+        return low_gap
+
+    def _is_better_confidence(self, baseline, fallback) :
+        b1, bg = self._confidence_tuple(baseline)
+        f1, fg = self._confidence_tuple(fallback)
+        if f1 > b1 + 0.01:
+            return True
+        if fg > bg + 0.01:
+            return True
+        return False
+
+    def _profile_for_question(self, question) :
+        if not self.cfg.query_routing:
+            return {
+                "top_k": int(self.cfg.top_k),
+                "fetch_k_each": int(self.cfg.fetch_k_each),
+                "rerank_fetch_k": self.cfg.rerank_fetch_k,
+                "multi_query": bool(self.cfg.multi_query),
+                "multi_query_max": int(self.cfg.multi_query_max),
+                "hyde_weight": float(self.cfg.hyde_weight),
+            }
+        if _looks_explanatory_question(question):
+            return {
+                "top_k": int(self.cfg.explanatory_top_k),
+                "fetch_k_each": int(self.cfg.explanatory_fetch_k_each),
+                "rerank_fetch_k": int(self.cfg.explanatory_rerank_fetch_k),
+                "multi_query": bool(self.cfg.explanatory_multi_query),
+                "multi_query_max": int(self.cfg.explanatory_multi_query_max),
+                "hyde_weight": float(self.cfg.explanatory_hyde_weight),
+            }
+        return {
+            "top_k": int(self.cfg.factoid_top_k),
+            "fetch_k_each": int(self.cfg.factoid_fetch_k_each),
+            "rerank_fetch_k": int(self.cfg.factoid_rerank_fetch_k),
+            "multi_query": bool(self.cfg.factoid_multi_query),
+            "multi_query_max": int(self.cfg.factoid_multi_query_max),
+            "hyde_weight": float(self.cfg.factoid_hyde_weight),
+        }
 
     def _build_parent_contexts(self, retrieved) :
         child_contexts = [r.chunk for r in retrieved if r.chunk is not None]
@@ -586,13 +752,31 @@ class RAGPipeline:
         return contexts if contexts else child_contexts
 
     def answer_query(self, qid, question) :
-        retrieved = self.retrieve(question)
-        if retrieved:
-            retrieved = _apply_score_shaping(question, retrieved)
-        if self.reranker and retrieved:
-            retrieved = self.reranker.rerank(question, retrieved, top_k=self.cfg.top_k)
-        if retrieved and self.cfg.diversify_docs:
-            retrieved = _apply_doc_diversification(retrieved, top_k=self.cfg.top_k, doc_cap=self.cfg.doc_cap)
+        profile = self._profile_for_question(question)
+        retrieved = self.retrieve(
+            question,
+            top_k=profile["top_k"],
+            fetch_k_each=profile["fetch_k_each"],
+            rerank_fetch_k=profile["rerank_fetch_k"],
+            multi_query=profile["multi_query"],
+            multi_query_max=profile["multi_query_max"],
+            hyde_weight=profile["hyde_weight"],
+        )
+        retrieved = self._run_rerank_path(question, retrieved, top_k=profile["top_k"])
+
+        if self.cfg.confidence_fallback and self._is_low_confidence(retrieved):
+            fb_raw = self.retrieve(
+                question,
+                top_k=self.cfg.fallback_top_k,
+                fetch_k_each=self.cfg.fallback_fetch_k_each,
+                rerank_fetch_k=self.cfg.fallback_rerank_fetch_k,
+                multi_query=self.cfg.fallback_multi_query,
+                multi_query_max=self.cfg.fallback_multi_query_max,
+                hyde_weight=self.cfg.fallback_hyde_weight,
+            )
+            fb = self._run_rerank_path(question, fb_raw, top_k=self.cfg.fallback_top_k)
+            if self._is_better_confidence(retrieved, fb):
+                retrieved = fb
         contexts = self._build_parent_contexts(retrieved)
         answer = _sanitize_answer(self.reader.answer(question, contexts))
         trace = []

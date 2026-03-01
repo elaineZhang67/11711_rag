@@ -380,7 +380,12 @@ def postprocess_answer(text, question= None) :
         text = pre_uncertainty_text
     text = _normalize_date_or_year_for_question(text, question)
     text = _keep_first_sentence_if_compact(text, question)
-    max_sents = 3 if _looks_explanatory_question(question) else 1
+    if _looks_explanatory_question(question):
+        max_sents = 3
+    elif _looks_factoid_question(question):
+        max_sents = 2
+    else:
+        max_sents = 1
     text = _truncate_to_max_sentences(text, max_sentences=max_sents)
     low = text.lower().strip()
     if low in {"unknown.", "unknown", "not found", "not provided", "insufficient information"}:

@@ -81,6 +81,28 @@ def parse_args() :
     p.add_argument("--hyde", action="store_true", help="Enable HyDE query expansion for dense retrieval.")
     p.add_argument("--hyde-max-new-tokens", type=int, default=64, help="Max new tokens for HyDE hypothetical passage.")
     p.add_argument("--hyde-weight", type=float, default=0.85, help="Downweight applied to HyDE dense retrieval scores (0-1).")
+    p.add_argument("--query-routing", action="store_true", help="Use question-type adaptive retrieval settings.")
+    p.add_argument("--factoid-top-k", type=int, default=3)
+    p.add_argument("--factoid-fetch-k-each", type=int, default=120)
+    p.add_argument("--factoid-rerank-fetch-k", type=int, default=50)
+    p.add_argument("--factoid-hyde-weight", type=float, default=0.85)
+    p.add_argument("--factoid-multi-query", action="store_true")
+    p.add_argument("--factoid-multi-query-max", type=int, default=1)
+    p.add_argument("--explanatory-top-k", type=int, default=4)
+    p.add_argument("--explanatory-fetch-k-each", type=int, default=200)
+    p.add_argument("--explanatory-rerank-fetch-k", type=int, default=80)
+    p.add_argument("--explanatory-hyde-weight", type=float, default=1.0)
+    p.add_argument("--explanatory-multi-query", action="store_true")
+    p.add_argument("--explanatory-multi-query-max", type=int, default=1)
+    p.add_argument("--confidence-fallback", action="store_true", help="Fallback to wider retrieval when rerank confidence is low.")
+    p.add_argument("--fallback-top-k", type=int, default=4)
+    p.add_argument("--fallback-fetch-k-each", type=int, default=220)
+    p.add_argument("--fallback-rerank-fetch-k", type=int, default=90)
+    p.add_argument("--fallback-hyde-weight", type=float, default=1.0)
+    p.add_argument("--fallback-multi-query", action="store_true")
+    p.add_argument("--fallback-multi-query-max", type=int, default=1)
+    p.add_argument("--fallback-min-top1", type=float, default=-1.0, help="Disable with negative value.")
+    p.add_argument("--fallback-min-gap", type=float, default=0.05)
     p.add_argument("--reranker-model", type=str, default="BAAI/bge-reranker-large", help="Optional cross-encoder reranker model.")
     p.add_argument("--rerank-fetch-k", type=int, default=40, help="Retrieve this many candidates before reranking.")
     p.add_argument("--reranker-batch-size", type=int, default=16)
@@ -170,6 +192,28 @@ def main() :
             hyde=args.hyde,
             hyde_max_new_tokens=args.hyde_max_new_tokens,
             hyde_weight=args.hyde_weight,
+            query_routing=args.query_routing,
+            factoid_top_k=args.factoid_top_k,
+            factoid_fetch_k_each=args.factoid_fetch_k_each,
+            factoid_rerank_fetch_k=args.factoid_rerank_fetch_k,
+            factoid_hyde_weight=args.factoid_hyde_weight,
+            factoid_multi_query=args.factoid_multi_query,
+            factoid_multi_query_max=args.factoid_multi_query_max,
+            explanatory_top_k=args.explanatory_top_k,
+            explanatory_fetch_k_each=args.explanatory_fetch_k_each,
+            explanatory_rerank_fetch_k=args.explanatory_rerank_fetch_k,
+            explanatory_hyde_weight=args.explanatory_hyde_weight,
+            explanatory_multi_query=args.explanatory_multi_query,
+            explanatory_multi_query_max=args.explanatory_multi_query_max,
+            confidence_fallback=args.confidence_fallback,
+            fallback_top_k=args.fallback_top_k,
+            fallback_fetch_k_each=args.fallback_fetch_k_each,
+            fallback_rerank_fetch_k=args.fallback_rerank_fetch_k,
+            fallback_hyde_weight=args.fallback_hyde_weight,
+            fallback_multi_query=args.fallback_multi_query,
+            fallback_multi_query_max=args.fallback_multi_query_max,
+            fallback_min_top1=args.fallback_min_top1,
+            fallback_min_gap=args.fallback_min_gap,
             rerank_fetch_k=args.rerank_fetch_k,
             diversify_docs=args.diversify_docs,
             doc_cap=args.doc_cap,
