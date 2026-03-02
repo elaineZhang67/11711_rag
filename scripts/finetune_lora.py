@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import random
 import sys
@@ -271,14 +272,19 @@ def main() :
         max_grad_norm=0.3,
     )
 
-    trainer = Trainer(
-        model=model,
-        args=targs,
-        train_dataset=train_ds,
-        eval_dataset=eval_ds,
-        tokenizer=tokenizer,
-        data_collator=CausalDataCollator(tokenizer),
-    )
+    trainer_kwargs = {
+        "model": model,
+        "args": targs,
+        "train_dataset": train_ds,
+        "eval_dataset": eval_ds,
+        "data_collator": CausalDataCollator(tokenizer),
+    }
+    trainer_sig = inspect.signature(Trainer.__init__)
+    if "tokenizer" in trainer_sig.parameters:
+        trainer_kwargs["tokenizer"] = tokenizer
+    elif "processing_class" in trainer_sig.parameters:
+        trainer_kwargs["processing_class"] = tokenizer
+    trainer = Trainer(**trainer_kwargs)
     trainer.train()
     trainer.save_model(str(out_dir))
     tokenizer.save_pretrained(str(out_dir))
