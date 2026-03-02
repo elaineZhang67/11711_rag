@@ -88,6 +88,26 @@ def parse_args() :
     p.add_argument("--reranker-batch-size", type=int, default=16)
     p.add_argument("--reranker-max-length", type=int, default=512)
     p.add_argument("--reranker-device", type=str, default=None, help="Reranker device, e.g., cpu or cuda:0.")
+    p.add_argument("--query-routing", action="store_true", help="Route queries by type (factoid/explanatory/temporal) with optional per-type retrieval settings.")
+    p.add_argument("--factoid-top-k", type=int, default=None)
+    p.add_argument("--factoid-fetch-k-each", type=int, default=None)
+    p.add_argument("--factoid-rerank-fetch-k", type=int, default=None)
+    p.add_argument("--factoid-context-mode", choices=["child", "parent_merge"], default=None)
+    p.add_argument("--explanatory-top-k", type=int, default=None)
+    p.add_argument("--explanatory-fetch-k-each", type=int, default=None)
+    p.add_argument("--explanatory-rerank-fetch-k", type=int, default=None)
+    p.add_argument("--explanatory-context-mode", choices=["child", "parent_merge"], default=None)
+    p.add_argument("--temporal-top-k", type=int, default=None)
+    p.add_argument("--temporal-fetch-k-each", type=int, default=None)
+    p.add_argument("--temporal-rerank-fetch-k", type=int, default=None)
+    p.add_argument("--temporal-context-mode", choices=["child", "parent_merge"], default=None)
+    p.add_argument("--confidence-fallback", action="store_true", help="If confidence is low, rerun retrieval with fallback settings.")
+    p.add_argument("--fallback-min-top1", type=float, default=-1.0, help="Trigger fallback if top-1 score is below this.")
+    p.add_argument("--fallback-min-gap", type=float, default=0.05, help="Trigger fallback if (top1-top2) is below this.")
+    p.add_argument("--fallback-top-k", type=int, default=None)
+    p.add_argument("--fallback-fetch-k-each", type=int, default=None)
+    p.add_argument("--fallback-rerank-fetch-k", type=int, default=None)
+    p.add_argument("--fallback-context-mode", choices=["child", "parent_merge"], default=None)
     p.add_argument("--diversify-docs", action="store_true", help="Apply doc-level diversification after reranking.")
     p.add_argument("--doc-cap", type=int, default=2, help="Max chunks per document when diversification is enabled.")
     p.add_argument("--context-mode", choices=["child", "parent_merge"], default="child", help="Context assembly mode for the reader.")
@@ -183,6 +203,26 @@ def main() :
             retrieval_augment=args.retrieval_augment,
             retrieval_augment_max=args.retrieval_augment_max,
             rerank_fetch_k=args.rerank_fetch_k,
+            query_routing=args.query_routing,
+            factoid_top_k=args.factoid_top_k,
+            factoid_fetch_k_each=args.factoid_fetch_k_each,
+            factoid_rerank_fetch_k=args.factoid_rerank_fetch_k,
+            factoid_context_mode=args.factoid_context_mode,
+            explanatory_top_k=args.explanatory_top_k,
+            explanatory_fetch_k_each=args.explanatory_fetch_k_each,
+            explanatory_rerank_fetch_k=args.explanatory_rerank_fetch_k,
+            explanatory_context_mode=args.explanatory_context_mode,
+            temporal_top_k=args.temporal_top_k,
+            temporal_fetch_k_each=args.temporal_fetch_k_each,
+            temporal_rerank_fetch_k=args.temporal_rerank_fetch_k,
+            temporal_context_mode=args.temporal_context_mode,
+            confidence_fallback=args.confidence_fallback,
+            fallback_min_top1=args.fallback_min_top1,
+            fallback_min_gap=args.fallback_min_gap,
+            fallback_top_k=args.fallback_top_k,
+            fallback_fetch_k_each=args.fallback_fetch_k_each,
+            fallback_rerank_fetch_k=args.fallback_rerank_fetch_k,
+            fallback_context_mode=args.fallback_context_mode,
             diversify_docs=args.diversify_docs,
             doc_cap=args.doc_cap,
             context_mode=args.context_mode,
