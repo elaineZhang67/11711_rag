@@ -368,6 +368,47 @@
 - strongest overlap metrics so far (`F1` and `ROUGE`)
 - confirms first-round domain fine-tuning improved factual precision/format matching
 
+## Run 29 (Stage-2 Fine-tune)
+- Score: `54.26%` (`F1 41.63`, `Recall 50.96`, `ROUGE 36.89`, `LLM 4.503`)
+- Leaderboard submission id: `aaa1`
+- Setup:
+- stage-2 fine-tune reader (second-round LoRA training on stage-2 QA set)
+- interpretation:
+- new best total score so far in this tracker
+- highest recall and highest LLM judge so far
+- indicates stage-2 fine-tuning improved answer coverage and judged factual usefulness
+
+## Run 30 (Stage-2 Fine-tune + Hybrid + HyDE)
+- Score: `54.83%` (`F1 41.68`, `Recall 50.92`, `ROUGE 37.55`, `LLM 4.567`)
+- Leaderboard submission id: `aaa1`
+- Setup:
+- stage-2 fine-tuned reader + hybrid retrieval
+- HyDE enabled on hybrid retrieval
+- interpretation:
+- new best total score so far in this tracker
+- best LLM judge so far
+- improved total score and ROUGE versus Run 29 while keeping recall at essentially the same level
+
+## Run 31 (Stage-2 Model, Sparse-only + Reranker)
+- Score: `53.95%` (`F1 40.42`, `Recall 50.28`, `ROUGE 35.92`, `LLM 4.567`)
+- Leaderboard submission id: `aaa1`
+- Setup:
+- stage-2 fine-tuned reader
+- sparse-only retrieval with reranker enabled
+- interpretation:
+- strong sparse baseline with stage-2 reader
+- matches best LLM judge level while trailing Run 30 on total score/F1/ROUGE
+
+## Run 32 (Stage-2 Model, Dense-only + Reranker)
+- Score: `54.67%` (`F1 42.12`, `Recall 50.52`, `ROUGE 37.51`, `LLM 4.541`)
+- Leaderboard submission id: `aaa1`
+- Setup:
+- stage-2 fine-tuned reader
+- dense-only retrieval with reranker enabled
+- interpretation:
+- improves over stage-2 sparse-only reranker baseline (Run 31) on total score/F1/ROUGE
+- remains slightly below stage-2 hybrid+HyDE best total score (Run 30)
+
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
