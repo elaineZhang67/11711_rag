@@ -20,6 +20,7 @@
 - Run 17: `49.46%` (`F1 38.10`, `Recall 44.73`, `ROUGE 34.90`, `LLM 4.204`)
 - Run 18: `49.89%` (`F1 37.99`, `Recall 44.64`, `ROUGE 34.92`, `LLM 4.280`)
 - Run 19: `49.24%` (`F1 37.33`, `Recall 44.03`, `ROUGE 34.57`, `LLM 4.242`)
+- Run 20: `52.19%` (`F1 40.03`, `Recall 49.61`, `ROUGE 36.17`, `LLM 4.318`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -255,6 +256,25 @@
 - Notes:
 - this run is below Run 12 baseline and below Run 18
 - decision after this run: keep/stick to Run 12 config (`rrf_hyde_t100`)
+
+## Run 20 (Prompt Structure Update: chat-style + 5-sentence cap)
+- Score: `52.19%` (`F1 40.03`, `Recall 49.61`, `ROUGE 36.17`, `LLM 4.318`)
+- Leaderboard submission id: `aaa1`
+- Prompt structure change (explicit):
+- Before Run 20: one flat instruction prompt string from `build_rag_prompt(...)` containing both behavior rules and question/context.
+- After Run 20: two-role chat prompt in `qa_reader.py`:
+- `system` message: global behavior policy (professional factual QA style, concise/direct answering, context-first grounding, no meta-text).
+- `user` message: task payload (`Question` + retrieved `Context` + `Answer:`).
+- Implementation detail:
+- added `build_answer_system_prompt()` and `build_answer_user_prompt(...)`.
+- in `TransformersReader.answer(...)`, prompt is built via `_format_chat_or_fallback(...)`.
+- `_format_chat_or_fallback(...)` uses tokenizer `apply_chat_template(...)` when available and falls back to old flat prompt if unavailable.
+- Same pattern also applied to HyDE generation (`generate_hypothesis(...)`) with `build_hyde_system_prompt()` + `build_hyde_user_prompt(...)`.
+- Length-control change coupled with prompt restructure:
+- Result pattern:
+- new best total score so far in this report
+- strong improvements over Run 12 in F1/Recall/ROUGE
+- LLM judge remains high, slightly below Run 12 peak
 
 
 ## Model Size Summary (What Scaled Up)

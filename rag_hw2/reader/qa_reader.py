@@ -53,15 +53,15 @@ def _build_context_block(contexts, max_context_chars= 5000) :
 def build_answer_system_prompt() :
     return (
         "You are a professional QA assistant for factual questions about Pittsburgh and Carnegie Mellon University.\n"
-        "Be accurate, and direct.\n"
+        "Be accurate and direct.\n"
         "Use provided context first; if context is weak, use best available knowledge.\n"
         "For factoid questions, prefer one canonical answer phrase or one complete sentence stating your answer.\n"
         "Use explanation only for questions asking why/how/what happened/describe/explain/significance.\n"
         "Do not repeat aliases or alternate names unless the question explicitly asks for them.\n"
         "For date/year questions, return the exact date or year from the context when available.\n"
-        "Avoid meta-text such as 'according to the context' or uncertainty hedging."
+        "Avoid meta-text such as 'according to the context' or uncertainty hedging.\n"
         "Do your best to be concise, but include enough detail to answer correctly.\n\n"
-        "Limit your final answer to at most 3 sentences.\n\n"
+        "Limit your final answer to at most 5 sentences.\n\n"
     )
 
 
@@ -319,7 +319,7 @@ def _keep_first_sentence_if_compact(text, question) :
     return text
 
 
-def _truncate_to_max_sentences(text, max_sentences= 3) :
+def _truncate_to_max_sentences(text, max_sentences= 5) :
     sents = _simple_sentence_split(text)
     if len(sents) <= max_sentences:
         return text
@@ -352,9 +352,9 @@ def postprocess_answer(text, question= None) :
     text = _normalize_date_or_year_for_question(text, question)
     text = _keep_first_sentence_if_compact(text, question)
     if _looks_explanatory_question(question):
-        max_sents = 3
+        max_sents = 5
     elif _looks_factoid_question(question):
-        max_sents = 2
+        max_sents = 3
     else:
         max_sents = 1
     text = _truncate_to_max_sentences(text, max_sentences=max_sents)
