@@ -30,7 +30,7 @@ def _simple_sentence_split(text) :
     return [p.strip() for p in parts if p.strip()]
 
 
-def build_rag_prompt(question, contexts, max_context_chars= 5000) :
+def _build_context_block(contexts, max_context_chars= 5000) :
     sections = []
     used = 0
     for i, c in enumerate(contexts, start=1):
@@ -47,22 +47,57 @@ def build_rag_prompt(question, contexts, max_context_chars= 5000) :
         used += len(snippet)
         sections.append(f"{' | '.join(header_parts)}\n{snippet}")
     context_block = "\n\n".join(sections) if sections else "(no retrieved context provided)"
+    return context_block
+
+
+def build_answer_system_prompt() :
     return (
-        "You are answering factual questions about Pittsburgh and Carnegie Mellon University.\n"
-        "Use the provided context first.\n"
-        "When possible, copy the exact answer span from the context.\n"
-        "Prefer one short canonical answer phrase (or one short sentence) when possible.\n"
-        "If a short answer is sufficient (for example, a name, title, date, or place), answer it once only.\n"
-        "For factual questions, answer directly and do not add extra explanation.\n"
+        "You are a professional QA assistant for factual questions about Pittsburgh and Carnegie Mellon University.\n"
+        "Be accurate, and direct.\n"
+        "Use provided context first; if context is weak, use best available knowledge.\n"
+        "For factoid questions, prefer one canonical answer phrase or one complete sentence stating your answer.\n"
         "Use explanation only for questions asking why/how/what happened/describe/explain/significance.\n"
         "Do not repeat aliases or alternate names unless the question explicitly asks for them.\n"
         "For date/year questions, return the exact date or year from the context when available.\n"
-        "If the context is weak or missing, give your best answer based on your knowledge.\n"
+        "Avoid meta-text such as 'according to the context' or uncertainty hedging."
         "Do your best to be concise, but include enough detail to answer correctly.\n\n"
         "Limit your final answer to at most 3 sentences.\n\n"
+    )
+
+
+def build_answer_user_prompt(question, contexts, max_context_chars= 5000) :
+    context_block = _build_context_block(contexts, max_context_chars=max_context_chars)
+    return (
         f"Question: {question}\n\n"
         f"Context:\n{context_block}\n\n"
         "Answer:"
+    )
+
+
+def build_rag_prompt(question, contexts, max_context_chars= 5000) :
+    context_block = _build_context_block(contexts, max_context_chars=max_context_chars)
+    return (
+        f"{build_answer_system_prompt()}\n\n"
+        f"Question: {question}\n\n"
+        f"Context:\n{context_block}\n\n"
+        "Answer:"
+    )
+
+
+def build_hyde_system_prompt() :
+    return (
+        "You write short factual passages for retrieval.\n"
+        "Be concrete and specific with entities, dates, and places.\n"
+        "Do not mention sources, caveats, or uncertainty."
+    )
+
+
+def build_hyde_user_prompt(question) :
+    return (
+        "Write a short factual passage that likely answers the question.\n"
+        "Use 1-2 concise sentences.\n\n"
+        f"Question: {question}\n"
+        "Passage:"
     )
 
 
@@ -372,9 +407,32 @@ class TransformersReader:
         model_gc = getattr(self.pipe.model, "generation_config", None)
         if model_gc is not None:
             model_gc.max_length = None
+        tok = getattr(self.pipe, "tokenizer", None)
+        self.has_chat_template = bool(tok is not None and hasattr(tok, "apply_chat_template"))
+
+    def _format_chat_or_fallback(self, system_text, user_text, fallback_prompt) :
+        # Use chat template when available (best for instruct/chat models like Qwen2.5).
+        if self.task == "text-generation" and self.has_chat_template:
+            tok = self.pipe.tokenizer
+            messages = [
+                {"role": "system", "content": system_text},
+                {"role": "user", "content": user_text},
+            ]
+            try:
+                return tok.apply_chat_template(
+                    messages,
+                    tokenize=False,
+                    add_generation_prompt=True,
+                )
+            except Exception:
+                return fallback_prompt
+        return fallback_prompt
 
     def answer(self, question, contexts) :
-        prompt = build_rag_prompt(question, contexts, max_context_chars=self.max_context_chars)
+        system_text = build_answer_system_prompt()
+        user_text = build_answer_user_prompt(question, contexts, max_context_chars=self.max_context_chars)
+        fallback_prompt = build_rag_prompt(question, contexts, max_context_chars=self.max_context_chars)
+        prompt = self._format_chat_or_fallback(system_text, user_text, fallback_prompt)
         gen_kwargs = {
             "max_new_tokens": self.max_new_tokens,
             "do_sample": self.temperature > 0,
@@ -390,13 +448,16 @@ class TransformersReader:
         return postprocess_answer(raw, question=question)
 
     def generate_hypothesis(self, question, max_new_tokens= 64) :
-        prompt = (
+        system_text = build_hyde_system_prompt()
+        user_text = build_hyde_user_prompt(question)
+        fallback_prompt = (
             "Write a short factual passage that likely answers the question.\n"
             "Use 1-2 concise sentences with concrete entities, dates, and places when relevant.\n"
             "Do not mention sources or uncertainty.\n\n"
             f"Question: {question}\n"
             "Passage:"
         )
+        prompt = self._format_chat_or_fallback(system_text, user_text, fallback_prompt)
         gen_kwargs = {
             "max_new_tokens": max_new_tokens,
             "do_sample": False,

@@ -1,0 +1,365 @@
+\documentclass[11pt,twocolumn]{article}
+\usepackage{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+
+\title{Improving a CMU/Pittsburgh RAG System Through Iterative Error-Driven Development}
+
+\author{
+  Your Name \\
+  Carnegie Mellon University \\
+  \texttt{your-andrewid@andrew.cmu.edu}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This report focuses on the \textbf{improvement process} of my end-to-end RAG system for CMU/Pittsburgh factual QA rather than only final architecture details. I started from a baseline hybrid retriever and iteratively changed one or two components at a time: data coverage, fusion settings, reranking depth, HyDE expansion, multi-query expansion, and answer postprocessing. Each change was validated on the public leaderboard and tracked in a run log. The main finding is that this task has a strong metric trade-off: aggressive answer compression improves overlap metrics (F1/ROUGE), while broader retrieval and less compressed answers improve Recall/LLM-judge. The best overall run is \textbf{Run 12} (\texttt{rrf\_hyde\_t100}) with total score \textbf{50.81\%}, while a precision-oriented variant reached higher F1/ROUGE but lower total score. The report provides run-by-run decisions, what worked, what failed, and why I selected the final default configuration.
+\end{abstract}
+
+\section{Introduction}
+Large language models are strong general question-answering systems but can miss domain-specific or temporally sensitive facts. RAG systems address this by retrieving relevant documents at inference time and grounding generation in retrieved evidence \citep{lewis2020rag}. In this assignment, the target domain includes CMU and Pittsburgh history, organizations, events, and culture. This setting is challenging because answers span multiple subdomains (history, sports, events, institutional facts), and evaluation combines token-overlap metrics with an LLM-as-Judge score.
+
+Our objective is to build a practical and robust QA pipeline under course constraints:
+\begin{itemize}
+    \item Use open models released before Jan 1, 2025 and $\leq$32B parameters.
+    \item Implement retrieval logic directly (no LangChain/LlamaIndex retrievers).
+    \item Evaluate and analyze model/data/retrieval variants on the public leaderboard.
+\end{itemize}
+
+The final system is a hybrid retriever with reranking and a transformer reader. I emphasize two engineering goals:
+\begin{enumerate}
+    \item \textbf{Coverage}: expand the knowledge resource with broad CMU/Pittsburgh crawling.
+    \item \textbf{Answer calibration}: balance concise outputs (for overlap metrics) with completeness (for recall and LLM judge).
+\end{enumerate}
+
+\section{Task, Constraints, and Evaluation}
+The task is open-domain factual QA over a domain-bounded corpus. The leaderboard contains 157 questions and requires exactly one answer per question in JSON format.
+
+\paragraph{Metrics.}
+Systems are evaluated by:
+\begin{itemize}
+    \item \textbf{F1} (token overlap, SQuAD-style) \citep{rajpurkar2016squad}
+    \item \textbf{Recall} (token overlap coverage)
+    \item \textbf{ROUGE-L} \citep{lin2004rouge}
+    \item \textbf{LLM-as-Judge} score (1--5)
+\end{itemize}
+Because overlap metrics are token-based, concise canonical answers are usually beneficial; however, over-shortening may hurt judged completeness.
+
+\paragraph{Policy constraints.}
+We use only open-source tools/models from Hugging Face or standard libraries, and avoid high-level RAG abstractions for core retrieval.
+
+\section{Data Creation}
+\subsection{Knowledge resource construction}
+We start from \texttt{baseline\_data} and add crawled resources from:
+\begin{itemize}
+    \item assignment-recommended sources (CMU, Pittsburgh city pages, Visit Pittsburgh, events, sports, culture, food),
+    \item additional CMU/Pittsburgh pages via focused seed expansion.
+\end{itemize}
+
+To avoid recrawling previously visited pages, our crawler preloads URL manifests and skips already seen URLs.
+
+\subsection{Crawling and raw extraction}
+Our crawler uses:
+\begin{itemize}
+    \item domain whitelists,
+    \item URL deny rules for social/login/media/noise pages,
+    \item depth and page caps,
+    \item HTML/PDF storage plus crawl manifests.
+\end{itemize}
+
+For parsing:
+\begin{itemize}
+    \item \textbf{HTML}: \texttt{BeautifulSoup}, content-root heuristics (\texttt{main/article/content}) and noise-tag removal.
+    \item \textbf{PDF}: \texttt{pdfplumber} primary parser, \texttt{pypdf} fallback.
+\end{itemize}
+
+\subsection{Cleaning and corpus building}
+We normalize whitespace/Unicode and drop very short documents (minimum character threshold). Exact-text deduplication is enabled by default in corpus construction.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l r}
+\toprule
+\textbf{Resource statistic} & \textbf{Count} \\
+\midrule
+Baseline files (\texttt{baseline\_data}) & 1,730 \\
+Raw crawled files (\texttt{data/raw}) & 8,782 \\
+Extra crawl files (\texttt{data/raw/more\_cmu\_pittsburgh}) & 4,491 \\
+Processed documents (\texttt{documents.jsonl}) & 3,187 \\
+\quad HTML docs & 3,139 \\
+\quad PDF docs & 48 \\
+Sentence chunks (\texttt{chunks\_sentence.jsonl}) & 14,311 \\
+Mean words per chunk & 223.6 \\
+\bottomrule
+\end{tabular}
+\caption{Final resource and preprocessing statistics used in our primary experiments.}
+\label{tab:data_stats}
+\end{table}
+
+\subsection{Optional training data}
+We prepared optional training files (\texttt{data/train/questions.txt}, \texttt{reference\_answers.json}) for possible fine-tuning/prompt tuning, but final leaderboard runs in this report use the retrieval+reader pipeline without supervised fine-tuning due stability and iteration budget.
+
+\section{System Snapshot (Brief)}
+I keep algorithmic details brief because the main contribution of this report is iterative improvement. The final snapshot is:
+\begin{itemize}
+    \item sentence-aware chunking (250 words, 50 overlap),
+    \item sparse BM25 + dense FAISS retrieval,
+    \item hybrid fusion (mainly RRF),
+    \item cross-encoder reranking (\texttt{BAAI/bge-reranker-large}),
+    \item reader model (\texttt{Qwen/Qwen2.5-14B-Instruct}),
+    \item answer postprocessing for canonical formatting.
+\end{itemize}
+The most impactful optional component in this project was HyDE expansion. Multi-query expansion and stronger answer-cleaning were useful in some settings but less consistently.
+
+\section{Improvement Strategy and Run Management}
+Instead of broad simultaneous changes, I used a controlled loop:
+\begin{enumerate}
+    \item identify one failure pattern from current outputs,
+    \item change one main variable (or one tightly related pair),
+    \item rerun full leaderboard prediction,
+    \item compare metrics and inspect examples,
+    \item keep/revert based on global score and error type.
+\end{enumerate}
+
+This process was necessary because the assignment metrics reward different answer behaviors. Some changes improved F1/ROUGE but hurt Recall/LLM-judge, while others did the opposite. The final configuration is chosen as a practical balance rather than a single-metric optimum.
+
+\section{Experimental Setup}
+\subsection{Primary settings}
+Unless otherwise stated:
+\begin{itemize}
+    \item mode = hybrid retrieval,
+    \item fusion = RRF,
+    \item \texttt{top-k}=3,
+    \item reader max tokens = 100.
+\end{itemize}
+
+\subsection{Models and libraries}
+\begin{itemize}
+    \item Embedding model: \texttt{BAAI/bge-large-en-v1.5}
+    \item Reranker: \texttt{BAAI/bge-reranker-large}
+    \item Reader: \texttt{Qwen/Qwen2.5-14B-Instruct}
+    \item Libraries: \texttt{requests}, \texttt{beautifulsoup4}, \texttt{pdfplumber}, \texttt{pypdf}, \texttt{rank-bm25}, \texttt{faiss}, \texttt{sentence-transformers}, \texttt{transformers}
+\end{itemize}
+
+\subsection{What I changed during development}
+Table~\ref{tab:change_log} summarizes the key improvement decisions and their effects.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{l p{0.42\linewidth} p{0.42\linewidth}}
+\toprule
+\textbf{Stage} & \textbf{Change made} & \textbf{Observed effect} \\
+\midrule
+Early baseline $\rightarrow$ retrieval upgrade &
+Switched embedding/reranker to larger BGE models; increased candidate breadth and rerank depth &
+Large boost from low-score baseline to stable mid/high-40s; retrieval quality became less of a bottleneck \\
+\addlinespace
+Compression-focused tuning &
+Made answers shorter and more canonical; reduced verbosity and alias repetition &
+F1/ROUGE improved substantially, but Recall and LLM-judge decreased (answers sometimes too short) \\
+\addlinespace
+HyDE integration &
+Enabled hypothetical answer expansion before dense retrieval &
+Best total score achieved; improved judged answer quality and robustness for semantically phrased queries \\
+\addlinespace
+Multi-query expansion (MQ) &
+Added query rewrites with small query set (\texttt{max=1,3}) &
+Small marginal gains in some runs; did not beat best HyDE-only configuration \\
+\addlinespace
+Aggressive postprocessing &
+Stronger cleanup to remove meta/hedging style text &
+Raised overlap metrics but introduced truncation risks and lower judged completeness \\
+\bottomrule
+\end{tabular}
+\caption{Improvement-focused change log. This table reflects the actual run-by-run behavior used for final configuration selection.}
+\label{tab:change_log}
+\end{table*}
+
+\section{Results}
+Table~\ref{tab:main_results} summarizes major leaderboard runs.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{l l c c c c c}
+\toprule
+\textbf{Run} & \textbf{Key configuration} & \textbf{Total} & \textbf{F1} & \textbf{Recall} & \textbf{ROUGE} & \textbf{LLM Judge} \\
+\midrule
+Run 7 & RRF + MQ1, no extractive-first & 49.05 & 33.75 & 49.20 & 30.77 & 4.299 \\
+Run 10 & Concise-facts tuning, $t=100$ & 49.71 & \textbf{42.09} & 41.96 & \textbf{39.00} & 4.032 \\
+Run 12 & \textbf{RRF + HyDE} (MQ off), $t=100$ & \textbf{50.81} & 37.48 & 45.97 & 34.27 & \textbf{4.420} \\
+Run 16 & HyDE + aggressive clean postprocess & 48.86 & 41.46 & 40.31 & 38.99 & 3.987 \\
+Run 18 & RRF + HyDE + MQ3 & 49.89 & 37.99 & 44.64 & 34.92 & 4.280 \\
+Run 19 & Precision-tuned (old data) & 49.24 & 37.33 & 44.03 & 34.57 & 4.242 \\
+\bottomrule
+\end{tabular}
+\caption{Selected public leaderboard results from tracked experiments. Values are percentages except LLM Judge (1--5).}
+\label{tab:main_results}
+\end{table*}
+
+\paragraph{Best overall development run (selected default).}
+Run 12 (\texttt{rrf\_hyde\_t100}) gives the highest total score (50.81) and best LLM-judge value (4.420), so we keep it as the default final configuration.
+
+\paragraph{Best overlap-oriented run (not selected as default).}
+Run 10 gives the best F1/ROUGE, but with lower Recall and LLM-judge than Run 12. This confirms a precision-vs-completeness trade-off.
+
+\section{Analysis}
+\subsection{Why some ``improvements'' failed}
+Several changes that looked intuitively good did not improve total performance:
+\begin{itemize}
+    \item \textbf{Over-compression}: better token overlap but lower judged adequacy.
+    \item \textbf{Too much post-cleaning}: less meta-text, but occasional entity truncation (e.g., partial names).
+    \item \textbf{MQ overuse}: more retrieval diversity, but little benefit beyond HyDE and reranking.
+\end{itemize}
+To make this concrete, we compare output style statistics across runs (Table~\ref{tab:style_diag}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l c c c}
+\toprule
+\textbf{Run} & \textbf{Avg words} & \textbf{Avg sents} & \textbf{Meta-text count} \\
+\midrule
+Run 7  & 41.9 & 2.55 & 24 \\
+Run 10 & 19.3 & 1.26 & 11 \\
+Run 12 & 29.5 & 1.94 & 21 \\
+Run 16 & 19.0 & 1.17 & 5 \\
+Run 18 & 26.5 & 1.71 & 17 \\
+\bottomrule
+\end{tabular}
+\caption{Answer-style diagnostics over 157 leaderboard queries. ``Meta-text'' counts answers containing phrases like ``according to context'' or hedging language.}
+\label{tab:style_diag}
+\end{table}
+
+The main pattern is stable: shorter answers increase overlap metrics up to a point, then hurt Recall/LLM judge when important details are removed.
+
+\subsection{Fine-grained analysis by question type}
+The 157 leaderboard questions are heavily factoid-oriented. Using simple prefix-based bins, we observe:
+\begin{itemize}
+    \item \texttt{what}: 84 questions
+    \item \texttt{which}: 59 questions
+    \item \texttt{how}: 5 questions
+    \item \texttt{when}: 4 questions
+    \item \texttt{where}: 3 questions
+    \item \texttt{who}: 2 questions
+\end{itemize}
+
+This distribution explains why concise canonical-answer behavior has an outsized effect on leaderboard metrics. Table~\ref{tab:typewise_template} is a template for mandatory type-wise quantitative comparison; you should fill it with your computed per-type metrics for at least two systems.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l c c c c}
+\toprule
+\textbf{Question type} & \textbf{Count} & \textbf{System A F1} & \textbf{System B F1} & \textbf{Delta} \\
+\midrule
+What & 84 & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} \\
+Which & 59 & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} \\
+When & 4 & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} \\
+Where & 3 & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} \\
+Who & 2 & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} \\
+How & 5 & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} \\
+\bottomrule
+\end{tabular}
+\caption{Template for fine-grained performance analysis by question type (assignment rubric item).}
+\label{tab:typewise_template}
+\end{table}
+
+\subsection{What consistently helped}
+HyDE consistently improved total score compared with non-HyDE baselines in our tracked runs. By contrast, multi-query (MQ3) gave only marginal gains and did not beat the best HyDE-only setting. In this domain, dense retrieval appears to benefit more from a high-quality single hypothetical passage than from multiple conservative rewrites.
+
+\subsection{Qualitative examples}
+Table~\ref{tab:qual_examples} shows representative output differences.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{p{0.23\linewidth} p{0.35\linewidth} p{0.35\linewidth}}
+\toprule
+\textbf{Question} & \textbf{Run 12 (best total)} & \textbf{Run 16 (precision-oriented)} \\
+\midrule
+When did the Carnegie Technical Schools become the Carnegie Institute of Technology? &
+``In 1912, the Carnegie Technical Schools changed its name ... and began offering bachelor's degrees...'' &
+``In 1912, Carnegie Technical Schools changed its name to the Carnegie Institute of Technology...'' \\
+\addlinespace
+Who were the founders of the Mellon Institute of Industrial Research? &
+``... Andrew Mellon and Richard B. Mellon.'' &
+``... Andrew Mellon and Richard B.'' \\
+\addlinespace
+Which notable computer scientist ... co-created Alice? &
+``Randy Pausch ...'' with supporting descriptor &
+``Randy Pausch co-created ...'' (shorter but less complete) \\
+\bottomrule
+\end{tabular}
+\caption{Examples illustrating compression effects: shorter answers can improve overlap but sometimes introduce truncation or lose useful detail.}
+\label{tab:qual_examples}
+\end{table*}
+
+\subsection{Required ablations from assignment rubric}
+The assignment asks for explicit comparisons of closed-book vs RAG and sparse vs dense vs hybrid. Table~\ref{tab:required_ablation} is an Overleaf-ready template for your final numbers.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{System} & \textbf{Total} & \textbf{F1} & \textbf{Recall} & \textbf{ROUGE} & \textbf{LLM} \\
+\midrule
+Closed-book (Qwen2.5-14B) & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} \\
+Sparse only (BM25) & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} \\
+Dense only (FAISS+BGE) & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} & \textcolor{red}{[fill]} \\
+Hybrid (RRF) & 50.81 & 37.48 & 45.97 & 34.27 & 4.420 \\
+\bottomrule
+\end{tabular}
+\caption{Template for mandatory retrieval-mode comparison in the final report. Fill the missing rows with your measured leaderboard numbers.}
+\label{tab:required_ablation}
+\end{table}
+
+\paragraph{Interpretation plan for final write-up.}
+Based on current development runs, expected behavior is:
+\begin{itemize}
+    \item closed-book to underperform RAG on domain-specific factuality,
+    \item sparse to excel on lexical matches (names, exact entities),
+    \item dense to help semantic paraphrases,
+    \item hybrid to be most robust overall.
+\end{itemize}
+
+\section{Limitations}
+Our current development has several limitations:
+\begin{itemize}
+    \item \textbf{Leaderboard budget}: only 10 submissions constrain exhaustive ablations.
+    \item \textbf{Temporal drift}: event pages change frequently; stale snapshots can hurt date-sensitive questions.
+    \item \textbf{Over-normalization risk}: postprocessing can accidentally drop critical answer tokens.
+    \item \textbf{Domain imbalance}: broad crawling may overrepresent some sites (e.g., CMU subdomains) relative to niche event pages.
+\end{itemize}
+
+\section{Future Work}
+We plan to:
+\begin{itemize}
+    \item add stronger content-level deduplication (hashing near-duplicates across URLs),
+    \item improve event-date handling with recency-aware ranking features,
+    \item run robust closed-book and retrieval-mode ablations for final private-test readiness,
+    \item tune answer formatting with question-type-conditioned decoding rather than fixed postprocessing rules.
+\end{itemize}
+
+\section{Conclusion}
+This project was primarily an exercise in \textbf{iterative system improvement}. The strongest result did not come from adding many components, but from selecting a small set of consistently useful changes: stronger dense retrieval, robust reranking, and HyDE expansion, while avoiding over-aggressive output compression. The final default (\texttt{rrf\_hyde\_t100}) is chosen because it gives the best global leaderboard behavior, not just best overlap metrics on one axis.
+
+\section*{Ethical Considerations}
+This system answers factual questions from public web content. Potential risks include stale or incorrect information, source bias, and misinterpretation of ambiguous questions. We mitigate these risks by using retrieval-grounded generation, source-focused crawling, and conservative answer formatting. All models and data sources are open and compliant with the assignment policy.
+
+\bibliography{report_draft_refs}
+\bibliographystyle{acl_natbib}
+
+\end{document}

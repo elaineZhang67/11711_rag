@@ -19,6 +19,7 @@
 - Run 16: `48.86%` (`F1 41.46`, `Recall 40.31`, `ROUGE 38.99`, `LLM 3.987`)
 - Run 17: `49.46%` (`F1 38.10`, `Recall 44.73`, `ROUGE 34.90`, `LLM 4.204`)
 - Run 18: `49.89%` (`F1 37.99`, `Recall 44.64`, `ROUGE 34.92`, `LLM 4.280`)
+- Run 19: `49.24%` (`F1 37.33`, `Recall 44.03`, `ROUGE 34.57`, `LLM 4.242`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -247,6 +248,13 @@
 - improved vs Run 17 on total score and LLM judge
 - still below best total score (Run 12: `50.81%`)
 - next direction selected: keep HyDE on, test without MQ
+
+## Run 19 (aaa1 attempt #3)
+- Score: `49.24%` (`F1 37.33`, `Recall 44.03`, `ROUGE 34.57`, `LLM 4.242`)
+- Leaderboard submission id: `aaa1` (attempt `#3/10`)
+- Notes:
+- this run is below Run 12 baseline and below Run 18
+- decision after this run: keep/stick to Run 12 config (`rrf_hyde_t100`)
 
 
 ## Model Size Summary (What Scaled Up)
