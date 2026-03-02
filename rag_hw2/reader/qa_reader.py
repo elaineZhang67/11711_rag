@@ -284,6 +284,13 @@ def _keep_first_sentence_if_compact(text, question) :
     return text
 
 
+def _truncate_to_max_sentences(text, max_sentences= 3) :
+    sents = _simple_sentence_split(text)
+    if len(sents) <= max_sentences:
+        return text
+    return " ".join(sents[:max_sentences]).strip()
+
+
 def postprocess_answer(text, question= None) :
     text = text.strip()
     for prefix in [
@@ -309,6 +316,13 @@ def postprocess_answer(text, question= None) :
     text = _remove_trailing_explanation(text)
     text = _normalize_date_or_year_for_question(text, question)
     text = _keep_first_sentence_if_compact(text, question)
+    if _looks_explanatory_question(question):
+        max_sents = 3
+    elif _looks_factoid_question(question):
+        max_sents = 2
+    else:
+        max_sents = 1
+    text = _truncate_to_max_sentences(text, max_sentences=max_sents)
     # Normalize some common non-answer fillers.
     low = text.lower()
     if low in {"unknown.", "unknown", "not found", "not provided", "insufficient information"}:
