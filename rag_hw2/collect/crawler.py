@@ -30,6 +30,7 @@ class CrawlConfig:
         url_deny_substrings= None,
         url_deny_regexes= None,
         extra_headers= None,
+        skip_urls= None,
     ) :
         self.seed_urls = list(seed_urls)
         self.out_dir = out_dir
@@ -46,6 +47,7 @@ class CrawlConfig:
         self.url_deny_substrings = list(url_deny_substrings) if url_deny_substrings else None
         self.url_deny_regexes = list(url_deny_regexes) if url_deny_regexes else None
         self.extra_headers = dict(extra_headers) if extra_headers else None
+        self.skip_urls = list(skip_urls) if skip_urls else None
 
 
 def _ensure_dir(path) :
@@ -137,13 +139,23 @@ def crawl(config, verbose= False) :
     if config.extra_headers:
         session.headers.update(config.extra_headers)
 
+    visited = set()
+    if config.skip_urls:
+        for u in config.skip_urls:
+            cu = _canonicalize_url(u, config.allow_query)
+            if cu.startswith(("http://", "https://")):
+                visited.add(cu)
+        if verbose:
+            print(f"[crawl] preload skip_urls={len(visited)}")
+
     queue = deque()
     for u in config.seed_urls:
         cu = _canonicalize_url(u, config.allow_query)
+        if cu in visited:
+            continue
         if _is_allowed(cu, config.allowed_domains) and _passes_url_filters(cu, config):
             queue.append((cu, 0))
 
-    visited = set()
     manifest = []
 
     while queue and len(manifest) < config.max_pages:

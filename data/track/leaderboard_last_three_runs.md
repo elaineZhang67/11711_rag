@@ -18,6 +18,7 @@
 - Run 15: `50.77%` (`F1 37.48`, `Recall 45.97`, `ROUGE 34.27`, `LLM 4.414`)
 - Run 16: `48.86%` (`F1 41.46`, `Recall 40.31`, `ROUGE 38.99`, `LLM 3.987`)
 - Run 17: `49.46%` (`F1 38.10`, `Recall 44.73`, `ROUGE 34.90`, `LLM 4.204`)
+- Run 18: `49.89%` (`F1 37.99`, `Recall 44.64`, `ROUGE 34.92`, `LLM 4.280`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -229,8 +230,23 @@
 - Recall/LLM judge dropped, causing lower total score
 - practical conclusion: this setting is precision/overlap-oriented but less robust on recall-oriented judging
 
-## Run 17 (Run)
+## Run 17 (query routing and confidence fallback)
 - Score: `49.46%` (`F1 38.10`, `Recall 44.73`, `ROUGE 34.90`, `LLM 4.204`)
+
+## Run 18 (RRF + HyDE + MQ3)
+- Score: `49.89%` (`F1 37.99`, `Recall 44.64`, `ROUGE 34.92`, `LLM 4.280`)
+- Run command:
+- `python scripts/answer_queries.py --run-name rrf_hyde_mq3 --queries leaderboard_queries.json --chunks data/processed/chunks_sentence.jsonl --sparse-dir data/indices/sparse_bm25_sentence --dense-dir data/indices/dense_faiss_bge_large_v15 --mode hybrid --fusion-method rrf --top-k 3 --fetch-k-each 120 --hyde --hyde-max-new-tokens 64 --hyde-weight 1.0 --multi-query --multi-query-max 3 --reranker-model BAAI/bge-reranker-large --rerank-fetch-k 50 --reranker-max-length 512 --reranker-device cuda:0 --reader-backend transformers --reader-model Qwen/Qwen2.5-14B-Instruct --reader-task text-generation --device 0 --max-new-tokens 100 --andrewid Venonat2 --verbose`
+- Key setting summary:
+- hybrid retrieval with `rrf` fusion
+- HyDE enabled (`hyde_weight=1.0`)
+- multi-query enabled (`multi_query_max=3`)
+- reranker `BAAI/bge-reranker-large` with `rerank_fetch_k=50`
+- reader `Qwen/Qwen2.5-14B-Instruct`, `max_new_tokens=100`
+- Result pattern:
+- improved vs Run 17 on total score and LLM judge
+- still below best total score (Run 12: `50.81%`)
+- next direction selected: keep HyDE on, test without MQ
 
 
 ## Model Size Summary (What Scaled Up)
