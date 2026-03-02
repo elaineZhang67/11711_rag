@@ -20,10 +20,10 @@ pip install -r requirements.txt
 
 ## Step 1: Crawl (optional, for new sources)
 
-Use the provided config example:
+Use the recommended-sources crawler:
 
 ```bash
-python3 scripts/crawl_web.py --config configs/crawl_example.yaml --verbose
+python3 scripts/scrape_recommended_sources.py --out-root data/raw --verbose
 ```
 
 Or run the full build pipeline with crawling:

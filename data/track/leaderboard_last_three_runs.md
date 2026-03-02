@@ -409,6 +409,17 @@
 - improves over stage-2 sparse-only reranker baseline (Run 31) on total score/F1/ROUGE
 - remains slightly below stage-2 hybrid+HyDE best total score (Run 30)
 
+## Run 33 (Stage-2 Model, Dense-only + Reranker + HyDE)
+- Score: `54.50%` (`F1 41.85`, `Recall 50.32`, `ROUGE 37.31`, `LLM 4.541`)
+- Leaderboard submission id: `aaa1`
+- Setup:
+- stage-2 fine-tuned reader
+- dense-only retrieval with reranker enabled
+- HyDE enabled
+- interpretation:
+- slightly below Run 32 on total/F1/ROUGE with nearly identical recall and identical LLM judge
+- in this dense-only setup, HyDE did not improve final metrics
+
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
