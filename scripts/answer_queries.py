@@ -78,6 +78,8 @@ def parse_args() :
     p.add_argument("--sparse-weight", type=float, default=0.5)
     p.add_argument("--multi-query", action="store_true", help="Enable simple multi-query expansion before reranking.")
     p.add_argument("--multi-query-max", type=int, default=2, help="Number of additional rewritten queries.")
+    p.add_argument("--retrieval-augment", action="store_true", help="Enable retrieval query augmentation (entity/keyword focused rewrites).")
+    p.add_argument("--retrieval-augment-max", type=int, default=2, help="Number of retrieval-augmentation queries.")
     p.add_argument("--hyde", action="store_true", help="Enable HyDE query expansion for dense retrieval.")
     p.add_argument("--hyde-max-new-tokens", type=int, default=64, help="Max new tokens for HyDE hypothetical passage.")
     p.add_argument("--hyde-weight", type=float, default=1.0, help="Weight applied to HyDE dense retrieval scores (0-1).")
@@ -178,6 +180,8 @@ def main() :
             hyde=args.hyde,
             hyde_max_new_tokens=args.hyde_max_new_tokens,
             hyde_weight=args.hyde_weight,
+            retrieval_augment=args.retrieval_augment,
+            retrieval_augment_max=args.retrieval_augment_max,
             rerank_fetch_k=args.rerank_fetch_k,
             diversify_docs=args.diversify_docs,
             doc_cap=args.doc_cap,

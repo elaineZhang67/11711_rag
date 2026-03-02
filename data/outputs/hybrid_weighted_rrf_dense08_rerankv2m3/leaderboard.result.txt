@@ -1,0 +1,10 @@
+Leaderboard Result
+------------------
+Attempt:
+Total score: 0.5289 (52.89%)
+F1:          0.4012 (40.12%)
+Recall:      0.4882 (48.82%)
+ROUGE(avg):  0.3632 (36.32%)
+LLM judge:    4.452 (1-5)
+
+Notes:

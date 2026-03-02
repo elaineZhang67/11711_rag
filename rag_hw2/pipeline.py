@@ -76,6 +76,8 @@ class RetrievalConfig:
         hyde= False,
         hyde_max_new_tokens= 64,
         hyde_weight= 1.0,
+        retrieval_augment= False,
+        retrieval_augment_max= 2,
         rerank_fetch_k= None,
         diversify_docs= False,
         doc_cap= 2,
@@ -98,6 +100,8 @@ class RetrievalConfig:
         self.hyde = bool(hyde)
         self.hyde_max_new_tokens = int(hyde_max_new_tokens)
         self.hyde_weight = float(hyde_weight)
+        self.retrieval_augment = bool(retrieval_augment)
+        self.retrieval_augment_max = int(retrieval_augment_max)
         self.rerank_fetch_k = rerank_fetch_k
         self.diversify_docs = bool(diversify_docs)
         self.doc_cap = int(doc_cap)
@@ -122,6 +126,8 @@ class RetrievalConfig:
             "hyde": self.hyde,
             "hyde_max_new_tokens": self.hyde_max_new_tokens,
             "hyde_weight": self.hyde_weight,
+            "retrieval_augment": self.retrieval_augment,
+            "retrieval_augment_max": self.retrieval_augment_max,
             "rerank_fetch_k": self.rerank_fetch_k,
             "diversify_docs": self.diversify_docs,
             "doc_cap": self.doc_cap,
@@ -194,6 +200,69 @@ def _build_multi_queries(question, max_n= 2) :
         out.append(c)
         if len(out) >= max(0, int(max_n)):
             break
+    return out
+
+
+def _build_retrieval_aug_queries(question, max_n= 2) :
+    q = _normalize_ws(question)
+    if not q:
+        return []
+
+    cands = []
+
+    # Query form without leading wh-prefix.
+    stem = re.sub(
+        r"^(what|when|where|who|which|how many|how much)\s+(is|was|are|were|did|does|do)?\s*",
+        "",
+        q,
+        flags=re.IGNORECASE,
+    )
+    stem = stem.strip(" ?")
+    if stem:
+        cands.append(stem)
+
+    # Entity-focused phrase extraction (capitalized phrases).
+    for m in re.finditer(r"\b(?:[A-Z][A-Za-z0-9&.\-']*(?:\s+[A-Z][A-Za-z0-9&.\-']*){0,6})\b", q):
+        phrase = m.group(0).strip(" ?")
+        if not phrase:
+            continue
+        if phrase.lower() in {"what", "when", "where", "who", "which", "how"}:
+            continue
+        cands.append(phrase)
+
+    # Keyword-focused query for sparse retrieval.
+    terms = _tokenize_query_terms(q)
+    if len(terms) >= 2:
+        cands.append(" ".join(terms[:10]))
+
+    out = []
+    seen = {q.lower()}
+    for c in cands:
+        key = c.lower().strip()
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        out.append(c)
+        if len(out) >= max(0, int(max_n)):
+            break
+    return out
+
+
+def _annotate_variant_results(results, variant_name) :
+    out = []
+    for r in results:
+        parts = dict(r.component_scores) if r.component_scores else {}
+        parts["query_variant"] = variant_name
+        out.append(
+            RetrievedChunk(
+                chunk_id=r.chunk_id,
+                score=float(r.score),
+                rank=r.rank,
+                source=r.source,
+                chunk=r.chunk,
+                component_scores=parts,
+            )
+        )
     return out
 
 
@@ -469,28 +538,40 @@ class RAGPipeline:
             target_top_k = max(int(self.cfg.top_k), int(self.cfg.rerank_fetch_k))
 
         base_results = self._retrieve_single(question, mode, target_top_k)
+        base_results = _annotate_variant_results(base_results, "original_query")
         result_lists = [base_results]
 
         hyde_results, _ = self._retrieve_hyde_dense(question, target_top_k)
         if hyde_results:
             result_lists.append(hyde_results)
 
-        if not self.cfg.multi_query:
-            if len(result_lists) == 1:
-                return base_results
-            merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)
-            preserve_n = min(3, max(1, int(self.cfg.top_k)))
-            return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)
+        extra_queries = []
+        if self.cfg.retrieval_augment:
+            extra_queries.extend(
+                _build_retrieval_aug_queries(question, max_n=self.cfg.retrieval_augment_max)
+            )
+        if self.cfg.multi_query:
+            extra_queries.extend(_build_multi_queries(question, max_n=self.cfg.multi_query_max))
 
-        alt_queries = _build_multi_queries(question, max_n=self.cfg.multi_query_max)
-        if not alt_queries:
-            if len(result_lists) == 1:
-                return base_results
-            merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)
-            preserve_n = min(3, max(1, int(self.cfg.top_k)))
-            return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)
-        for q in alt_queries:
-            result_lists.append(self._retrieve_single(q, mode, target_top_k))
+        deduped_queries = []
+        seen_queries = set()
+        for q in extra_queries:
+            k = _normalize_ws(q).lower()
+            if not k or k in seen_queries:
+                continue
+            seen_queries.add(k)
+            deduped_queries.append(q)
+
+        for q in deduped_queries:
+            tagged = _annotate_variant_results(
+                self._retrieve_single(q, mode, target_top_k),
+                f"augmented_query:{q}",
+            )
+            result_lists.append(tagged)
+
+        if len(result_lists) == 1:
+            return base_results
+
         merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)
         preserve_n = min(3, max(1, int(self.cfg.top_k)))
         return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)

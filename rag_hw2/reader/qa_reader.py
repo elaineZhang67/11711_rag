@@ -22,6 +22,15 @@ def _normalize_whitespace(text) :
     return _WS_RE.sub(" ", text).strip()
 
 
+def _xml_escape(text) :
+    t = str(text or "")
+    t = t.replace("&", "&amp;")
+    t = t.replace("<", "&lt;")
+    t = t.replace(">", "&gt;")
+    t = t.replace('"', "&quot;")
+    return t
+
+
 def _simple_sentence_split(text) :
     text = text.strip()
     if not text:
@@ -34,25 +43,33 @@ def _build_context_block(contexts, max_context_chars= 5000) :
     sections = []
     used = 0
     for i, c in enumerate(contexts, start=1):
-        header_parts = [f"[{i}]"]
-        if c.title:
-            header_parts.append(c.title)
-        if c.source_url:
-            header_parts.append(c.source_url)
         snippet = c.text.strip()
         room = max_context_chars - used
         if room <= 0:
             break
         snippet = snippet[:room]
         used += len(snippet)
-        sections.append(f"{' | '.join(header_parts)}\n{snippet}")
-    context_block = "\n\n".join(sections) if sections else "(no retrieved context provided)"
+        title = _xml_escape(c.title or "")
+        source = _xml_escape(c.source_url or c.source_path or "")
+        body = _xml_escape(snippet)
+        sections.append(
+            f"<DOC id=\"{i}\" title=\"{title}\" source=\"{source}\">\n"
+            f"{body}\n"
+            f"</DOC>"
+        )
+    context_block = "\n\n".join(sections) if sections else "<DOCS_EMPTY>true</DOCS_EMPTY>"
     return context_block
 
 
 def build_answer_system_prompt() :
     return (
+        "<ROLE>\n"
         "You are a professional QA assistant for factual questions about Pittsburgh and Carnegie Mellon University.\n"
+        "</ROLE>\n"
+        "<OBJECTIVE>\n"
+        "Return the most accurate final answer with minimal wording.\n"
+        "</OBJECTIVE>\n"
+        "<RESPONSE_POLICY>\n"
         "Be accurate and direct.\n"
         "Use provided context first; if context is weak, use best available knowledge.\n"
         "For factoid questions, prefer one canonical answer phrase or one complete sentence stating your answer.\n"
@@ -61,43 +78,60 @@ def build_answer_system_prompt() :
         "For date/year questions, return the exact date or year from the context when available.\n"
         "Avoid meta-text such as 'according to the context' or uncertainty hedging.\n"
         "Do your best to be concise, but include enough detail to answer correctly.\n\n"
-        "Limit your final answer to at most 3 sentences.\n\n"
+        "Limit your final answer to at most 3 sentences.\n"
+        "</RESPONSE_POLICY>\n"
+        "<OUTPUT_CONSTRAINTS>\n"
+        "- Maximum length: 3 sentences.\n"
+        "- Output only the answer text.\n"
+        "</OUTPUT_CONSTRAINTS>"
     )
 
 
 def build_answer_user_prompt(question, contexts, max_context_chars= 5000) :
     context_block = _build_context_block(contexts, max_context_chars=max_context_chars)
     return (
-        f"Question: {question}\n\n"
-        f"Context:\n{context_block}\n\n"
-        "Answer:"
+        "<INPUT>\n"
+        f"<QUESTION>{_xml_escape(question)}</QUESTION>\n"
+        "<CONTEXT>\n"
+        f"{context_block}\n"
+        "</CONTEXT>\n"
+        "</INPUT>\n"
+        "<TASK>\n"
+        "Provide the best final answer.\n"
+        "</TASK>\n"
+        "<ANSWER>"
     )
 
 
 def build_rag_prompt(question, contexts, max_context_chars= 5000) :
-    context_block = _build_context_block(contexts, max_context_chars=max_context_chars)
     return (
         f"{build_answer_system_prompt()}\n\n"
-        f"Question: {question}\n\n"
-        f"Context:\n{context_block}\n\n"
-        "Answer:"
+        f"{build_answer_user_prompt(question, contexts, max_context_chars=max_context_chars)}"
     )
 
 
 def build_hyde_system_prompt() :
     return (
+        "<ROLE>\n"
         "You write short factual passages for retrieval.\n"
+        "</ROLE>\n"
+        "<POLICY>\n"
         "Be concrete and specific with entities, dates, and places.\n"
-        "Do not mention sources, caveats, or uncertainty."
+        "Do not mention sources, caveats, or uncertainty.\n"
+        "</POLICY>"
     )
 
 
 def build_hyde_user_prompt(question) :
     return (
-        "Write a short factual passage that likely answers the question.\n"
-        "Use 1-2 concise sentences.\n\n"
-        f"Question: {question}\n"
-        "Passage:"
+        "<INPUT>\n"
+        f"<QUESTION>{_xml_escape(question)}</QUESTION>\n"
+        "</INPUT>\n"
+        "<TASK>\n"
+        "Write a short factual passage likely to answer the question.\n"
+        "Use 1-2 concise sentences.\n"
+        "</TASK>\n"
+        "<PASSAGE>"
     )
 
 

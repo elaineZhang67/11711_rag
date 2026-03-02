@@ -27,6 +27,7 @@
 - Run 24: `52.20%` (`F1 40.73`, `Recall 49.38`, `ROUGE 37.34`, `LLM 4.255`)
 - Run 25: `52.44%` (`F1 40.73`, `Recall 49.38`, `ROUGE 37.34`, `LLM 4.293`)
 - Run 26: `51.89%` (`F1 39.73`, `Recall 48.95`, `ROUGE 36.55`, `LLM 4.293`)
+- Run 27: `52.89%` (`F1 40.12`, `Recall 48.82`, `ROUGE 36.32`, `LLM 4.452`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -343,6 +344,18 @@
 - with HyDE (`--hyde --hyde-max-new-tokens 64`)
 - interpretation:
 - lower than dense-only with reranker (Run 25), indicating HyDE did not help in this dense-only setting
+
+## Run 27 (Hybrid weighted\_rrf, dense-heavy, stronger reranker)
+- Score: `52.89%` (`F1 40.12`, `Recall 48.82`, `ROUGE 36.32`, `LLM 4.452`)
+- Leaderboard submission id: `aaa1`
+- Mode:
+- `--mode hybrid`
+- `--fusion-method weighted_rrf --dense-weight 0.8 --sparse-weight 0.2`
+- reranker upgraded to `BAAI/bge-reranker-v2-m3` with larger rerank candidate pool
+- interpretation:
+- new best overall score in this report
+- strongest LLM judge so far
+- confirms dense-heavy hybrid + stronger reranker is currently the best-performing direction
 
 
 ## Model Size Summary (What Scaled Up)
