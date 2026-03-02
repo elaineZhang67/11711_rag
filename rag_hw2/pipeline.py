@@ -79,26 +79,6 @@ class RetrievalConfig:
         retrieval_augment= False,
         retrieval_augment_max= 2,
         rerank_fetch_k= None,
-        query_routing= False,
-        factoid_top_k= None,
-        factoid_fetch_k_each= None,
-        factoid_rerank_fetch_k= None,
-        factoid_context_mode= None,
-        explanatory_top_k= None,
-        explanatory_fetch_k_each= None,
-        explanatory_rerank_fetch_k= None,
-        explanatory_context_mode= None,
-        temporal_top_k= None,
-        temporal_fetch_k_each= None,
-        temporal_rerank_fetch_k= None,
-        temporal_context_mode= None,
-        confidence_fallback= False,
-        fallback_min_top1= -1.0,
-        fallback_min_gap= 0.05,
-        fallback_top_k= None,
-        fallback_fetch_k_each= None,
-        fallback_rerank_fetch_k= None,
-        fallback_context_mode= None,
         diversify_docs= False,
         doc_cap= 2,
         context_mode= "child",
@@ -123,26 +103,6 @@ class RetrievalConfig:
         self.retrieval_augment = bool(retrieval_augment)
         self.retrieval_augment_max = int(retrieval_augment_max)
         self.rerank_fetch_k = rerank_fetch_k
-        self.query_routing = bool(query_routing)
-        self.factoid_top_k = factoid_top_k
-        self.factoid_fetch_k_each = factoid_fetch_k_each
-        self.factoid_rerank_fetch_k = factoid_rerank_fetch_k
-        self.factoid_context_mode = factoid_context_mode
-        self.explanatory_top_k = explanatory_top_k
-        self.explanatory_fetch_k_each = explanatory_fetch_k_each
-        self.explanatory_rerank_fetch_k = explanatory_rerank_fetch_k
-        self.explanatory_context_mode = explanatory_context_mode
-        self.temporal_top_k = temporal_top_k
-        self.temporal_fetch_k_each = temporal_fetch_k_each
-        self.temporal_rerank_fetch_k = temporal_rerank_fetch_k
-        self.temporal_context_mode = temporal_context_mode
-        self.confidence_fallback = bool(confidence_fallback)
-        self.fallback_min_top1 = float(fallback_min_top1)
-        self.fallback_min_gap = float(fallback_min_gap)
-        self.fallback_top_k = fallback_top_k
-        self.fallback_fetch_k_each = fallback_fetch_k_each
-        self.fallback_rerank_fetch_k = fallback_rerank_fetch_k
-        self.fallback_context_mode = fallback_context_mode
         self.diversify_docs = bool(diversify_docs)
         self.doc_cap = int(doc_cap)
         self.context_mode = context_mode  # child | parent_merge
@@ -169,26 +129,6 @@ class RetrievalConfig:
             "retrieval_augment": self.retrieval_augment,
             "retrieval_augment_max": self.retrieval_augment_max,
             "rerank_fetch_k": self.rerank_fetch_k,
-            "query_routing": self.query_routing,
-            "factoid_top_k": self.factoid_top_k,
-            "factoid_fetch_k_each": self.factoid_fetch_k_each,
-            "factoid_rerank_fetch_k": self.factoid_rerank_fetch_k,
-            "factoid_context_mode": self.factoid_context_mode,
-            "explanatory_top_k": self.explanatory_top_k,
-            "explanatory_fetch_k_each": self.explanatory_fetch_k_each,
-            "explanatory_rerank_fetch_k": self.explanatory_rerank_fetch_k,
-            "explanatory_context_mode": self.explanatory_context_mode,
-            "temporal_top_k": self.temporal_top_k,
-            "temporal_fetch_k_each": self.temporal_fetch_k_each,
-            "temporal_rerank_fetch_k": self.temporal_rerank_fetch_k,
-            "temporal_context_mode": self.temporal_context_mode,
-            "confidence_fallback": self.confidence_fallback,
-            "fallback_min_top1": self.fallback_min_top1,
-            "fallback_min_gap": self.fallback_min_gap,
-            "fallback_top_k": self.fallback_top_k,
-            "fallback_fetch_k_each": self.fallback_fetch_k_each,
-            "fallback_rerank_fetch_k": self.fallback_rerank_fetch_k,
-            "fallback_context_mode": self.fallback_context_mode,
             "diversify_docs": self.diversify_docs,
             "doc_cap": self.doc_cap,
             "context_mode": self.context_mode,
@@ -206,57 +146,6 @@ def _sanitize_answer(answer) :
 
 def _normalize_ws(text) :
     return _WS_RE.sub(" ", (text or "")).strip()
-
-
-def _looks_explanatory_question(question) :
-    q = _normalize_ws(question).lower()
-    if not q:
-        return False
-    if q.startswith("how many ") or q.startswith("how much "):
-        return False
-    if q.startswith("why ") or q.startswith("how "):
-        return True
-    markers = [
-        "what happened",
-        "describe",
-        "explain",
-        "significance",
-        "importance",
-        "impact",
-        "role",
-        "history of",
-        "how did",
-        "how does",
-    ]
-    return any(m in q for m in markers)
-
-
-def _looks_temporal_question(question) :
-    q = _normalize_ws(question).lower()
-    if not q:
-        return False
-    temporal_markers = [
-        "when ",
-        "what year",
-        "what date",
-        "what month",
-        "what day",
-        "schedule",
-        "deadline",
-        "due",
-        "quarter",
-        "typically held",
-        "usually occur",
-    ]
-    return any(m in q for m in temporal_markers)
-
-
-def _classify_question_type(question) :
-    if _looks_temporal_question(question):
-        return "temporal"
-    if _looks_explanatory_question(question):
-        return "explanatory"
-    return "factoid"
 
 
 def _tokenize_query_terms(question) :
@@ -586,84 +475,7 @@ class RAGPipeline:
             for doc_id in self._doc_chunks:
                 self._doc_chunks[doc_id].sort(key=lambda x: int(x.chunk_index) if x.chunk_index is not None else 0)
 
-    def _base_runtime_params(self) :
-        return {
-            "mode": self.cfg.mode,
-            "top_k": int(self.cfg.top_k),
-            "fetch_k_each": int(self.cfg.fetch_k_each),
-            "fusion_method": self.cfg.fusion_method,
-            "fusion_alpha": float(self.cfg.fusion_alpha),
-            "rrf_k": int(self.cfg.rrf_k),
-            "dense_weight": float(self.cfg.dense_weight),
-            "sparse_weight": float(self.cfg.sparse_weight),
-            "multi_query": bool(self.cfg.multi_query),
-            "multi_query_max": int(self.cfg.multi_query_max),
-            "hyde": bool(self.cfg.hyde),
-            "hyde_max_new_tokens": int(self.cfg.hyde_max_new_tokens),
-            "hyde_weight": float(self.cfg.hyde_weight),
-            "retrieval_augment": bool(self.cfg.retrieval_augment),
-            "retrieval_augment_max": int(self.cfg.retrieval_augment_max),
-            "rerank_fetch_k": (None if self.cfg.rerank_fetch_k is None else int(self.cfg.rerank_fetch_k)),
-            "context_mode": self.cfg.context_mode,
-        }
-
-    def _apply_runtime_overrides(self, params, top_k= None, fetch_k_each= None, rerank_fetch_k= None, context_mode= None) :
-        if top_k is not None:
-            params["top_k"] = int(top_k)
-        if fetch_k_each is not None:
-            params["fetch_k_each"] = int(fetch_k_each)
-        if rerank_fetch_k is not None:
-            params["rerank_fetch_k"] = int(rerank_fetch_k)
-        if context_mode in {"child", "parent_merge"}:
-            params["context_mode"] = context_mode
-        return params
-
-    def _build_params_for_question(self, question) :
-        params = self._base_runtime_params()
-        route_type = "default"
-        if not self.cfg.query_routing:
-            return params, route_type
-
-        route_type = _classify_question_type(question)
-        if route_type == "factoid":
-            self._apply_runtime_overrides(
-                params,
-                top_k=self.cfg.factoid_top_k,
-                fetch_k_each=self.cfg.factoid_fetch_k_each,
-                rerank_fetch_k=self.cfg.factoid_rerank_fetch_k,
-                context_mode=self.cfg.factoid_context_mode,
-            )
-        elif route_type == "explanatory":
-            self._apply_runtime_overrides(
-                params,
-                top_k=self.cfg.explanatory_top_k,
-                fetch_k_each=self.cfg.explanatory_fetch_k_each,
-                rerank_fetch_k=self.cfg.explanatory_rerank_fetch_k,
-                context_mode=self.cfg.explanatory_context_mode,
-            )
-        elif route_type == "temporal":
-            self._apply_runtime_overrides(
-                params,
-                top_k=self.cfg.temporal_top_k,
-                fetch_k_each=self.cfg.temporal_fetch_k_each,
-                rerank_fetch_k=self.cfg.temporal_rerank_fetch_k,
-                context_mode=self.cfg.temporal_context_mode,
-            )
-        return params, route_type
-
-    def _build_fallback_params(self, params) :
-        out = dict(params)
-        self._apply_runtime_overrides(
-            out,
-            top_k=self.cfg.fallback_top_k,
-            fetch_k_each=self.cfg.fallback_fetch_k_each,
-            rerank_fetch_k=self.cfg.fallback_rerank_fetch_k,
-            context_mode=self.cfg.fallback_context_mode,
-        )
-        return out
-
-    def _retrieve_single(self, question, params, target_top_k) :
-        mode = params["mode"]
+    def _retrieve_single(self, question, mode, target_top_k) :
         if mode == "sparse":
             return self.retriever.retrieve_sparse(question, top_k=target_top_k)
         if mode == "dense":
@@ -672,35 +484,30 @@ class RAGPipeline:
             return self.retriever.retrieve_hybrid(
                 question,
                 top_k=target_top_k,
-                fetch_k_each=int(params["fetch_k_each"]),
-                method=params["fusion_method"],
-                alpha=float(params["fusion_alpha"]),
-                rrf_k=int(params["rrf_k"]),
-                dense_weight=float(params["dense_weight"]),
-                sparse_weight=float(params["sparse_weight"]),
+                fetch_k_each=self.cfg.fetch_k_each,
+                method=self.cfg.fusion_method,
+                alpha=self.cfg.fusion_alpha,
+                rrf_k=self.cfg.rrf_k,
+                dense_weight=self.cfg.dense_weight,
+                sparse_weight=self.cfg.sparse_weight,
             )
         raise ValueError(f"Unknown retrieval mode: {mode}")
 
-    def _retrieve_hyde_dense(self, question, target_top_k, params) :
-        if not bool(params.get("hyde", False)):
+    def _retrieve_hyde_dense(self, question, target_top_k) :
+        if not self.cfg.hyde:
             return [], ""
-        if params.get("mode") not in {"dense", "hybrid"}:
+        if self.cfg.mode not in {"dense", "hybrid"}:
             return [], ""
         if not self.retriever or not getattr(self.retriever, "dense", None):
             return [], ""
         generate_hypothesis = getattr(self.reader, "generate_hypothesis", None)
         if not callable(generate_hypothesis):
             return [], ""
-        hypo = _normalize_ws(
-            generate_hypothesis(
-                question,
-                max_new_tokens=int(params.get("hyde_max_new_tokens", 64)),
-            )
-        )
+        hypo = _normalize_ws(generate_hypothesis(question, max_new_tokens=self.cfg.hyde_max_new_tokens))
         if not hypo:
             return [], ""
         hyde_results = self.retriever.retrieve_dense(hypo, top_k=target_top_k)
-        hyde_weight = min(1.0, max(0.0, float(params.get("hyde_weight", 1.0))))
+        hyde_weight = min(1.0, max(0.0, float(self.cfg.hyde_weight)))
         out = []
         for r in hyde_results:
             parts = dict(r.component_scores) if r.component_scores else {}
@@ -720,45 +527,44 @@ class RAGPipeline:
             )
         return out, hypo
 
-    def _retrieve_with_params(self, question, params) :
-        mode = params["mode"]
+    def retrieve(self, question) :
+        mode = self.cfg.mode
         if mode == "closedbook":
             return []
         if not self.retriever:
             raise ValueError("Retriever not available.")
-        target_top_k = int(params["top_k"])
-        rerank_fetch_k = params.get("rerank_fetch_k")
-        if self.reranker and rerank_fetch_k is not None:
-            target_top_k = max(target_top_k, int(rerank_fetch_k))
+        target_top_k = self.cfg.top_k
+        if self.reranker and self.cfg.rerank_fetch_k:
+            target_top_k = max(int(self.cfg.top_k), int(self.cfg.rerank_fetch_k))
 
-        base_results = self._retrieve_single(question, params, target_top_k)
+        base_results = self._retrieve_single(question, mode, target_top_k)
         base_results = _annotate_variant_results(base_results, "original_query")
         result_lists = [base_results]
 
-        hyde_results, _ = self._retrieve_hyde_dense(question, target_top_k, params)
+        hyde_results, _ = self._retrieve_hyde_dense(question, target_top_k)
         if hyde_results:
             result_lists.append(hyde_results)
 
         extra_queries = []
-        if bool(params.get("retrieval_augment", False)):
+        if self.cfg.retrieval_augment:
             extra_queries.extend(
-                _build_retrieval_aug_queries(question, max_n=int(params.get("retrieval_augment_max", 0)))
+                _build_retrieval_aug_queries(question, max_n=self.cfg.retrieval_augment_max)
             )
-        if bool(params.get("multi_query", False)):
-            extra_queries.extend(_build_multi_queries(question, max_n=int(params.get("multi_query_max", 0))))
+        if self.cfg.multi_query:
+            extra_queries.extend(_build_multi_queries(question, max_n=self.cfg.multi_query_max))
 
         deduped_queries = []
         seen_queries = set()
         for q in extra_queries:
-            key = _normalize_ws(q).lower()
-            if not key or key in seen_queries:
+            k = _normalize_ws(q).lower()
+            if not k or k in seen_queries:
                 continue
-            seen_queries.add(key)
+            seen_queries.add(k)
             deduped_queries.append(q)
 
         for q in deduped_queries:
             tagged = _annotate_variant_results(
-                self._retrieve_single(q, params, target_top_k),
+                self._retrieve_single(q, mode, target_top_k),
                 f"augmented_query:{q}",
             )
             result_lists.append(tagged)
@@ -767,45 +573,12 @@ class RAGPipeline:
             return base_results
 
         merged = _merge_multi_query_results(result_lists, keep_n=target_top_k)
-        preserve_n = min(3, max(1, int(params["top_k"])))
+        preserve_n = min(3, max(1, int(self.cfg.top_k)))
         return _preserve_primary_results(base_results, merged, keep_n=target_top_k, preserve_n=preserve_n)
 
-    def retrieve(self, question) :
-        params, _ = self._build_params_for_question(question)
-        return self._retrieve_with_params(question, params)
-
-    def _retrieve_and_rerank(self, question, params) :
-        retrieved = self._retrieve_with_params(question, params)
-        if retrieved:
-            retrieved = _apply_score_shaping(question, retrieved)
-        if self.reranker and retrieved:
-            retrieved = self.reranker.rerank(question, retrieved, top_k=int(params["top_k"]))
-        if retrieved and self.cfg.diversify_docs:
-            retrieved = _apply_doc_diversification(
-                retrieved,
-                top_k=int(params["top_k"]),
-                doc_cap=self.cfg.doc_cap,
-            )
-        return retrieved
-
-    def _should_trigger_fallback(self, retrieved) :
-        if not self.cfg.confidence_fallback:
-            return False
-        if not retrieved:
-            return True
-        top1 = float(retrieved[0].score)
-        if top1 < float(self.cfg.fallback_min_top1):
-            return True
-        if len(retrieved) >= 2:
-            gap = float(retrieved[0].score) - float(retrieved[1].score)
-            if gap < float(self.cfg.fallback_min_gap):
-                return True
-        return False
-
-    def _build_parent_contexts(self, retrieved, context_mode= None) :
+    def _build_parent_contexts(self, retrieved) :
         child_contexts = [r.chunk for r in retrieved if r.chunk is not None]
-        mode = context_mode or self.cfg.context_mode
-        if mode != "parent_merge":
+        if self.cfg.context_mode != "parent_merge":
             return child_contexts
         if not child_contexts or not self._doc_chunks:
             return child_contexts
@@ -894,19 +667,14 @@ class RAGPipeline:
         return contexts if contexts else child_contexts
 
     def answer_query(self, qid, question) :
-        params, route_type = self._build_params_for_question(question)
-        retrieved = self._retrieve_and_rerank(question, params)
-
-        fallback_used = False
-        if self._should_trigger_fallback(retrieved):
-            fallback_params = self._build_fallback_params(params)
-            fallback_retrieved = self._retrieve_and_rerank(question, fallback_params)
-            if fallback_retrieved:
-                retrieved = fallback_retrieved
-                params = fallback_params
-                fallback_used = True
-
-        contexts = self._build_parent_contexts(retrieved, context_mode=params.get("context_mode"))
+        retrieved = self.retrieve(question)
+        if retrieved:
+            retrieved = _apply_score_shaping(question, retrieved)
+        if self.reranker and retrieved:
+            retrieved = self.reranker.rerank(question, retrieved, top_k=self.cfg.top_k)
+        if retrieved and self.cfg.diversify_docs:
+            retrieved = _apply_doc_diversification(retrieved, top_k=self.cfg.top_k, doc_cap=self.cfg.doc_cap)
+        contexts = self._build_parent_contexts(retrieved)
         answer = _sanitize_answer(self.reader.answer(question, contexts))
         trace = []
         for r in retrieved:
@@ -929,8 +697,5 @@ class RAGPipeline:
             "question": question,
             "answer": answer,
             "retrieval": trace,
-            "route_type": route_type,
-            "fallback_used": fallback_used,
-            "runtime_retrieval": params,
             "config": self.cfg.to_dict(),
         }

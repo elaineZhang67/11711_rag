@@ -1,250 +1,100 @@
-When was Carnegie Mellon University founded?
-Who founded Carnegie Mellon University?
-What was Carnegie Mellon University originally called?
-Where is Carnegie Mellon University located within Pittsburgh?
-When did Carnegie Institute of Technology merge with the Mellon Institute?
-What is the Mellon Institute known for?
-What colleges make up Carnegie Mellon University?
-What is the School of Computer Science at CMU known for?
-What is the College of Engineering at CMU called?
-What is the Tepper School of Business known for?
-What is the CMU School of Drama known for?
-Which notable actors graduated from Carnegie Mellon University?
-What research areas is CMU internationally recognized for?
-What is the Robotics Institute at CMU?
-When was the Robotics Institute established?
-What interdisciplinary programs are offered at CMU?
-What is CMU’s official mascot?
-What are CMU’s official school colors?
-What traditions are part of CMU’s Spring Carnival?
-What is Sweepstakes at CMU?
-What is the Buggy race at CMU?
-Where does the Buggy race take place?
-What is Booth during Spring Carnival?
-What is the Fence at CMU used for?
-What libraries are located on CMU’s campus?
-What is Hunt Library known for?
-What is the Pittsburgh Supercomputing Center?
-Where is the Pittsburgh Supercomputing Center located?
-What partnerships does CMU have with industry?
-What entrepreneurship programs are available at CMU?
+When was Carnegie Mellon University officially formed under its current name?
+Where is CMU’s main campus located?
+What was Andrew Carnegie’s goal in founding Carnegie Technical Schools?
+What year did Carnegie Technical Schools become Carnegie Institute of Technology?
+What is CMU’s classification in the Carnegie Classification system?
+What is the Robotics Institute at CMU known for?
+What year was CMU’s Robotics Institute founded?
+What is CMU’s mascot named?
+What athletic division does CMU compete in?
+What are CMU’s official colors?
+What is CMU’s motto?
+Which school at CMU focuses on public policy and international affairs?
+What is the Heinz College known for?
+What is the College of Fine Arts at CMU known for?
+When was CMU’s School of Drama established?
+What is CMU’s Entertainment Technology Center known for?
 What is Project Olympus at CMU?
 What is the Swartz Center for Entrepreneurship?
 What is CMU Silicon Valley?
 Where is CMU Silicon Valley located?
-What neighborhoods surround CMU’s campus?
-What is Oakland known for?
-What is Shadyside known for?
-What is Squirrel Hill known for?
-What is the Strip District known for?
-What is Point State Park?
-What rivers meet in downtown Pittsburgh?
-Why is Pittsburgh called the City of Bridges?
-Approximately how many bridges are in Pittsburgh?
+What is the Software Engineering Institute (SEI)?
+What is CERT at CMU?
+What is the Machine Learning Department at CMU known for?
+What was the Logic Theorist?
+Who were Allen Newell and Herbert Simon?
+What is CMU’s School of Architecture known for?
+What type of research does CMU conduct in AI?
+What is CMU’s undergraduate enrollment approximately?
+What is CMU’s graduate enrollment approximately?
+How many campuses does CMU operate globally?
+What is CMU Qatar?
+What is CMU Africa?
+What is the Posner Center at CMU?
+What library serves as CMU’s primary research library?
+What is Hunt Library known for?
+What is the Fence tradition at CMU?
+What is Sweepstakes at CMU?
+Where is the buggy race held?
+What is Booth during Spring Carnival?
+What is CMU’s Tepper School known for academically?
+What is CMU’s School of Computer Science globally recognized for?
+What is the Pittsburgh Supercomputing Center?
+What interdisciplinary focus does CMU emphasize?
+What is CMU’s Integrated Innovation Institute?
+When was the Integrated Innovation Institute established?
+What kinds of startups emerge from CMU?
+What role does CMU play in autonomous vehicle research?
+What is the Navlab project?
+What is the Information Networking Institute?
+What research funding does CMU receive annually?
+Where is Pittsburgh located?
+What three rivers meet in Pittsburgh?
+How many bridges does Pittsburgh have?
+Why is Pittsburgh called the Steel City?
+What is Point State Park known for?
+When was Point State Park established?
 What is Mount Washington known for?
 What is the Duquesne Incline?
 What is the Monongahela Incline?
-What museums are part of the Carnegie Museums of Pittsburgh?
+What is the Strip District known for?
+What is Oakland known for?
+What is Shadyside known for?
+What is Squirrel Hill known for?
+What is Schenley Park known for?
 What is the Carnegie Museum of Art known for?
 What is the Carnegie Museum of Natural History known for?
 What is the Andy Warhol Museum?
 Where is the Andy Warhol Museum located?
-What is Phipps Conservatory and Botanical Gardens?
-Where is Phipps Conservatory located?
-What is the Cathedral of Learning?
-Which university operates the Cathedral of Learning?
+What is Phipps Conservatory?
 What is Heinz Hall known for?
 What is the Benedum Center?
-What is the Pittsburgh Cultural District?
-What is Picklesburgh?
-When is Picklesburgh typically held?
-What is the Three Rivers Arts Festival?
-When does the Three Rivers Arts Festival usually occur?
+What is the Cultural District?
 What is the Pittsburgh Marathon?
 When is the Pittsburgh Marathon typically held?
-What professional sports teams are based in Pittsburgh?
-Where do the Pittsburgh Steelers play?
-Where do the Pittsburgh Penguins play?
-Where do the Pittsburgh Pirates play?
-What is Acrisure Stadium?
-What is PNC Park known for?
-What is PPG Paints Arena?
-What role did steel play in Pittsburgh’s history?
-How did Pittsburgh’s economy transform after the steel era?
+What NFL team is based in Pittsburgh?
+Where do the Steelers play?
+What NHL team is based in Pittsburgh?
+Where do the Penguins play?
+What MLB team is based in Pittsburgh?
+Where do the Pirates play?
+What is Pittsburgh’s climate classified as?
 What is the Pittsburgh Technology Council?
-What is the Pittsburgh Innovation District?
-What research does the Software Engineering Institute conduct?
-What is CERT at Carnegie Mellon University?
-What cybersecurity research initiatives exist at CMU?
-What graduate programs is CMU known for?
-What undergraduate programs is CMU known for?
-What student organizations are active at CMU?
-What is CMU known for in robotics research?
-What is CMU known for in artificial intelligence?
-What is CMU known for in computer science?
-What is CMU known for in design?
-What is CMU known for in engineering?
-What is the Pittsburgh Symphony Orchestra?
-Where does the Pittsburgh Symphony Orchestra perform?
-What is the Pittsburgh Opera?
-What is the Pittsburgh Ballet Theatre?
-What is the Pittsburgh Soul Food Festival?
-When was the Pittsburgh Soul Food Festival established?
-What is Light Up Night in Pittsburgh?
-What holiday events take place in downtown Pittsburgh?
-What is the history of Mellon Institute?
-What research breakthroughs have originated at CMU?
-What is the role of CMU in Pittsburgh’s tech ecosystem?
-What major tech companies have offices in Pittsburgh?
-What is the history of Schenley Park?
-What is the history of the Strip District?
-What cultural events are hosted in Pittsburgh annually?
-What is the Pittsburgh International Airport known for?
-What public transportation serves the Oakland neighborhood?
-What is the Pittsburgh Regional Transit system?
-What is the history of Heinz in Pittsburgh?
-What is the role of philanthropy in Pittsburgh’s development?
-What major hospitals are located in Pittsburgh?
+What major hospital system is based in Pittsburgh?
 What is UPMC known for?
-What is the role of CMU in robotics startups?
-What is the history of the Carnegie Libraries?
-What is the Carnegie Science Center?
+What is the Great Allegheny Passage?
 What is the Three Rivers Heritage Trail?
-What is the significance of Point State Park in American history?
+What is the National Aviary?
+What is the Children’s Museum of Pittsburgh?
+What is Kennywood?
+What is Picklesburgh?
+What is Light Up Night?
+What is Mellon Square?
+What is Allegheny Riverfront Park?
+What historic industry shaped Pittsburgh’s economy?
+What sector drives Pittsburgh’s economy today?
+What major universities are in Pittsburgh?
+What is the Cathedral of Learning?
+What public transportation serves Pittsburgh?
 What is the Pittsburgh Zoo & Aquarium?
-What academic rankings does CMU hold?
-What research funding initiatives support CMU projects?
-What is the history of Carnegie Hall in Pittsburgh?
-What public art installations are notable in Pittsburgh?
-What is the role of CMU in autonomous vehicle research?
-What innovation competitions are hosted at CMU?
-What is the history of Pittsburgh’s bridges?
-What green initiatives are active in Pittsburgh?
-What waterfront redevelopment projects are underway in Pittsburgh?
-What is the history of the Pittsburgh Pirates?
-What championships have the Pittsburgh Steelers won?
-What championships have the Pittsburgh Penguins won?
-What film productions have taken place in Pittsburgh?
-What is Pittsburgh’s climate like?
-What is the history of the Cathedral of Learning?
-What is the role of CMU in interdisciplinary research?
-What data science initiatives exist in Pittsburgh?
-What AI companies are based in Pittsburgh?
-What robotics companies are based in Pittsburgh?
-What entrepreneurship competitions take place in Pittsburgh?
-What major research grants has CMU received?
-What is the history of Carnegie’s philanthropy in Pittsburgh?
-What are some notable Pittsburgh landmarks?
-What role does CMU play in Pittsburgh’s economic development?
-What is the Pittsburgh Downtown Partnership?
-What cultural heritage events are celebrated in Pittsburgh?
-What is the role of CMU’s technology transfer office?
-What student housing options are near CMU?
-What is the history of Phipps Conservatory?
-What public parks are located near CMU?
-What is the significance of the Three Rivers in Pittsburgh’s identity?
-What advanced computing initiatives exist at CMU?
-What interdisciplinary centers exist at CMU?
-What major academic conferences are hosted in Pittsburgh?
-What sustainability initiatives are active at CMU?
-What community outreach programs does CMU support?
-What research collaborations exist between CMU and local institutions?
-What is the history of Pittsburgh’s manufacturing industry?
-What is the history of Oakland as a university district?
-What transportation infrastructure projects are underway in Pittsburgh?
-What innovation hubs exist in Pittsburgh?
-What public libraries serve Pittsburgh residents?
-What is the Pittsburgh Cultural Trust?
-What annual music festivals are held in Pittsburgh?
-What culinary traditions are associated with Pittsburgh?
-What research hospitals collaborate with CMU?
-What role does CMU play in national AI policy discussions?
-What student traditions are unique to CMU?
-What is the history of the Pittsburgh Steelers franchise?
-What is the history of the Pittsburgh Penguins franchise?
-What is the history of the Pittsburgh Pirates franchise?
-What architectural styles are common in Pittsburgh?
-What is the role of CMU in advanced manufacturing research?
-What environmental restoration projects exist in Pittsburgh?
-What is the history of the Carnegie Endowment?
-What regional economic partnerships include Pittsburgh?
-What community development initiatives exist in Pittsburgh?
-What research commercialization efforts are active at CMU?
-What startup incubators operate in Pittsburgh?
-What workforce development programs are available in Pittsburgh?
-What advanced robotics labs operate at CMU?
-What interdisciplinary education programs exist at CMU?
-What innovation leadership programs are offered in Pittsburgh?
-What urban design initiatives are active in Pittsburgh?
-What major historical figures are associated with Pittsburgh?
-What is the history of Point State Park’s fountain?
-What is the Pittsburgh Glass Center?
-What is the history of the Frick Collection in Pittsburgh?
-What urban mobility projects are underway in Pittsburgh?
-What educational outreach events are hosted by CMU?
-What regional technology ecosystem exists in Pittsburgh?
-What is the role of CMU in global research collaborations?
-What digital transformation initiatives are active in Pittsburgh?
-What advanced AI research initiatives are based at CMU?
-What public-private partnerships support innovation in Pittsburgh?
-What venture capital firms operate in Pittsburgh?
-What research consortiums include CMU?
-What interdisciplinary science programs are offered at CMU?
-What economic transformation strategies have shaped Pittsburgh?
-What urban redevelopment history defines downtown Pittsburgh?
-What STEM education programs are offered in Pittsburgh?
-What river ecology projects are active in Pittsburgh?
-What startup mentorship programs are available in Pittsburgh?
-What advanced materials research occurs at CMU?
-What data analytics programs are offered at CMU?
-What sustainability efforts are supported by Pittsburgh’s local government?
-What research funding programs support Pittsburgh institutions?
-What higher education partnerships exist in Pittsburgh?
-What international student programs are offered at CMU?
-What cultural exchange programs are active in Pittsburgh?
-What interdisciplinary research efforts are led by CMU?
-What civic innovation labs exist in Pittsburgh?
-What regional growth initiatives include Pittsburgh?
-What advanced research facilities operate at CMU?
-What public policy research programs exist in Pittsburgh?
-What entrepreneurship ecosystems are active in Pittsburgh?
-What digital infrastructure initiatives support Pittsburgh?
-What advanced computing research is conducted at CMU?
-What innovation competitions are hosted in Pittsburgh?
-What academic collaboration networks include CMU?
-What urban sustainability initiatives are active in Pittsburgh?
-What technology workforce initiatives exist in Pittsburgh?
-What research breakthroughs have originated from CMU’s AI labs?
-What research breakthroughs have originated from CMU’s robotics labs?
-What is the history of CMU’s School of Architecture?
-What is the history of CMU’s College of Fine Arts?
-What is the history of CMU’s College of Engineering?
-What is the history of CMU’s School of Computer Science?
-What is the history of CMU’s Tepper School of Business?
-What is the history of CMU’s School of Drama?
-What alumni from CMU have won major awards?
-What research partnerships exist between CMU and UPMC?
-What role does CMU play in autonomous systems research?
-What major campus expansions have occurred at CMU?
-What urban innovation strategies define Pittsburgh’s development?
-What community service programs are active at CMU?
-What is the history of CMU’s Silicon Valley campus?
-What major academic milestones define CMU’s growth?
-What are the major rivers that define Pittsburgh’s geography?
-What public art programs are active in Pittsburgh?
-What innovation accelerators operate in Pittsburgh?
-What economic sectors drive Pittsburgh’s current economy?
-What is the history of the Pittsburgh Cultural District’s development?
-What advanced research collaborations include Pittsburgh universities?
-What education leadership programs are offered in Pittsburgh?
-What public health initiatives are active in Pittsburgh?
-What workforce reskilling programs are offered in Pittsburgh?
-What advanced robotics startups have emerged from CMU?
-What environmental sustainability programs are active at CMU?
-What interdisciplinary education initiatives define CMU?
-What is the significance of Carnegie’s philanthropy to Pittsburgh?
-What research commercialization successes have originated at CMU?
-What community revitalization efforts define modern Pittsburgh?
-What major international collaborations involve CMU?
-What is the role of CMU in Pittsburgh’s AI ecosystem?
-What innovation strategies define Pittsburgh’s economic future?
+What is the significance of Pittsburgh’s rivers?
