@@ -357,6 +357,17 @@
 - strongest LLM judge so far
 - confirms dense-heavy hybrid + stronger reranker is currently the best-performing direction
 
+## Run 28 (First Fine-tune, Not Stage 2)
+- Score: `53.72%` (`F1 43.47`, `Recall 46.27`, `ROUGE 39.80`, `LLM 4.414`)
+- Leaderboard submission id: `aaa1`
+- Setup:
+- first fine-tune only (post-initial LoRA fine-tune and merged reader model)
+- explicitly **not** stage-2 fine-tune
+- interpretation:
+- new best total score so far
+- strongest overlap metrics so far (`F1` and `ROUGE`)
+- confirms first-round domain fine-tuning improved factual precision/format matching
+
 
 ## Model Size Summary (What Scaled Up)
 - Reader model: unchanged (`Qwen2.5-14B-Instruct`, 14B class)
