@@ -21,6 +21,12 @@
 - Run 18: `49.89%` (`F1 37.99`, `Recall 44.64`, `ROUGE 34.92`, `LLM 4.280`)
 - Run 19: `49.24%` (`F1 37.33`, `Recall 44.03`, `ROUGE 34.57`, `LLM 4.242`)
 - Run 20: `52.19%` (`F1 40.03`, `Recall 49.61`, `ROUGE 36.17`, `LLM 4.318`)
+- Run 21: `49.83%` (`F1 40.31`, `Recall 45.76`, `ROUGE 37.46`, `LLM 4.032`)
+- Run 22: `50.53%` (`F1 39.39`, `Recall 47.58`, `ROUGE 35.52`, `LLM 4.185`)
+- Run 23: `50.53%` (`F1 39.39`, `Recall 47.58`, `ROUGE 35.52`, `LLM 4.185`)
+- Run 24: `52.20%` (`F1 40.73`, `Recall 49.38`, `ROUGE 37.34`, `LLM 4.255`)
+- Run 25: `52.44%` (`F1 40.73`, `Recall 49.38`, `ROUGE 37.34`, `LLM 4.293`)
+- Run 26: `51.89%` (`F1 39.73`, `Recall 48.95`, `ROUGE 36.55`, `LLM 4.293`)
 
 ## Run 1 (Baseline)
 - Retrieval mode: `hybrid`
@@ -271,10 +277,72 @@
 - `_format_chat_or_fallback(...)` uses tokenizer `apply_chat_template(...)` when available and falls back to old flat prompt if unavailable.
 - Same pattern also applied to HyDE generation (`generate_hypothesis(...)`) with `build_hyde_system_prompt()` + `build_hyde_user_prompt(...)`.
 - Length-control change coupled with prompt restructure:
+- system prompt answer limit changed from `3` to `5` sentences.
+- postprocess truncation changed from question-type `3/2/1` to fixed cap `5`.
 - Result pattern:
 - new best total score so far in this report
 - strong improvements over Run 12 in F1/Recall/ROUGE
 - LLM judge remains high, slightly below Run 12 peak
+
+## Run 21 (Closed-book Baseline for Report)
+- Score: `49.83%` (`F1 40.31`, `Recall 45.76`, `ROUGE 37.46`, `LLM 4.032`)
+- Leaderboard submission id: `aaa1`
+- Mode:
+- `--mode closedbook` (no retrieval, no chunk/index context used)
+- interpretation:
+- used as report baseline for ``retrieve-and-augment vs closed-book'' analysis
+- performance is competitive on overlap metrics but lower than best RAG run on total score and judged quality
+
+## Run 22 (Sparse-only without Reranker)
+- Score: `50.53%` (`F1 39.39`, `Recall 47.58`, `ROUGE 35.52`, `LLM 4.185`)
+- Leaderboard submission id: `aaa1`
+- Mode:
+- `--mode sparse`
+- no reranker (`--reranker-model` omitted)
+- interpretation:
+- strong sparse-only baseline for report ablation
+- outperforms closed-book on total score and recall
+- still below best hybrid run in this report (Run 20)
+
+## Run 23 (Sparse-only with Reranker)
+- Score: `50.53%` (`F1 39.39`, `Recall 47.58`, `ROUGE 35.52`, `LLM 4.185`)
+- Leaderboard submission id: `aaa1`
+- Mode:
+- `--mode sparse`
+- with reranker (`--reranker-model BAAI/bge-reranker-large`)
+- interpretation:
+- score is identical to sparse-only without reranker (Run 22)
+- suggests reranker did not change final top contexts in this sparse setup (`top-k=3`)
+
+## Run 24 (Dense-only without Reranker)
+- Score: `52.20%` (`F1 40.73`, `Recall 49.38`, `ROUGE 37.34`, `LLM 4.255`)
+- Leaderboard submission id: `aaa1`
+- Mode:
+- `--mode dense`
+- no reranker (`--reranker-model` omitted)
+- interpretation:
+- very strong dense-only baseline
+- slightly exceeds previous best total score (Run 20: `52.19%`) while keeping high recall and overlap metrics
+
+## Run 25 (Dense-only with Reranker)
+- Score: `52.44%` (`F1 40.73`, `Recall 49.38`, `ROUGE 37.34`, `LLM 4.293`)
+- Leaderboard submission id: `aaa1`
+- Mode:
+- `--mode dense`
+- with reranker (`--reranker-model BAAI/bge-reranker-large`)
+- interpretation:
+- best dense-only result in this report so far
+- compared with Run 24, overlap metrics are unchanged while total score/LLM judge increase
+
+## Run 26 (Dense-only with Reranker + HyDE)
+- Score: `51.89%` (`F1 39.73`, `Recall 48.95`, `ROUGE 36.55`, `LLM 4.293`)
+- Leaderboard submission id: `aaa1`
+- Mode:
+- `--mode dense`
+- with reranker (`--reranker-model BAAI/bge-reranker-large`)
+- with HyDE (`--hyde --hyde-max-new-tokens 64`)
+- interpretation:
+- lower than dense-only with reranker (Run 25), indicating HyDE did not help in this dense-only setting
 
 
 ## Model Size Summary (What Scaled Up)

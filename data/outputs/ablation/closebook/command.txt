@@ -1,0 +1,1 @@
+python scripts/answer_queries.py --run-name closedbook_qwen14b_t100 --queries leaderboard_queries.json --mode closedbook --reader-backend transformers --reader-model Qwen/Qwen2.5-14B-Instruct --reader-task text-generation --device 0 --max-new-tokens 100 --temperature 0.0 --andrewid aaa1 --verbose
